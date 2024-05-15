@@ -2,15 +2,13 @@ import { Camera } from "expo-camera";
 import { useState, useEffect, useRef } from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import defaultStyles from "./../components/styles/DefaultStyles";
+import { useNavigation } from "@react-navigation/native";
 
 export default function TakePhoto() {
+  const navigation = useNavigation();
   const [isLoading, setLoading] = useState(true);
   const [image, setImage] = useState(null);
   const cameraRef = useRef(null);
-
-  useEffect(() => {
-    ocr();
-  }, [image]);
 
   const ocr = async () => {
     if (image) {
@@ -67,6 +65,8 @@ export default function TakePhoto() {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync({ base64: true });
       setImage(photo.base64);
+      //   ocr();
+      navigation.navigate("WriteReview");
     }
   };
 
