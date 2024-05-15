@@ -18,7 +18,13 @@ const MyTextInput = forwardRef(
         style={[
           styles.textInput,
           width ? { width: width } : {},
-          height ? { height: height } : {},
+          height
+            ? {
+                height: height,
+                textAlignVertical: "top",
+                paddingVertical: 24,
+              }
+            : {},
         ]}
         onChangeText={onChangeText}
         defaultValue=""
@@ -28,12 +34,19 @@ const MyTextInput = forwardRef(
         ref={ref}
         onSubmitEditing={onSubmitEditing}
         blurOnSubmit={false}
+        multiline={height ? true : false}
       />
     );
   }
 );
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+  },
   textInput: {
     marginVertical: 8,
     backgroundColor: "#3C3C3C",
