@@ -4,7 +4,13 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { View, StatusBar, Platform } from "react-native";
+import {
+  View,
+  StatusBar,
+  Platform,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import Main from "./components/Main";
 import Order from "./components/Order";
 import ProductDetail from "./components/ProductDetail";
@@ -18,6 +24,7 @@ import FilmSvg from "./assets/svg/filmSvg";
 import CertSvg from "./assets/svg/certSvg";
 import SettingSvg from "./assets/svg/settingSvg";
 import PakafilmSvg from "./assets/svg/pakafilmSvg";
+import { Ionicons } from "@expo/vector-icons";
 import {
   SafeAreaProvider,
   SafeAreaView,
@@ -38,6 +45,15 @@ const Mytheme = {
 
 export default function App() {
   const navigationRef = useNavigationContainerRef();
+
+  const backButton = () => {
+    return (
+      <TouchableOpacity onPress={() => navigationRef.current?.goBack()}>
+        <Ionicons name="chevron-back" size={40} color="white" />
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView
@@ -52,13 +68,28 @@ export default function App() {
           <Stack.Navigator
             initialRouteName={"MainBottomTab"}
             screenOptions={{
-              headerShown: false,
+              headerTitle: "",
+              headerTransparent: true,
               gestureEnabled: false,
             }}
           >
-            <Stack.Screen name="MainBottomTab" component={MainBottomTab} />
-            <Stack.Screen name="ProductDetail" component={ProductDetail} />
-            <Stack.Screen name="TakePhoto" component={TakePhoto} />
+            <Stack.Screen
+              name="MainBottomTab"
+              component={MainBottomTab}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="ProductDetail"
+              component={ProductDetail}
+              options={{ headerLeft: backButton }}
+            />
+            <Stack.Screen
+              name="TakePhoto"
+              component={TakePhoto}
+              options={{ headerLeft: backButton }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>

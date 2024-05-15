@@ -1,11 +1,13 @@
 import { Camera } from "expo-camera";
-import { useState, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { useState, useEffect, useRef } from "react";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import defaultStyles from "./../components/styles/DefaultStyles";
 
 export default function TakePhoto() {
   const [isLoading, setLoading] = useState(true);
   const [image, setImage] = useState(null);
+  const cameraRef = useRef(null);
+
   useEffect(() => {
     ocr();
   }, [image]);
@@ -61,9 +63,22 @@ export default function TakePhoto() {
     }
   };
 
+  const takePhoto = async () => {
+    if (cameraRef.current) {
+      const photo = await cameraRef.current.takePictureAsync({ base64: true });
+      setImage(photo.base64);
+    }
+  };
+
   return (
     <View style={defaultStyles.container}>
-      <Camera style={styles.camera} facing={"back"}></Camera>
+      <Camera style={styles.camera} facing={"back"} ref={cameraRef}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={takePhoto}>
+            <Text style={styles.text}>Take Photo</Text>
+          </TouchableOpacity>
+        </View>
+      </Camera>
     </View>
   );
 }

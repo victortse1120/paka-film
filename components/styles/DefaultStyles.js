@@ -14,12 +14,10 @@ const defaultStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#000000",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   containerFull: {
     flex: 1,
     backgroundColor: "#000000",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     paddingBottom: Platform.OS === "android" ? 8 : 30,
   },
   header: {

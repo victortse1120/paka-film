@@ -8,7 +8,7 @@ import {
   ScrollView,
   ImageBackground,
   TouchableWithoutFeedback,
-  Platform
+  Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -116,15 +116,6 @@ export default function ProductDetail(props) {
             backgroundColor: "#00000080",
           }}
         />
-        <View style={[defaultStyles.header, { marginTop: insets.top }]}>
-          <TouchableOpacity onPress={() => navigation.navigate("Main")}>
-            <View style={defaultStyles.headerIcon}>
-              <ArrowLeftSyvg fill={"#fff"} />
-            </View>
-          </TouchableOpacity>
-          <View style={{ flex: 1 }} />
-        </View>
-
         <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
           <View
             style={[
