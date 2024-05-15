@@ -10,20 +10,13 @@ import MyTextInput from "../components/TextInput";
 import MyButton from "../components/Button";
 import { useState, useRef } from "react";
 import RatingBar from "../components/RatingBar";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 export default function WriteReviews() {
   const navigation = useNavigation();
-  const [form, setForm] = useState({
-    film: "",
-    date: "",
-    time: "",
-    cinema: "",
-    house: "",
-    seat: "",
-    title: "",
-    content: "",
-  });
+  const route = useRoute();
+  const { ticketData } = route.params;
+  const [form, setForm] = useState(ticketData);
   const [rating, setRating] = useState(0);
   const dateRef = useRef();
   const timeRef = useRef();
