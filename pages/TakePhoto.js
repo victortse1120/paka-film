@@ -65,7 +65,7 @@ export default function TakePhoto() {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync({ base64: true });
       setImage(photo.base64);
-      //   ocr();
+      ocr();
       navigation.navigate("WriteReview");
     }
   };

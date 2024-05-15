@@ -49,7 +49,10 @@ export default function Home() {
               : navigation.navigate("TakePhoto");
           }}
         />
-        <MyTextButton title={"Skip"} />
+        <MyTextButton
+          title={"Skip"}
+          onPress={() => navigation.navigate("WriteReview")}
+        />
       </View>
     </View>
   );

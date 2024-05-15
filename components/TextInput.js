@@ -22,7 +22,7 @@ const MyTextInput = forwardRef(
             ? {
                 height: height,
                 textAlignVertical: "top",
-                paddingVertical: 24,
+                paddingVertical: 16,
               }
             : {},
         ]}
