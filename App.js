@@ -8,6 +8,7 @@ import { View, StatusBar, Platform } from "react-native";
 import Main from "./components/Main";
 import Order from "./components/Order";
 import ProductDetail from "./components/ProductDetail";
+import TakePhoto from "./pages/TakePhoto";
 import Home from "./components/Home";
 import Market from "./components/Market";
 import Setting from "./components/Setting";
@@ -57,6 +58,7 @@ export default function App() {
           >
             <Stack.Screen name="MainBottomTab" component={MainBottomTab} />
             <Stack.Screen name="ProductDetail" component={ProductDetail} />
+            <Stack.Screen name="TakePhoto" component={TakePhoto} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>

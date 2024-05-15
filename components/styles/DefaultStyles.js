@@ -58,6 +58,24 @@ const defaultStyles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+  Headline: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  Subtitle: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  Body: {
+    color: "white",
+    fontSize: 16,
+  },
+  Caption: {
+    color: "#969696",
+    fontSize: 14,
+  },
 });
 
 export default defaultStyles;
