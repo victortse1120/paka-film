@@ -10,8 +10,10 @@ import MyTextInput from "../components/TextInput";
 import MyButton from "../components/Button";
 import { useState, useRef } from "react";
 import RatingBar from "../components/RatingBar";
+import { useNavigation } from "@react-navigation/native";
 
 export default function WriteReviews() {
+  const navigation = useNavigation();
   const [form, setForm] = useState({
     film: "",
     date: "",
@@ -115,7 +117,15 @@ export default function WriteReviews() {
             <RatingBar rating={rating} setRating={setRating} />
           </View>
 
-          <MyButton title={"FINISH AND POST"} onPress={() => {}} />
+          <MyButton
+            title={"FINISH AND POST"}
+            onPress={() => {
+              navigation.reset({
+                index: 0,
+                routes: [{ name: "MainBottomTab" }],
+              });
+            }}
+          />
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

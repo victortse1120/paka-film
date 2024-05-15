@@ -11,12 +11,6 @@ export default function Home() {
   const navigation = useNavigation();
   const [permission, requestPermission] = Camera.useCameraPermissions();
 
-  useEffect(() => {
-    if (permission && permission.granted) {
-      navigation.navigate("TakePhoto");
-    }
-  }, [permission]);
-
   if (!permission) {
     // Camera permissions are still loading.
     return (
@@ -44,9 +38,10 @@ export default function Home() {
         <MyButton
           title={"SCAN FILM TICKET"}
           onPress={() => {
-            !permission.granted
-              ? requestPermission()
-              : navigation.navigate("TakePhoto");
+            if (!permission.granted) {
+              requestPermission();
+            }
+            navigation.navigate("TakePhoto");
           }}
         />
         <MyTextButton
