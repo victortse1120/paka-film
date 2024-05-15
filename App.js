@@ -15,6 +15,7 @@ import Main from "./components/Main";
 import Order from "./components/Order";
 import ProductDetail from "./components/ProductDetail";
 import TakePhoto from "./pages/TakePhoto";
+import WriteReview from "./pages/WriteReview";
 import Home from "./components/Home";
 import Market from "./components/Market";
 import Setting from "./components/Setting";
@@ -88,6 +89,11 @@ export default function App() {
             <Stack.Screen
               name="TakePhoto"
               component={TakePhoto}
+              options={{ headerLeft: backButton }}
+            />
+            <Stack.Screen
+              name="WriteReview"
+              component={WriteReview}
               options={{ headerLeft: backButton }}
             />
           </Stack.Navigator>

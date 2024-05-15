@@ -84,12 +84,6 @@ export default function TakePhoto() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginVertical: 16,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   camera: {
     flex: 1,
   },
@@ -108,15 +102,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "white",
-  },
-  image: {
-    width: 180,
-    height: 236,
-    margin: 16,
-  },
-  bottomView: {
-    position: "absolute",
-    bottom: 0,
-    alignItems: "center",
   },
 });
