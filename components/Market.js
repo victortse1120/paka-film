@@ -22,6 +22,7 @@ import { View, Text, FlatList, StyleSheet, Dimensions } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+
 import { FontAwesome } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -52,7 +53,6 @@ const reviews = [
     author: "By Peter Chan",
     date: "11-03-2024",
   },
-  
 ];
 
 const ReviewItem = ({ item }) => (
@@ -76,7 +76,7 @@ const ReviewList = () => (
 
 const TopTab = createMaterialTopTabNavigator();
 
-function ReviewTabs() {
+export default function ReviewTabs() {
   return (
     <TopTab.Navigator
       screenOptions={{
@@ -130,6 +130,3 @@ const styles = StyleSheet.create({
     color: "#888",
   },
 });
-
-export default App;
-s;
