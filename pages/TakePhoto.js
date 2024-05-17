@@ -1,13 +1,21 @@
 import { Camera } from "expo-camera";
-import { useState, useEffect, useRef } from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { useState, useRef } from "react";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  ToastAndroid,
+} from "react-native";
 import defaultStyles from "./../components/styles/DefaultStyles";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 import ticketToData from "../utils/ticketToData";
+import LoadingLayer from "../components/LoadingLayer";
 
 export default function TakePhoto() {
   const navigation = useNavigation();
-  const [isLoading, setLoading] = useState(true);
+  const isFocused = useIsFocused();
+  const [isLoading, setLoading] = useState(false);
   const cameraRef = useRef(null);
 
   const ocr = async (base64) => {
@@ -41,6 +49,7 @@ export default function TakePhoto() {
         const result = data.responses[0];
 
         if (result.error) {
+          ToastAndroid.show(result.error.message, ToastAndroid.SHORT);
           console.log(result.error.message);
         }
         if (result.fullTextAnnotation && result.fullTextAnnotation.text) {
@@ -49,9 +58,11 @@ export default function TakePhoto() {
           const ticketData = ticketToData(recognizedText);
           navigation.navigate("WriteReview", { ticketData });
         } else {
+          ToastAndroid.show("No text found in the image", ToastAndroid.SHORT);
           console.log("No text found in the image");
         }
       } else {
+        ToastAndroid.show("Invalid API response", ToastAndroid.SHORT);
         console.log("Invalid API response");
       }
     } catch (error) {
@@ -62,6 +73,7 @@ export default function TakePhoto() {
   };
 
   const takePhoto = async () => {
+    setLoading(true);
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync({ base64: true });
       ocr(photo.base64);
@@ -70,13 +82,16 @@ export default function TakePhoto() {
 
   return (
     <View style={defaultStyles.container}>
-      <Camera style={styles.camera} facing={"back"} ref={cameraRef}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={takePhoto}>
-            <Text style={styles.text}>Take Photo</Text>
-          </TouchableOpacity>
-        </View>
-      </Camera>
+      {isFocused && (
+        <Camera style={styles.camera} facing={"back"} ref={cameraRef}>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button} onPress={takePhoto}>
+              <Text style={styles.text}>Take Photo</Text>
+            </TouchableOpacity>
+          </View>
+        </Camera>
+      )}
+      {isLoading && <LoadingLayer />}
     </View>
   );
 }
