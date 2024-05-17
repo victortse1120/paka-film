@@ -26,17 +26,19 @@ export default function ticketToData(ocrText) {
     formData.time = timeMatch[0];
   }
 
-  const cinemasFound = cinemas.filter((cinema) =>
-    ocrText.toLowerCase().includes(cinema.name.toLowerCase())
-  );
-  if (cinemasFound.length > 0) {
-    formData.cinema = cinemasFound.map((cinema) => cinema.name)[0];
-  }
-
   if (stringWithoutSpaces.includes("MCL")) {
     brand = "mcl";
   } else if (stringWithoutSpaces.includes("broadway")) {
     brand = "broadway";
+  }
+
+  const cinemasFound = cinemas.filter(
+    (cinema) =>
+      ocrText.toLowerCase().includes(cinema.name.toLowerCase()) &&
+      brand == cinema.brand
+  );
+  if (cinemasFound.length > 0) {
+    formData.cinema = cinemasFound.map((cinema) => cinema.name)[0];
   }
 
   var ocrTextArray = ocrText.split("\n");
@@ -58,6 +60,13 @@ export default function ticketToData(ocrText) {
   } else if (brand == "broadway") {
     const filmIndex = findFilmIndexForBroadway(ocrTextArray);
     if (filmIndex >= 0) formData.film = ocrTextArray[filmIndex];
+
+    const houseSeatRegex = /\n(\d)(\w[\d]{1,2})\n/g;
+    const houseSeatMatch = stringWithoutSpaces.match(houseSeatRegex);
+    if (houseSeatMatch) {
+      formData.house = houseSeatMatch[1];
+      formData.seat = houseSeatMatch[2];
+    }
   }
 
   console.log(formData);
