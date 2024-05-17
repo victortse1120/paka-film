@@ -5,6 +5,7 @@ const MyTextInput = forwardRef(
   (
     {
       title,
+      defaultValue,
       width,
       height,
       onChangeText,
@@ -27,7 +28,7 @@ const MyTextInput = forwardRef(
             : {},
         ]}
         onChangeText={onChangeText}
-        defaultValue=""
+        defaultValue={defaultValue}
         placeholder={title}
         placeholderTextColor="#787878"
         returnKeyType={returnKeyTypeIsNext ? "next" : "done"}

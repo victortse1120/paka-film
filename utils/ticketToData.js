@@ -1,4 +1,5 @@
 import cinemas from "../data/cinemas.json";
+import movies from "../data/movies.json";
 
 export default function ticketToData(ocrText) {
   var brand = "";
@@ -13,6 +14,13 @@ export default function ticketToData(ocrText) {
     content: "",
   };
   const stringWithoutSpaces = ocrText.replace(/\s/g, "");
+
+  const moviesFound = movies.filter((movie) =>
+    ocrText.toLowerCase().includes(movie.film.toLowerCase())
+  );
+  if (moviesFound.length > 0) {
+    formData.film = moviesFound.map((movie) => movie.film)[0];
+  }
 
   const dateRegex = /\d{2}\/\d{2}\/\d{4}/;
   const dateMatch = stringWithoutSpaces.match(dateRegex);
@@ -41,11 +49,7 @@ export default function ticketToData(ocrText) {
     formData.cinema = cinemasFound.map((cinema) => cinema.name)[0];
   }
 
-  var ocrTextArray = ocrText.split("\n");
   if (brand == "mcl") {
-    const filmIndex = findFilmIndexForMCL(ocrTextArray);
-    if (filmIndex >= 0) formData.film = ocrTextArray[filmIndex];
-
     const houseRegex = /House\d{1,2}/g;
     const houseMatch = stringWithoutSpaces.match(houseRegex);
     if (houseMatch) {
@@ -58,35 +62,17 @@ export default function ticketToData(ocrText) {
       formData.seat = seatMatch[0];
     }
   } else if (brand == "broadway") {
-    const filmIndex = findFilmIndexForBroadway(ocrTextArray);
-    if (filmIndex >= 0) formData.film = ocrTextArray[filmIndex];
-
-    const houseSeatRegex = /\n(\d)(\w[\d]{1,2})\n/g;
-    const houseSeatMatch = stringWithoutSpaces.match(houseSeatRegex);
-    if (houseSeatMatch) {
-      formData.house = houseSeatMatch[1];
-      formData.seat = houseSeatMatch[2];
-    }
+    const lines = stringWithoutSpaces.split("\n");
+    const houseSeatRegex = /(\d)([A-Z][\d]{1,2})/;
+    lines.forEach((line) => {
+      const houseSeatMatch = line.match(houseSeatRegex);
+      if (houseSeatMatch) {
+        formData.house = houseSeatMatch[1];
+        formData.seat = houseSeatMatch[2];
+      }
+    });
   }
 
   console.log(formData);
   return formData;
-}
-
-function findFilmIndexForMCL(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    if (/[\u4e00-\u9fff]/.test(arr[i])) {
-      return i - 1;
-    }
-  }
-  return -1;
-}
-
-function findFilmIndexForBroadway(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    if (/片名FILM/.test(arr[i])) {
-      return i + 1;
-    }
-  }
-  return -1;
 }

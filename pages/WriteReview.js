@@ -15,7 +15,16 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 export default function WriteReviews() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { ticketData } = route.params;
+  const { ticketData = {} } = route.params || {
+    film: "",
+    date: "",
+    time: "",
+    cinema: "",
+    house: "",
+    seat: "",
+    title: "",
+    content: "",
+  };
   const [form, setForm] = useState(ticketData);
   const [rating, setRating] = useState(0);
   const dateRef = useRef();
@@ -38,6 +47,7 @@ export default function WriteReviews() {
           </Text>
           <MyTextInput
             title="Film Name"
+            defaultValue={form.film}
             OnChangeText={(newText) => setForm({ ...form, film: newText })}
             returnKeyTypeIsNext={true}
             onSubmitEditing={() => dateRef?.current?.focus()}
@@ -45,6 +55,7 @@ export default function WriteReviews() {
           <View style={styles.row}>
             <MyTextInput
               title="Date"
+              defaultValue={form.date}
               width={181}
               OnChangeText={(newText) => setForm({ ...form, date: newText })}
               returnKeyTypeIsNext={true}
@@ -53,6 +64,7 @@ export default function WriteReviews() {
             />
             <MyTextInput
               title="Time"
+              defaultValue={form.time}
               width={181}
               OnChangeText={(newText) => setForm({ ...form, time: newText })}
               returnKeyTypeIsNext={true}
@@ -63,6 +75,7 @@ export default function WriteReviews() {
 
           <MyTextInput
             title="Cinema Name"
+            defaultValue={form.cinema}
             OnChangeText={(newText) => setForm({ ...form, cinema: newText })}
             returnKeyTypeIsNext={true}
             ref={cinemaRef}
@@ -71,6 +84,7 @@ export default function WriteReviews() {
           <View style={styles.row}>
             <MyTextInput
               title="House"
+              defaultValue={form.house}
               width={181}
               OnChangeText={(newText) => setForm({ ...form, house: newText })}
               returnKeyTypeIsNext={true}
@@ -79,6 +93,7 @@ export default function WriteReviews() {
             />
             <MyTextInput
               title="Seat"
+              defaultValue={form.seat}
               width={181}
               OnChangeText={(newText) => setForm({ ...form, seat: newText })}
               returnKeyTypeIsNext={true}
@@ -92,6 +107,7 @@ export default function WriteReviews() {
           </Text>
           <MyTextInput
             title="Title"
+            defaultValue={form.title}
             OnChangeText={(newText) => setForm({ ...form, title: newText })}
             returnKeyTypeIsNext={true}
             ref={titleRef}
@@ -99,6 +115,7 @@ export default function WriteReviews() {
           />
           <MyTextInput
             title="Write some thoughts..."
+            defaultValue={form.content}
             height={182}
             OnChangeText={(newText) => setForm({ ...form, content: newText })}
             returnKeyTypeIsNext={false}
