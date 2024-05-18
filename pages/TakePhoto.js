@@ -1,4 +1,4 @@
-import { Camera } from "expo-camera";
+import { CameraView } from "expo-camera";
 import { useState, useRef } from "react";
 import {
   View,
@@ -83,13 +83,13 @@ export default function TakePhoto() {
   return (
     <View style={defaultStyles.container}>
       {isFocused && (
-        <Camera style={styles.camera} facing={"back"} ref={cameraRef}>
+        <CameraView style={styles.camera} facing={"back"} ref={cameraRef}>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.button} onPress={takePhoto}>
               <Text style={styles.text}>Take Photo</Text>
             </TouchableOpacity>
           </View>
-        </Camera>
+        </CameraView>
       )}
       {isLoading && <LoadingLayer />}
     </View>

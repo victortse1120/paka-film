@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Camera } from "expo-camera";
+import { useCameraPermissions } from "expo-camera";
 import defaultStyles from "./../components/styles/DefaultStyles";
 
 import MyButton from "./Button";
@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 export default function Home() {
   const navigation = useNavigation();
-  const [permission, requestPermission] = Camera.useCameraPermissions();
+  const [permission, requestPermission] = useCameraPermissions();
 
   if (!permission) {
     // Camera permissions are still loading.

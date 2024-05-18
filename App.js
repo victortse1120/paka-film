@@ -1,3 +1,4 @@
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
   NavigationContainer,
   useNavigationContainerRef,
@@ -56,50 +57,52 @@ export default function App() {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView
-        style={{
-          flex: 1,
-          backgroundColor: "#000",
-        }}
-        edges={["left", "right"]}
-      >
-        <StatusBar barStyle={"light-content"} />
-        <NavigationContainer theme={Mytheme} ref={navigationRef}>
-          <Stack.Navigator
-            initialRouteName={"MainBottomTab"}
-            screenOptions={{
-              headerTitle: "",
-              headerTransparent: true,
-              gestureEnabled: false,
-            }}
-          >
-            <Stack.Screen
-              name="MainBottomTab"
-              component={MainBottomTab}
-              options={{
-                headerShown: false,
+    <GestureHandlerRootView>
+      <SafeAreaProvider>
+        <SafeAreaView
+          style={{
+            flex: 1,
+            backgroundColor: "#000",
+          }}
+          edges={["left", "right"]}
+        >
+          <StatusBar barStyle={"light-content"} />
+          <NavigationContainer theme={Mytheme} ref={navigationRef}>
+            <Stack.Navigator
+              initialRouteName={"MainBottomTab"}
+              screenOptions={{
+                headerTitle: "",
+                headerTransparent: true,
+                gestureEnabled: false,
               }}
-            />
-            <Stack.Screen
-              name="ProductDetail"
-              component={ProductDetail}
-              options={{ headerLeft: backButton }}
-            />
-            <Stack.Screen
-              name="TakePhoto"
-              component={TakePhoto}
-              options={{ headerLeft: backButton }}
-            />
-            <Stack.Screen
-              name="WriteReview"
-              component={WriteReview}
-              options={{ headerLeft: backButton }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaView>
-    </SafeAreaProvider>
+            >
+              <Stack.Screen
+                name="MainBottomTab"
+                component={MainBottomTab}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="ProductDetail"
+                component={ProductDetail}
+                options={{ headerLeft: backButton }}
+              />
+              <Stack.Screen
+                name="TakePhoto"
+                component={TakePhoto}
+                options={{ headerLeft: backButton }}
+              />
+              <Stack.Screen
+                name="WriteReview"
+                component={WriteReview}
+                options={{ headerLeft: backButton }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
 
