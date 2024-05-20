@@ -21,7 +21,7 @@ export default function Home() {
   }
 
   return (
-    <View style={[styles.container]}>
+    <View style={[defaultStyles.container, styles.container]}>
       <Text style={[defaultStyles.Headline, { margin: 16 }]}>
         Create Film Review
       </Text>
@@ -55,8 +55,6 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginVertical: 16,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -67,7 +65,7 @@ const styles = StyleSheet.create({
   },
   bottomView: {
     position: "absolute",
-    bottom: 0,
+    bottom: 16,
     alignItems: "center",
   },
 });
