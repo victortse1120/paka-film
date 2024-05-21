@@ -25,54 +25,9 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 
 import { FontAwesome } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import ReviewList from "./ReviewList";
 
 const { width } = Dimensions.get("window");
-
-const reviews = [
-  {
-    id: "1",
-    title: "Toy Story 3",
-    content:
-      'It’s not just a toy - the inspiration given to us by "Toy Story 3"',
-    author: "By Peter Chan",
-    date: "11-03-2024",
-  },
-  {
-    id: "2",
-    title: "Toy Story 3",
-    content:
-      'It’s not just a toy - the inspiration given to us by "Toy Story 3"',
-    author: "By Peter Chan",
-    date: "11-03-2024",
-  },
-  {
-    id: "2",
-    title: "Toy Story 3",
-    content:
-      'It’s not just a toy - the inspiration given to us by "Toy Story 3"',
-    author: "By Peter Chan",
-    date: "11-03-2024",
-  },
-];
-
-const ReviewItem = ({ item }) => (
-  <View style={styles.reviewContainer}>
-    <Text style={styles.reviewTitle}>{item.title}</Text>
-    <Text style={styles.reviewContent}>{item.content}</Text>
-    <Text style={styles.reviewAuthor}>
-      {item.author} {item.date}
-    </Text>
-  </View>
-);
-
-const ReviewList = () => (
-  <FlatList
-    data={reviews}
-    renderItem={({ item }) => <ReviewItem item={item} />}
-    keyExtractor={(item) => item.id}
-    contentContainerStyle={styles.listContainer}
-  />
-);
 
 const TopTab = createMaterialTopTabNavigator();
 
