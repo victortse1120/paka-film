@@ -12,6 +12,8 @@ import Home from "./components/Home";
 import Market from "./components/Market";
 import Setting from "./components/Setting";
 import ProductDetail from "./components/ProductDetail";
+import ReviewList from "./components/ReviewList";
+import ReviewDetail from "./components/ReviewDetail";
 import TakePhoto from "./pages/TakePhoto";
 import WriteReview from "./pages/WriteReview";
 
@@ -73,6 +75,16 @@ export default function App() {
               <Stack.Screen
                 name="ProductDetail"
                 component={ProductDetail}
+                options={{ headerLeft: backButton }}
+              />
+              <Stack.Screen
+                name="ReviewList"
+                component={ReviewList}
+                options={{ headerLeft: backButton }}
+              />
+              <Stack.Screen
+                name="ReviewDetail"
+                component={ReviewDetail}
                 options={{ headerLeft: backButton }}
               />
               <Stack.Screen
