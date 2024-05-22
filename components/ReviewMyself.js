@@ -1,3 +1,4 @@
+// ReviewList.js
 import React from "react";
 import {
   View,
@@ -51,24 +52,11 @@ const ReviewItem = ({ item }) => {
       <View style={styles.reviewContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.reviewTitle}>{item.title}</Text>
-          <FontAwesome
-            name="heart"
-            size={20}
-            color="#5A5A5A"
-            style={styles.icon}
-          />
         </View>
 
         <View style={styles.detailContainer}>
           <Text style={styles.reviewSubTitle}>{item.subTitle}</Text>
           <Text style={styles.reviewContent}>{item.content}</Text>
-        </View>
-
-        <View style={styles.authorContainer}>
-          <Image source={authorIcon} style={styles.authorIcon} />
-          <Text style={styles.reviewAuthor}>
-            {item.author} {item.date}
-          </Text>
         </View>
       </View>
     </TouchableOpacity>

@@ -26,12 +26,14 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import { FontAwesome } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ReviewList from "./ReviewList";
+import ReviewMyself from "./ReviewMyself";
 
 const { width } = Dimensions.get("window");
 
 const TopTab = createMaterialTopTabNavigator();
 
 export default function ReviewTabs() {
+  const insets = useSafeAreaInsets();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Review</Text>
@@ -43,12 +45,13 @@ export default function ReviewTabs() {
             height: 40,
             borderRadius: 10,
             marginVertical: 5,
-            padding: 15,
+            padding: 6,
           },
           tabBarStyle: { backgroundColor: "black" },
-          tabBarLabelStyle: { color: "white" },
+          tabBarLabelStyle: { color: "white", textTransform: "none" },
+          tabBarActiveTintColor: "black",
+          tabBarInactiveTintColor: "grey",
         }}
-        
       >
         <TopTab.Screen
           name="News"
@@ -57,7 +60,7 @@ export default function ReviewTabs() {
         />
         <TopTab.Screen
           name="Myself"
-          component={ReviewList}
+          component={ReviewMyself}
           options={{ tabBarLabel: "Myself (2)" }}
         />
       </TopTab.Navigator>
