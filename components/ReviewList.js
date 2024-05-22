@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#969696",
     marginVertical: 10,
-    lineHeight: "normal",
+    lineHeight: 21,
   },
   reviewAuthor: {
     fontSize: 13,
