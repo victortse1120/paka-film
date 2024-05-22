@@ -4,6 +4,7 @@ import {
   Text,
   KeyboardAvoidingView,
   ScrollView,
+  Platform,
 } from "react-native";
 import defaultStyles from "./../components/styles/DefaultStyles";
 import MyTextInput from "../components/TextInput";
