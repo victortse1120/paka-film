@@ -13,7 +13,7 @@ import Market from "./components/Market";
 import Setting from "./components/Setting";
 import ProductDetail from "./components/ProductDetail";
 import ReviewList from "./components/ReviewList";
-import ReviewDetail from "./components/ReviewDetail";
+import ReviewDetail from "./pages/ReviewDetail";
 import TakePhoto from "./pages/TakePhoto";
 import WriteReview from "./pages/WriteReview";
 

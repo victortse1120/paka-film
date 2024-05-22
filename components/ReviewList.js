@@ -8,11 +8,13 @@ import {
   StyleSheet,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
 
 const reviews = [
   {
     id: "1",
     title: "Toy Story 3",
+    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
     content:
       "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
     author: "By Peter Chan",
@@ -21,6 +23,7 @@ const reviews = [
   {
     id: "2",
     title: "Toy Story 3",
+    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
     content:
       "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
     author: "By Peter Chan",
@@ -29,6 +32,7 @@ const reviews = [
   {
     id: "3",
     title: "Toy Story 3",
+    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
     content:
       "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
     author: "By Peter Chan",
@@ -44,7 +48,17 @@ const ReviewItem = ({ item }) => {
       onPress={() => navigation.navigate("ReviewDetail", { review: item })}
     >
       <View style={styles.reviewContainer}>
-        <Text style={styles.reviewTitle}>{item.title}</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.reviewTitle}>{item.title}</Text>
+          <FontAwesome
+            name="heart"
+            size={20}
+            color="#5A5A5A"
+            style={styles.icon}
+          />
+        </View>
+
+        <Text style={styles.reviewSubTitle}>{item.subTitle}</Text>
         <Text style={styles.reviewContent}>{item.content}</Text>
         <Text style={styles.reviewAuthor}>
           {item.author} {item.date}
@@ -75,19 +89,35 @@ const styles = StyleSheet.create({
     borderColor: "#444",
     borderWidth: 1,
   },
+  titleContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
   reviewTitle: {
     fontSize: 18,
     fontWeight: "bold",
     color: "#fff",
   },
-  reviewContent: {
-    fontSize: 14,
-    color: "#ccc",
+  icon: {
+    marginLeft: 10,
+  },
+  reviewSubTitle: {
+    fontSize: 16,
+    color: "white",
+    fontWeight: "bold",
+    lineHeight: 60,
     marginVertical: 10,
   },
+  reviewContent: {
+    fontSize: 14,
+    color: "#969696",
+    marginVertical: 10,
+    lineHeight: "normal",
+  },
   reviewAuthor: {
-    fontSize: 12,
-    color: "#888",
+    fontSize: 13,
+    color: "#fff",
   },
 });
 

@@ -33,24 +33,35 @@ const TopTab = createMaterialTopTabNavigator();
 
 export default function ReviewTabs() {
   return (
-    <TopTab.Navigator
-      screenOptions={{
-        tabBarIndicatorStyle: { backgroundColor: "yellow" },
-        tabBarStyle: { backgroundColor: "black" },
-        tabBarLabelStyle: { color: "white" },
-      }}
-    >
-      <TopTab.Screen
-        name="News"
-        component={ReviewList}
-        options={{ tabBarLabel: "News (3)" }}
-      />
-      <TopTab.Screen
-        name="Myself"
-        component={ReviewList}
-        options={{ tabBarLabel: "Myself (2)" }}
-      />
-    </TopTab.Navigator>
+    <View style={styles.container}>
+      <Text style={styles.title}>Review</Text>
+      <TopTab.Navigator
+        screenOptions={{
+          tabBarIndicatorStyle: {
+            backgroundColor: "#FFC800",
+            width: 185,
+            height: 40,
+            borderRadius: 10,
+            marginVertical: 5,
+            padding: 15,
+          },
+          tabBarStyle: { backgroundColor: "black" },
+          tabBarLabelStyle: { color: "white" },
+        }}
+        
+      >
+        <TopTab.Screen
+          name="News"
+          component={ReviewList}
+          options={{ tabBarLabel: "News (3)" }}
+        />
+        <TopTab.Screen
+          name="Myself"
+          component={ReviewList}
+          options={{ tabBarLabel: "Myself (2)" }}
+        />
+      </TopTab.Navigator>
+    </View>
   );
 }
 
@@ -58,6 +69,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "white",
+    textAlign: "left",
+    marginVertical: 10,
+    paddingLeft: 20,
   },
   listContainer: {
     padding: 20,
