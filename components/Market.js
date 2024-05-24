@@ -1,22 +1,3 @@
-// import {View, StyleSheet } from 'react-native';
-// import { useNavigation } from '@react-navigation/native'
-
-// import defaultStyles from './../components/styles/DefaultStyles';
-
-// export default function Market() {
-
-//   const navigation = useNavigation()
-
-//   return (
-//       <View style={defaultStyles.container}>
-
-//       </View>
-//   )
-// }
-
-// const styles = StyleSheet.create({
-
-// })
 import React from "react";
 import { View, Text, FlatList, StyleSheet, Dimensions } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -41,16 +22,31 @@ export default function ReviewTabs() {
         screenOptions={{
           tabBarIndicatorStyle: {
             backgroundColor: "#FFC800",
-            width: 185,
-            height: 40,
+            width: 172,
+            height: 56,
             borderRadius: 10,
-            marginVertical: 5,
-            padding: 6,
+            // marginVertical: 8,
+            // marginHorizontal: 20,
+            // padding: 6,
           },
-          tabBarStyle: { backgroundColor: "black" },
-          tabBarLabelStyle: { color: "white", textTransform: "none" },
-          tabBarActiveTintColor: "black",
-          tabBarInactiveTintColor: "grey",
+          tabBarStyle: {
+            backgroundColor: "#2D2D2D",
+            borderRadius: 12,
+            margin: 20,
+            marginBottom: 10,
+          },
+          tabBarLabelStyle: {
+            color: "grey",
+            textTransform: "none",
+            fontSize: 16,
+            fontWeight: "bold",
+          },
+          tabBarItemStyle: {
+            // 選中時的樣式
+            "&.Mui-selected": {
+              color: "black", // 選中時文字變黑色
+            },
+          },
         }}
       >
         <TopTab.Screen
@@ -78,7 +74,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     textAlign: "left",
-    marginVertical: 10,
+    marginTop: 40,
     paddingLeft: 20,
   },
   listContainer: {

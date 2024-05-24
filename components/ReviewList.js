@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   reviewContainer: {
     padding: 20,
     paddingHorizontal: 16,
-    marginVertical: 16,
+    marginVertical: 0,
     backgroundColor: "#2D2D2D",
     borderRadius: 12,
   },
