@@ -11,21 +11,23 @@ import defaultStyles from "../components/styles/DefaultStyles";
 import MyTextInput from "../components/TextInput";
 import MyButton from "../components/Button";
 import { useState, useRef } from "react";
-import { useNavigation, useRoute } from "@react-navigation/native";
 import MyTextButton from "../components/TextButton";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 export default function LogIn() {
-  const navigation = useNavigation();
-  const route = useRoute();
   const [isLogin, setIsLogin] = useState(true);
-  const passwordRef = useRef();
-  const auth = getAuth();
-
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+
+  const passwordRef = useRef();
+  const auth = getAuth();
 
   const handleEmailChange = (text) => {
     setForm((prevForm) => ({
@@ -72,21 +74,40 @@ export default function LogIn() {
               returnKeyTypeIsNext={false}
               ref={passwordRef}
               onSubmitEditing={() => passwordRef?.current?.blur()}
+              secureTextEntry={true}
             />
+            {error == "" ? (
+              <></>
+            ) : (
+              <Text style={[defaultStyles.Body]}>{error}</Text>
+            )}
             <MyButton
               title={isLogin ? "LOGIN" : "REGISTER"}
               onPress={() => {
-                createUserWithEmailAndPassword(auth, form.email, form.password)
-                  .then((userCredential) => {
-                    // Signed up
-                    const user = userCredential.user;
-                    console.log(userCredential);
-                    // ...
-                  })
-                  .catch((error) => {
-                    const errorMessage = error.message;
-                    console.log(errorMessage);
-                  });
+                setError("");
+                isLogin
+                  ? signInWithEmailAndPassword(auth, form.email, form.password)
+                      .then((userCredential) => {
+                        console.log(userCredential);
+                      })
+                      .catch((error) => {
+                        const errorMessage = error.message;
+                        console.log(errorMessage);
+                        setError(errorMessage);
+                      })
+                  : createUserWithEmailAndPassword(
+                      auth,
+                      form.email,
+                      form.password
+                    )
+                      .then((userCredential) => {
+                        console.log(userCredential);
+                      })
+                      .catch((error) => {
+                        const errorMessage = error.message;
+                        console.log(errorMessage);
+                        setError(errorMessage);
+                      });
               }}
             />
 
@@ -97,6 +118,7 @@ export default function LogIn() {
                   : "Have an account? Login Now"
               }
               onPress={() => {
+                setError("");
                 setIsLogin(!isLogin);
               }}
             />

@@ -11,10 +11,12 @@ import defaultStyles from "./../components/styles/DefaultStyles";
 
 import ArrowRightSvg from "./../assets/svg/arrowRightSvg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { getAuth, signOut } from "firebase/auth";
 
 export default function Setting() {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
+  const auth = getAuth();
 
   return (
     <View style={[defaultStyles.container, { paddingTop: insets.top }]}>
@@ -42,7 +44,14 @@ export default function Setting() {
       </TouchableWithoutFeedback>
       <View style={defaultStyles.lineH} />
 
-      <TouchableWithoutFeedback onPress={() => {}}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          signOut(auth).catch((error) => {
+            const errorMessage = error.message;
+            console.log(errorMessage);
+          });
+        }}
+      >
         <View style={styles.logoutButtonRootView}>
           <View style={defaultStyles.defaultButton}>
             <Text style={defaultStyles.defaultButtonText}>{"LOGOUT"}</Text>

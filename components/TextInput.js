@@ -11,6 +11,7 @@ const MyTextInput = forwardRef(
       onChangeText,
       returnKeyTypeIsNext,
       onSubmitEditing,
+      secureTextEntry = false,
     },
     ref
   ) => {
@@ -36,6 +37,7 @@ const MyTextInput = forwardRef(
         onSubmitEditing={onSubmitEditing}
         blurOnSubmit={false}
         multiline={height ? true : false}
+        secureTextEntry={secureTextEntry}
       />
     );
   }
