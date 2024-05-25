@@ -13,6 +13,7 @@ import Market from "./components/Market";
 import Setting from "./components/Setting";
 import ProductDetail from "./components/ProductDetail";
 import ReviewList from "./components/ReviewList";
+import LogIn from "./pages/LogIn";
 import ReviewDetail from "./pages/ReviewDetail";
 import TakePhoto from "./pages/TakePhoto";
 import WriteReview from "./pages/WriteReview";
@@ -24,6 +25,25 @@ import SettingSvg from "./assets/svg/settingSvg";
 import PakafilmSvg from "./assets/svg/pakafilmSvg";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+
+import { initializeApp } from "firebase/app";
+import { initializeAuth, getReactNativePersistence } from "firebase/auth";
+import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
+import { useState, useEffect } from "react";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyApGyi_oc1d7Gb4PcbEjv_ZZKmQnQhYQNQ",
+  authDomain: "paka-film-b7e0d.firebaseapp.com",
+  projectId: "paka-film-b7e0d",
+  storageBucket: "paka-film-b7e0d.appspot.com",
+  messagingSenderId: "502083959972",
+  appId: "1:502083959972:web:a6a552d27ee767681bba31",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(ReactNativeAsyncStorage),
+});
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -38,6 +58,16 @@ const Mytheme = {
 };
 
 export default function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+    });
+
+    return unsubscribe;
+  }, []);
+
   const navigationRef = useNavigationContainerRef();
 
   const backButton = () => {
@@ -67,11 +97,19 @@ export default function App() {
                 gestureEnabled: false,
               }}
             >
-              <Stack.Screen
-                name="Tabs"
-                component={TabNavigator}
-                options={{ headerShown: false }}
-              />
+              {currentUser ? (
+                <Stack.Screen
+                  name="Tabs"
+                  component={TabNavigator}
+                  options={{ headerShown: false }}
+                />
+              ) : (
+                <Stack.Screen
+                  name="LogIn"
+                  component={LogIn}
+                  options={{ headerShown: false }}
+                />
+              )}
               <Stack.Screen
                 name="ProductDetail"
                 component={ProductDetail}

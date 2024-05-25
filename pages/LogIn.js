@@ -11,18 +11,20 @@ import defaultStyles from "../components/styles/DefaultStyles";
 import MyTextInput from "../components/TextInput";
 import MyButton from "../components/Button";
 import { useState, useRef } from "react";
-import RatingBar from "../components/RatingBar";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import MyTextButton from "../components/TextButton";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function LogIn() {
   const navigation = useNavigation();
   const route = useRoute();
+  const [isLogin, setIsLogin] = useState(true);
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
   const passwordRef = useRef();
+  const auth = getAuth();
 
   return (
     <KeyboardAvoidingView
@@ -32,7 +34,7 @@ export default function LogIn() {
       <ScrollView>
         <View style={styles.container}>
           <Text style={[defaultStyles.Headline, styles.headline]}>
-            User Login
+            {isLogin ? "User Login" : "User Register"}
           </Text>
           <View style={styles.innerContainer}>
             <Image
@@ -42,31 +44,62 @@ export default function LogIn() {
 
             <MyTextInput
               title="USER EMAIL"
-              defaultValue={form.film}
-              OnChangeText={(newText) => setForm({ ...form, film: newText })}
+              defaultValue={form.email}
+              OnChangeText={(newText) => {
+                console.log(newText);
+                setFormData((prevFormData) => ({
+                  ...prevFormData,
+                  [field]: value,
+                }));
+                setForm((prevForm) => ({ ...prevForm, [email]: newText }));
+              }}
               returnKeyTypeIsNext={true}
               onSubmitEditing={() => passwordRef?.current?.focus()}
             />
 
             <MyTextInput
               title="PASSWORD"
-              defaultValue={form.date}
-              OnChangeText={(newText) => setForm({ ...form, date: newText })}
+              defaultValue={form.password}
+              OnChangeText={(newText) =>
+                setForm({ ...form, password: newText })
+              }
               returnKeyTypeIsNext={false}
               ref={passwordRef}
               onSubmitEditing={() => passwordRef?.current?.blur()}
             />
             <MyButton
-              title={"LOGIN"}
+              title={isLogin ? "LOGIN" : "REGISTER"}
               onPress={() => {
-                navigation.reset({
-                  index: 0,
-                  routes: [{ name: "MainBottomTab" }],
-                });
+                createUserWithEmailAndPassword(
+                  auth,
+                  "tsekwanwai2009@gmail.com",
+                  "123456"
+                )
+                  .then((userCredential) => {
+                    // Signed up
+                    const user = userCredential.user;
+                    console.log(userCredential);
+                    // ...
+                  })
+                  .catch((error) => {
+                    console.log(form.email);
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorMessage);
+                  });
               }}
             />
 
-            <MyTextButton title={"No Account? Register Now"} />
+            <MyTextButton
+              title={
+                isLogin
+                  ? "No Account? Register Now"
+                  : "Have an account? Login Now"
+              }
+              onPress={() => {
+                setIsLogin(!isLogin);
+              }}
+            />
           </View>
         </View>
       </ScrollView>
