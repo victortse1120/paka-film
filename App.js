@@ -32,12 +32,12 @@ import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect } from "react";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyApGyi_oc1d7Gb4PcbEjv_ZZKmQnQhYQNQ",
-  authDomain: "paka-film-b7e0d.firebaseapp.com",
-  projectId: "paka-film-b7e0d",
-  storageBucket: "paka-film-b7e0d.appspot.com",
-  messagingSenderId: "502083959972",
-  appId: "1:502083959972:web:a6a552d27ee767681bba31",
+  apiKey: process.env.EXPO_PUBLIC_APIKEY,
+  authDomain: process.env.EXPO_PUBLIC_AUTHDOMAIN,
+  projectId: process.env.EXPO_PUBLIC_PROJECTID,
+  storageBucket: process.env.EXPO_PUBLIC_STORAGEBUCKET,
+  messagingSenderId: process.env.EXPO_PUBLIC_MESSAGINGSENDERID,
+  appId: process.env.EXPO_PUBLIC_APPID,
 };
 
 const app = initializeApp(firebaseConfig);
