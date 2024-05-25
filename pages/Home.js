@@ -1,11 +1,10 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useCameraPermissions } from "expo-camera";
-import defaultStyles from "./../components/styles/DefaultStyles";
+import defaultStyles from "../components/styles/DefaultStyles";
 
-import MyButton from "./Button";
-import MyTextButton from "./TextButton";
-import { useEffect } from "react";
+import MyButton from "../components/Button";
+import MyTextButton from "../components/TextButton";
 
 export default function Home() {
   const navigation = useNavigation();

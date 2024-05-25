@@ -1,13 +1,10 @@
 import React from "react";
-import { View, Text, FlatList, StyleSheet, Dimensions } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import { FontAwesome } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ReviewList from "./ReviewList";
-import ReviewMyself from "./ReviewMyself";
+import ReviewList from "../pages/ReviewList";
+import ReviewMyself from "../components/ReviewMyself";
 
 const { width } = Dimensions.get("window");
 

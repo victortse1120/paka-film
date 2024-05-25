@@ -230,17 +230,13 @@
 // });
 
 import React from "react";
-import { View, Text, FlatList, StyleSheet, Dimensions } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import { FontAwesome } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ReviewList from "./ReviewList";
 
-import FavoruiteMovies from "./FavoruiteMovies";
-import FavoruiteReviews from "./FavoruiteReviews";
+import FavoruiteMovies from "../components/FavoruiteMovies";
+import FavoruiteReviews from "../components/FavoruiteReviews";
 
 const { width } = Dimensions.get("window");
 
