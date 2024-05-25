@@ -49,7 +49,7 @@ export default function WriteReviews() {
           <MyTextInput
             title="Film Name"
             defaultValue={form.film}
-            OnChangeText={(newText) => setForm({ ...form, film: newText })}
+            onChangeText={(newText) => setForm({ ...form, film: newText })}
             returnKeyTypeIsNext={true}
             onSubmitEditing={() => dateRef?.current?.focus()}
           />
@@ -58,7 +58,7 @@ export default function WriteReviews() {
               title="Date"
               defaultValue={form.date}
               width={181}
-              OnChangeText={(newText) => setForm({ ...form, date: newText })}
+              onChangeText={(newText) => setForm({ ...form, date: newText })}
               returnKeyTypeIsNext={true}
               ref={dateRef}
               onSubmitEditing={() => timeRef?.current?.focus()}
@@ -67,7 +67,7 @@ export default function WriteReviews() {
               title="Time"
               defaultValue={form.time}
               width={181}
-              OnChangeText={(newText) => setForm({ ...form, time: newText })}
+              onChangeText={(newText) => setForm({ ...form, time: newText })}
               returnKeyTypeIsNext={true}
               ref={timeRef}
               onSubmitEditing={() => cinemaRef?.current?.focus()}
@@ -77,7 +77,7 @@ export default function WriteReviews() {
           <MyTextInput
             title="Cinema Name"
             defaultValue={form.cinema}
-            OnChangeText={(newText) => setForm({ ...form, cinema: newText })}
+            onChangeText={(newText) => setForm({ ...form, cinema: newText })}
             returnKeyTypeIsNext={true}
             ref={cinemaRef}
             onSubmitEditing={() => houseRef?.current?.focus()}
@@ -87,7 +87,7 @@ export default function WriteReviews() {
               title="House"
               defaultValue={form.house}
               width={181}
-              OnChangeText={(newText) => setForm({ ...form, house: newText })}
+              onChangeText={(newText) => setForm({ ...form, house: newText })}
               returnKeyTypeIsNext={true}
               ref={houseRef}
               onSubmitEditing={() => seatRef?.current?.focus()}
@@ -96,7 +96,7 @@ export default function WriteReviews() {
               title="Seat"
               defaultValue={form.seat}
               width={181}
-              OnChangeText={(newText) => setForm({ ...form, seat: newText })}
+              onChangeText={(newText) => setForm({ ...form, seat: newText })}
               returnKeyTypeIsNext={true}
               ref={seatRef}
               onSubmitEditing={() => titleRef?.current?.focus()}
@@ -109,7 +109,7 @@ export default function WriteReviews() {
           <MyTextInput
             title="Title"
             defaultValue={form.title}
-            OnChangeText={(newText) => setForm({ ...form, title: newText })}
+            onChangeText={(newText) => setForm({ ...form, title: newText })}
             returnKeyTypeIsNext={true}
             ref={titleRef}
             onSubmitEditing={() => contentRef?.current?.focus()}
@@ -118,7 +118,7 @@ export default function WriteReviews() {
             title="Write some thoughts..."
             defaultValue={form.content}
             height={182}
-            OnChangeText={(newText) => setForm({ ...form, content: newText })}
+            onChangeText={(newText) => setForm({ ...form, content: newText })}
             returnKeyTypeIsNext={false}
             ref={contentRef}
             onSubmitEditing={() => contentRef?.current?.blur()}

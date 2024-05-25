@@ -19,12 +19,27 @@ export default function LogIn() {
   const navigation = useNavigation();
   const route = useRoute();
   const [isLogin, setIsLogin] = useState(true);
+  const passwordRef = useRef();
+  const auth = getAuth();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-  const passwordRef = useRef();
-  const auth = getAuth();
+
+  const handleEmailChange = (text) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      email: text,
+    }));
+  };
+
+  const handlePasswordChange = (text) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      password: text,
+    }));
+  };
 
   return (
     <KeyboardAvoidingView
@@ -45,14 +60,7 @@ export default function LogIn() {
             <MyTextInput
               title="USER EMAIL"
               defaultValue={form.email}
-              OnChangeText={(newText) => {
-                console.log(newText);
-                setFormData((prevFormData) => ({
-                  ...prevFormData,
-                  [field]: value,
-                }));
-                setForm((prevForm) => ({ ...prevForm, [email]: newText }));
-              }}
+              onChangeText={handleEmailChange}
               returnKeyTypeIsNext={true}
               onSubmitEditing={() => passwordRef?.current?.focus()}
             />
@@ -60,9 +68,7 @@ export default function LogIn() {
             <MyTextInput
               title="PASSWORD"
               defaultValue={form.password}
-              OnChangeText={(newText) =>
-                setForm({ ...form, password: newText })
-              }
+              onChangeText={handlePasswordChange}
               returnKeyTypeIsNext={false}
               ref={passwordRef}
               onSubmitEditing={() => passwordRef?.current?.blur()}
@@ -70,11 +76,7 @@ export default function LogIn() {
             <MyButton
               title={isLogin ? "LOGIN" : "REGISTER"}
               onPress={() => {
-                createUserWithEmailAndPassword(
-                  auth,
-                  "tsekwanwai2009@gmail.com",
-                  "123456"
-                )
+                createUserWithEmailAndPassword(auth, form.email, form.password)
                   .then((userCredential) => {
                     // Signed up
                     const user = userCredential.user;
@@ -82,8 +84,6 @@ export default function LogIn() {
                     // ...
                   })
                   .catch((error) => {
-                    console.log(form.email);
-                    const errorCode = error.code;
                     const errorMessage = error.message;
                     console.log(errorMessage);
                   });
