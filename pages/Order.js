@@ -1,15 +1,18 @@
-import React from "react";
+import { useState } from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import FavoruiteMovies from "../components/FavoruiteMovies";
-import FavoruiteReviews from "../components/FavoruiteReviews";
+import FavoriteMovies from "../components/FavoriteMovies";
+import FavoriteReviews from "../components/FavoriteReviews";
 
 const TopTab = createMaterialTopTabNavigator();
 
 export default function ReviewTabs() {
+  const [active, setActive] = useState(0);
+  const [reviewNumbers, setReviewNumbers] = useState([3, 3]);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Favoruite</Text>
+      <Text style={styles.title}>Favorite</Text>
       <TopTab.Navigator
         screenOptions={{
           tabBarIndicatorStyle: {
@@ -39,12 +42,12 @@ export default function ReviewTabs() {
       >
         <TopTab.Screen
           name="Movies"
-          component={FavoruiteMovies}
+          component={FavoriteMovies}
           options={{ tabBarLabel: "Movies (3)" }}
         />
         <TopTab.Screen
           name="Reviews"
-          component={FavoruiteReviews}
+          component={FavoriteReviews}
           options={{ tabBarLabel: "Reviews (2)" }}
         />
       </TopTab.Navigator>

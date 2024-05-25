@@ -16,7 +16,7 @@ export default function ReviewTabs() {
         onPress={(index) => {
           setActive(index);
         }}
-        reviewNumbers={reviewNumbers}
+        number={reviewNumbers}
       />
       {active == 0 ? <ReviewList /> : <ReviewMyself />}
     </View>

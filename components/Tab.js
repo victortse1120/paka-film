@@ -1,6 +1,6 @@
 import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 
-function MyTab({ title, index, onPress, active, reviewNumbers }) {
+function MyTab({ title, index, onPress, active, number }) {
   return (
     <TouchableOpacity
       style={[
@@ -10,13 +10,13 @@ function MyTab({ title, index, onPress, active, reviewNumbers }) {
       onPress={onPress}
     >
       <Text style={[styles.buttonText, { color: active ? "#000" : "#969696" }]}>
-        {`${title}(${reviewNumbers[index]})`}
+        {`${title}(${number[index]})`}
       </Text>
     </TouchableOpacity>
   );
 }
 
-export default function MyTabs({ titles, onPress, active, reviewNumbers }) {
+export default function MyTabs({ titles, onPress, active, number }) {
   return (
     <View style={styles.container}>
       {titles.map((title, index) => (
@@ -25,7 +25,7 @@ export default function MyTabs({ titles, onPress, active, reviewNumbers }) {
           index={index}
           onPress={() => onPress(index)}
           active={active == index}
-          reviewNumbers={reviewNumbers}
+          number={number}
         />
       ))}
     </View>
