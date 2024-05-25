@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import FavoriteMovies from "../components/FavoriteMovies";
-import FavoriteReviews from "../components/FavoriteReviews";
 import MyTabs from "../components/Tab";
+import ReviewList from "../components/ReviewList";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
@@ -20,7 +19,7 @@ export default function ReviewTabs() {
         }}
         number={fovouriteNumbers}
       />
-      {active == 0 ? <FavoriteMovies /> : <FavoriteReviews />}
+      {active == 0 ? <FavoriteMovies /> : <ReviewList favorite={true} />}
     </View>
   );
 }

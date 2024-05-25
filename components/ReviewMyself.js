@@ -87,7 +87,7 @@ const ReviewList = () => (
 
 const styles = StyleSheet.create({
   listContainer: {
-    padding: 20,
+    paddingVertical: 24,
   },
   reviewContainer: {
     padding: 20,

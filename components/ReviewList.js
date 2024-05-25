@@ -20,6 +20,7 @@ const reviews = [
       "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
     author: "By Peter Chan",
     date: "11-03-2024",
+    favorite: false,
   },
   {
     id: "2",
@@ -29,6 +30,7 @@ const reviews = [
       "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
     author: "By Peter Chan",
     date: "11-03-2024",
+    favorite: false,
   },
   {
     id: "3",
@@ -38,6 +40,37 @@ const reviews = [
       "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
     author: "By Peter Chan",
     date: "11-03-2024",
+    favorite: false,
+  },
+  {
+    id: "4",
+    title: "Toy Story 3",
+    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
+    content:
+      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
+    author: "By Peter Chan",
+    date: "11-03-2024",
+    favorite: true,
+  },
+  {
+    id: "5",
+    title: "Toy Story 3",
+    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
+    content:
+      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
+    author: "By Peter Chan",
+    date: "11-03-2024",
+    favorite: true,
+  },
+  {
+    id: "6",
+    title: "Toy Story 3",
+    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
+    content:
+      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
+    author: "By Peter Chan",
+    date: "11-03-2024",
+    favorite: true,
   },
 ];
 
@@ -54,7 +87,7 @@ const ReviewItem = ({ item }) => {
           <FontAwesome
             name="heart"
             size={20}
-            color="#5A5A5A"
+            color={item.favorite ? "#FFC800" : "#5A5A5A"}
             style={styles.icon}
           />
         </View>
@@ -75,9 +108,9 @@ const ReviewItem = ({ item }) => {
   );
 };
 
-const ReviewList = () => (
+const ReviewList = ({ favorite }) => (
   <FlatList
-    data={reviews}
+    data={favorite ? reviews.filter((review) => review.favorite) : reviews}
     renderItem={({ item, index }) => (
       <View>
         {index > 0 && (

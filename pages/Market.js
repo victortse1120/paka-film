@@ -6,7 +6,7 @@ import MyTabs from "../components/Tab";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
-  const [reviewNumbers, setReviewNumbers] = useState([3, 3]);
+  const [reviewNumbers, setReviewNumbers] = useState([6, 3]);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Review</Text>
@@ -18,7 +18,7 @@ export default function ReviewTabs() {
         }}
         number={reviewNumbers}
       />
-      {active == 0 ? <ReviewList /> : <ReviewMyself />}
+      {active == 0 ? <ReviewList favorite={false} /> : <ReviewMyself />}
     </View>
   );
 }

@@ -50,5 +50,6 @@ const styles = StyleSheet.create({
   buttonText: {
     lineHeight: 16 * 1.3,
     fontSize: 16,
+    fontWeight: "bold",
   },
 });
