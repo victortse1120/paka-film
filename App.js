@@ -72,9 +72,11 @@ export default function App() {
 
   const backButton = () => {
     return (
-      <TouchableOpacity onPress={() => navigationRef.current?.goBack()}>
-        <Ionicons name="chevron-back" size={40} color="white" />
-      </TouchableOpacity>
+      <View style={{ marginTop: 22 }}>
+        <TouchableOpacity onPress={() => navigationRef.current?.goBack()}>
+          <Ionicons name="chevron-back" size={40} color="white" />
+        </TouchableOpacity>
+      </View>
     );
   };
 
