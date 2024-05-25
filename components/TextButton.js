@@ -21,5 +21,6 @@ const styles = StyleSheet.create({
     lineHeight: 16 * 1.3,
     fontSize: 16,
     color: "#FFF",
+    textDecorationLine: "underline",
   },
 });
