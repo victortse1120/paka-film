@@ -18,6 +18,10 @@ export default function ReviewTabs() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setReviewNumbers([6, myReviews.length]);
+  }, [myReviews]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Review</Text>
