@@ -14,7 +14,7 @@ const ReviewDetail = ({ route }) => {
       <View style={styles.authorContainer}>
         <Image source={authorIcon} style={styles.authorIcon} />
         <Text style={styles.author}>
-          {"By Peter Chan"} {review.date}
+          {"By Peter Chan"} {review.createdAt}
         </Text>
         <View style={styles.ratingContainer}>
           <FontAwesome

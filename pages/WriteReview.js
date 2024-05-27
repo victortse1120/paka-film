@@ -13,6 +13,7 @@ import { useState, useRef } from "react";
 import RatingBar from "../components/RatingBar";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { getMovieReviews, storeMovieReview } from "../storages/MovieReviews";
+import { getTodayDate } from "../utils/common";
 
 export default function WriteReviews() {
   const navigation = useNavigation();
@@ -132,7 +133,11 @@ export default function WriteReviews() {
           <MyButton
             title={"FINISH AND POST"}
             onPress={async () => {
-              await storeMovieReview({ ...form, rating: rating });
+              await storeMovieReview({
+                ...form,
+                rating: rating,
+                createdAt: getTodayDate(),
+              });
               navigation.reset({
                 index: 0,
                 routes: [{ name: "Tabs" }],
