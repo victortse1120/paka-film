@@ -12,6 +12,7 @@ import MyButton from "../components/Button";
 import { useState, useRef } from "react";
 import RatingBar from "../components/RatingBar";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { getMovieReviews, storeMovieReview } from "../storages/MovieReviews";
 
 export default function WriteReviews() {
   const navigation = useNavigation();
@@ -130,10 +131,11 @@ export default function WriteReviews() {
 
           <MyButton
             title={"FINISH AND POST"}
-            onPress={() => {
+            onPress={async () => {
+              await storeMovieReview(form);
               navigation.reset({
                 index: 0,
-                routes: [{ name: "MainBottomTab" }],
+                routes: [{ name: "Tabs" }],
               });
             }}
           />

@@ -21,6 +21,7 @@ export default function MyTabs({ titles, onPress, active, number }) {
     <View style={styles.container}>
       {titles.map((title, index) => (
         <MyTab
+          key={index}
           title={title}
           index={index}
           onPress={() => onPress(index)}
