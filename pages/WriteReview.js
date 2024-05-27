@@ -132,7 +132,7 @@ export default function WriteReviews() {
           <MyButton
             title={"FINISH AND POST"}
             onPress={async () => {
-              await storeMovieReview(form);
+              await storeMovieReview({ ...form, rating: { rating } });
               navigation.reset({
                 index: 0,
                 routes: [{ name: "Tabs" }],

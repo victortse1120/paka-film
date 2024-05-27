@@ -8,13 +8,13 @@ const ReviewDetail = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{review.title}</Text>
-      <Text style={styles.subTitle}>{review.subTitle}</Text>
+      <Text style={styles.title}>{review.film}</Text>
+      <Text style={styles.subTitle}>{review.title}</Text>
 
       <View style={styles.authorContainer}>
         <Image source={authorIcon} style={styles.authorIcon} />
         <Text style={styles.author}>
-          {review.author} {review.date}
+          {"By Peter Chan"} {review.date}
         </Text>
         <View style={styles.ratingContainer}>
           <FontAwesome
@@ -23,7 +23,7 @@ const ReviewDetail = ({ route }) => {
             color="#FFC800"
             style={styles.icon}
           />
-          <Text style={styles.rating}>8</Text>
+          <Text style={styles.rating}>{review.rating}</Text>
         </View>
       </View>
       <View style={styles.authorSeparator} />
@@ -31,7 +31,7 @@ const ReviewDetail = ({ route }) => {
       <Text style={styles.content}>{review.content}</Text>
 
       <View style={styles.detailContainer}>
-        <Text style={styles.detailTitle}>MCL - Cheung Sha Wan</Text>
+        <Text style={styles.detailTitle}>{review.cinema}</Text>
         <View style={styles.detailBox}>
           <View style={styles.detailRow}>
             <Text style={styles.detailText}>Date:</Text>
@@ -39,15 +39,15 @@ const ReviewDetail = ({ route }) => {
           </View>
           <View style={styles.detailRow}>
             <Text style={styles.detailText}>Time:</Text>
-            <Text style={styles.detailText}>11:40am</Text>
+            <Text style={styles.detailText}>{review.time}</Text>
           </View>
           <View style={styles.detailRow}>
             <Text style={styles.detailText}>House:</Text>
-            <Text style={styles.detailText}>2</Text>
+            <Text style={styles.detailText}>{review.house}</Text>
           </View>
           <View style={styles.detailRow}>
             <Text style={styles.detailText}>Seat:</Text>
-            <Text style={styles.detailText}>H6</Text>
+            <Text style={styles.detailText}>{review.seat}</Text>
           </View>
         </View>
       </View>

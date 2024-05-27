@@ -1,46 +1,12 @@
-// ReviewList.js
 import React from "react";
 import {
   View,
   Text,
-  Image,
   FlatList,
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome } from "@expo/vector-icons";
-import authorIcon from "./../assets/icon_user.png";
-
-const reviews = [
-  {
-    id: "1",
-    title: "Toy Story 3",
-    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
-    content:
-      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
-    author: "By Peter Chan",
-    date: "11-03-2024",
-  },
-  {
-    id: "2",
-    title: "Toy Story 3",
-    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
-    content:
-      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
-    author: "By Peter Chan",
-    date: "11-03-2024",
-  },
-  {
-    id: "3",
-    title: "Toy Story 3",
-    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
-    content:
-      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
-    author: "By Peter Chan",
-    date: "11-03-2024",
-  },
-];
 
 const ReviewItem = ({ item }) => {
   const navigation = useNavigation();
@@ -51,11 +17,11 @@ const ReviewItem = ({ item }) => {
     >
       <View style={styles.reviewContainer}>
         <View style={styles.titleContainer}>
-          <Text style={styles.reviewTitle}>{item.title}</Text>
+          <Text style={styles.reviewTitle}>{item.film}</Text>
         </View>
 
         <View style={styles.detailContainer}>
-          <Text style={styles.reviewSubTitle}>{item.subTitle}</Text>
+          <Text style={styles.reviewSubTitle}>{item.title}</Text>
           <Text style={styles.reviewContent}>{item.content}</Text>
         </View>
       </View>
@@ -63,7 +29,7 @@ const ReviewItem = ({ item }) => {
   );
 };
 
-const ReviewList = () => (
+const ReviewList = ({ reviews }) => (
   <FlatList
     data={reviews}
     renderItem={({ item, index }) => (
@@ -80,7 +46,7 @@ const ReviewList = () => (
         <ReviewItem item={item} />
       </View>
     )}
-    keyExtractor={(item) => item.id}
+    keyExtractor={(item, index) => index}
     contentContainerStyle={styles.listContainer}
   />
 );

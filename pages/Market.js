@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ReviewList from "../components/ReviewList";
 import ReviewMyself from "../components/ReviewMyself";
 import MyTabs from "../components/Tab";
+import { getMovieReviews } from "../storages/MovieReviews";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
   const [reviewNumbers, setReviewNumbers] = useState([6, 3]);
+  const [myReviews, setmyReviews] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const reviews = await getMovieReviews();
+      setmyReviews(reviews);
+    }
+    fetchData();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Review</Text>
@@ -18,7 +29,11 @@ export default function ReviewTabs() {
         }}
         number={reviewNumbers}
       />
-      {active == 0 ? <ReviewList favorite={false} /> : <ReviewMyself />}
+      {active == 0 ? (
+        <ReviewList favorite={false} />
+      ) : (
+        <ReviewMyself reviews={myReviews} />
+      )}
     </View>
   );
 }
