@@ -9,32 +9,60 @@ import {
 import defaultStyles from "../components/styles/DefaultStyles";
 import MyTextInput from "../components/TextInput";
 import MyButton from "../components/Button";
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import RatingBar from "../components/RatingBar";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import MapView, { Marker } from "react-native-maps";
 import cinemas from "../data/cinemas.json";
 import markerImage from "../assets/marker.png";
+import * as Location from "expo-location";
+import LoadingLayer from "../components/LoadingLayer";
 
 export default function WatchingMethod() {
-  const navigation = useNavigation();
-  const route = useRoute();
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        return;
+      }
+
+      let currentLocation = await Location.getCurrentPositionAsync({});
+      setLocation({
+        latitude: currentLocation.coords.latitude,
+        longitude: currentLocation.coords.longitude,
+      });
+    })();
+  }, []);
 
   return (
     <View style={styles.container}>
       <Text style={[defaultStyles.Headline, styles.headline]}>
         Watching methods
       </Text>
-      <MapView style={styles.map}>
-        {cinemas.map((cinema, index) => (
-          <Marker
-            key={index}
-            coordinate={cinema.coordinates}
-            title={cinema.name}
-            image={markerImage}
-          />
-        ))}
-      </MapView>
+      {location ? (
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: location.latitude,
+            longitude: location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        >
+          {cinemas.map((cinema, index) => (
+            <Marker
+              key={index}
+              coordinate={cinema.coordinates}
+              title={cinema.name}
+              image={markerImage}
+            />
+          ))}
+        </MapView>
+      ) : (
+        <LoadingLayer />
+      )}
     </View>
   );
 }
