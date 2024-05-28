@@ -104,7 +104,7 @@ export default function ProductDetail(props) {
         source={{ uri: item.image }}
         style={{ flex: 1 }}
         resizeMode="cover"
-        blurRadius={5}
+        blurRadius={8}
       >
         <View
           style={{
@@ -113,14 +113,15 @@ export default function ProductDetail(props) {
             top: 0,
             left: 0,
             position: "absolute",
-            backgroundColor: "#00000080",
+            backgroundColor: "#000000080",
           }}
         />
+
         <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
           <View
             style={[
               {
-                marginTop: 18,
+                marginTop: 80,
                 alignItems: "center",
               },
             ]}
@@ -141,7 +142,7 @@ export default function ProductDetail(props) {
             <Text style={[s.description, { marginTop: 18 }]} numberOfLines={4}>
               {item.description}
             </Text>
-            <View style={[defaultStyles.lineH, { marginVertical: 25 }]} />
+            <View style={[defaultStyles.lineH, { marginVertical: 32 }]} />
             {renderInfo(<MovieSvg fill={"#FFC800"} />, "Director")}
             {renderInfo(<PaperAirplaneSvg fill={"#FFC800"} />, "Release")}
             {renderInfo(<ClockSvg fill={"#FFC800"} />, "Duration")}
@@ -149,30 +150,6 @@ export default function ProductDetail(props) {
             {renderInfo(<StarSvg fill={"#FFC800"} />, "User Rating")}
           </View>
         </ScrollView>
-
-        <View style={productStyles.qtyView}>
-          <TouchableWithoutFeedback
-            onPress={() => {
-              if (qty > 1) {
-                setQty(qty - 1);
-              }
-            }}
-          >
-            <View style={productStyles.qtyButton}>
-              <Text style={defaultStyles.defaultButtonText}>{"-"}</Text>
-            </View>
-          </TouchableWithoutFeedback>
-          <Text style={productStyles.qtyText}>{qty + " DAY"}</Text>
-          <TouchableWithoutFeedback
-            onPress={() => {
-              setQty(qty + 1);
-            }}
-          >
-            <View style={productStyles.qtyButton}>
-              <Text style={defaultStyles.defaultButtonText}>{"+"}</Text>
-            </View>
-          </TouchableWithoutFeedback>
-        </View>
 
         <TouchableWithoutFeedback
           onPress={() => {
@@ -188,7 +165,7 @@ export default function ProductDetail(props) {
           >
             <View style={defaultStyles.defaultButton}>
               <Text style={defaultStyles.defaultButtonText}>
-                {"ADD TO CART"}
+                {"WATCHING METHODS"}
               </Text>
             </View>
           </View>
@@ -199,6 +176,16 @@ export default function ProductDetail(props) {
 }
 
 const s = StyleSheet.create({
+  baseShadow: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   image: {
     width: "60%",
     aspectRatio: 0.68,

@@ -103,6 +103,7 @@ export default function Main() {
                   style={styles.sliderImageBg}
                   resizeMode="cover"
                 >
+                  <View style={styles.sliderImageOverlay} />
                   <Text style={styles.sliderTitle}>{item.name}</Text>
                   <Text
                     style={[
@@ -129,10 +130,10 @@ export default function Main() {
             );
           }}
         />
-        {renderSubItem("Hot Movies", { marginTop: 20 }, dummyHotMoviesData)}
+        {renderSubItem("Hot Movies", { marginTop: 50 }, dummyHotMoviesData)}
         {renderSubItem(
           "Hot Animation",
-          { marginTop: 30 },
+          { marginTop: 40 },
           dummyHotAnimationData
         )}
       </ScrollView>
@@ -162,6 +163,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 50,
     paddingVertical: 50,
+    position: "relative", // 設置相對定位
+  },
+  sliderImageOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.15)",
   },
   sliderPaginationContainerStyle: {
     width: "100%",
@@ -173,22 +183,27 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 40,
     fontWeight: "bold",
+    textShadowColor: "rgba(0, 0, 0, 0.25)",
+    textShadowOffset: { width: 0, height: 4 },
+    textShadowRadius: 4,
   },
   sliderContent: {
     width: "100%",
     color: "white",
     fontSize: 16,
+    lineHeight: 20,
   },
   sliderButton: {
     alignSelf: "baseline",
     paddingHorizontal: 30,
-    paddingVertical: 12,
+    paddingVertical: 14,
     backgroundColor: "#FFC800",
     borderRadius: 12,
   },
   sliderButtonTxt: {
     color: "black",
     fontSize: 16,
+    fontWeight: "bold",
   },
   subItemHeader: {
     width: "100%",
@@ -203,7 +218,8 @@ const styles = StyleSheet.create({
   subItemImage: {
     width: "100%",
     aspectRatio: 0.68,
-    borderRadius: 8,
+    borderWidth: 0.5,
+    borderColor: "#ffffff",
   },
   subItemName: {
     width: "100%",
@@ -214,7 +230,7 @@ const styles = StyleSheet.create({
   },
   subItemScore: {
     flex: 1,
-    color: "white",
+    color: "#FFC800",
     fontSize: 14,
     fontWeight: "bold",
     marginStart: 8,
@@ -222,5 +238,6 @@ const styles = StyleSheet.create({
   subItemScoreIcon: {
     width: 12,
     aspectRatio: 1,
+    marginTop: 6,
   },
 });

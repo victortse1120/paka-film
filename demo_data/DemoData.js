@@ -1,112 +1,116 @@
 export const dummyData = [
-   {
-      "id": 1,
-      "name": "Deep Fried Glutinous Rice Pork Dumplings",
-      "price": 22,
-      "image": "https://www.seriouseats.com/thmb/QUdrO8n1qfsifJYE_-N1Gz7TluQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__20110417-dim-sum-haam-sui-gai-dc232b5e86674bc49db40e6bbe036757.jpg",
-      "description": "Deep-fried glutinous rice dumpling stuffed with pork. Crunchy and chewy.",
-      "stars": 3.5,
-    },
-    {
-      "id": 2,
-      "name": "Pan Fried Turnip Cake",
-      "price": 22,
-      "image": "https://www.seriouseats.com/thmb/dOzJnGuITl6qEclA6gATUR-KrkI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__20110417-dim-sum-lo-baak-gou-7aec66faeed34e98af00719f9c9fcb1b.jpg",
-      "description": "Shredded daikon radish is mixed with rice flour and flavored with ham, sausage, shrimp, or other vegetables before being pressed into cakes and fried. They're called turnip cakes, but are technically made with radish.",
-      "stars": 3.8,
-    },
-    {
-      "id": 3,
-      "name": "Steamed Custard Buns",
-      "price": 22,
-      "image": "https://www.seriouseats.com/thmb/zyQoXrpzftH61MycaEdAct974LA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__20110417-dim-sum-nai-wong-bau-e26f88d558194350b4609a6a199bc76b.jpg",
-      "description": "Standard bau dough stuffed with an eggy milk custard and steamed.",
-      "stars": 4.3,
-      "isVeg": true,
-    },
-    {
-      "id": 4,
-      "name": "Pork dumplings with shrimp",
-      "price": 34,
-      "image": "https://www.seriouseats.com/thmb/uO_u6dWunaKuhKYa0r4CbNjBzrM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__20110417-dim-sum-siu-mai-04d77300f5f04dc58fe395752bdb2881.jpg",
-      "description": "Open-topped steamed pork and/or shrimp dumplings made with a wheat flour wrapper, they often come topped with fish roe or grated carrot, or occasionally a single pea.",
-      "stars": 4.5,
-    },
-    {
-      "id": 5,
-      "name": "Plain Rice Roll",
-      "price": 25,
-      "image": "https://www.seriouseats.com/thmb/rjKDmS-MBquc4t8WnqfDcs5j2wk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__20110417-dim-sum-cheong-fan-293de1efe88d403a9e7b822f6a335892.jpg",
-      "description": "One of our favorite dishes, fresh steamed rice noodles are rolled around a variety of fillings, most commonly beef, shrimp, or pork. They come drizzled with a sweet soy sauce.",
-      "stars": 3.9,
-    },
-    {
-      "id": 6,
-      "name": "Egg Custard Tart",
-      "price": 20,
-      "image": "https://www.seriouseats.com/thmb/V0oqRj_cUO31WT5a13_eQQGZcHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__20110417-dim-sum-daan-taat-6d1a270476ab46fbb609731f0a21ee97.jpg",
-      "description": "Classic Hong Kong style egg tarts, they're similar to Portuguese egg custard tarts, but with a stronger egg flavor. The crust can be flaky or shortbread-like.",
-      "stars": 4.9,
-      "isVeg": true,
-    },
-    {
-      "id": 7,
-      "name": "Baked BBQ Pork Bun",
-      "price": 24,
-      "image": "https://www.seriouseats.com/thmb/HOmYArCJO-QiPlX309xDEVtLYA4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__20110417-dim-sum-baked-bao-71a580e7b50c4de8bb333259f7907055.jpg",
-      "description": "The same as the steamed version, these ones are rounded, baked, and painted with a shiny glaze.",
-      "stars": 4.2,
-    },
-    {
-      "id": 8,
-      "name": "Steamed BBQ Pork Buns",
-      "price": 22,
-      "image": "https://www.seriouseats.com/thmb/F4BlL1pDlzX4L87Fze4-pBiaxHs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__20110417-dim-sum-cha-siu-bao-steamed-271dc054e926410eade0fe06f9ed729b.jpg",
-      "description": "The classic steamed yeasted buns stuffed with Chinese-style barbecue pork (cha siu). The dough has a soft, dense crumb similar to American sandwich bread, while the filling is savory and sweet.",
-      "stars": 4.7,
-    },
-    {
-      "id": 9,
-      "name": "Fried Shrimp Bean Curd Rolls",
-      "price": 29,
-      "image": "https://www.seriouseats.com/thmb/D_hPn0qQ-7wmxLypDAuKIshlyjA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__20110417-dim-sum-pei-guen-steamed-94f89bd2ffa0497ca28c4ad6938570d9.jpg",
-      "description": "The same as the fried version, but steamed instead of fried, and the ones you're more likely to see on dim sum carts. These often come flavored with bamboo shoot.",
-      "stars": 4.2,
-    },
-    {
-      "id": 10,
-      "name": "Tofu Pudding",
-      "price": 22,
-      "image": "https://www.seriouseats.com/thmb/wwqQxl4SDkwM2pBeN0wsKzkzU9o=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__images__20110417-dim-sum-do-fu-fa-21a6dff3b35b4111875a3350a8cfae00.jpg",
-      "description": "Soft, silken tofu served with either a ginger or plain sugar syrup.",
-      "stars": 3.7,
-      "isVeg": true,
-    },    
-    {
-      "id": 10,
-      "name": " ",
-      "price": "",
-      "image": "",
-      "description": "",
-      "stars": "",
-    },
-]
-
-export const dummySliderData = [
- dummyData[0],
- dummyData[1],
- dummyData[2]
+  {
+    id: 1,
+    name: "The Super Mario Bros.",
+    price: 22,
+    image:
+      "https://snworksceo.imgix.net/etu/5a28e3f1-118a-4e4d-ade3-cea4143f8feb.sized-1000x1000.jpeg?w=1000",
+    description:
+      "A Brooklyn plumber named Mario travels through the Mushroom Kingdom with a princess named Peach and an .. ",
+    stars: 3.5,
+  },
+  {
+    id: 2,
+    name: "The Dark Knight",
+    price: 22,
+    image:
+      "https://www.legendary.com/wp-content/uploads/2015/04/film_thedarkknight_featureimage_desktop_1600x9001-414x621.jpg",
+    description:
+      "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+    stars: 3.8,
+  },
+  {
+    id: 3,
+    name: "Big Hero 6",
+    price: 22,
+    image:
+      "https://lumiere-a.akamaihd.net/v1/images/p_bighero6_19753_20bd6206.jpeg?region=0%2C0%2C540%2C810",
+    description:
+      "Robotics nerd Hiro Hamada discovers an inflatable health care robot Baymax created in the past by his brother, Tadashi. After a terrible life-changing accident, Hiro and Baymax team up with four other nerds and save their hometown San Fransokyo from an evil super villain trying to take over with Hiro's invention.",
+    stars: 4.3,
+    isVeg: true,
+  },
+  {
+    id: 4,
+    name: "The Dark Knight",
+    price: 34,
+    image:
+      "https://m.media-amazon.com/images/S/pv-target-images/e9a43e647b2ca70e75a3c0af046c4dfdcd712380889779cbdc2c57d94ab63902.jpg",
+    description:
+      "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+    stars: 4.5,
+  },
+  {
+    id: 5,
+    name: "Big Hero 6",
+    price: 25,
+    image:
+      "https://lumiere-a.akamaihd.net/v1/images/p_bighero6_19753_20bd6206.jpeg?region=0%2C0%2C540%2C810",
+    description:
+      "Robotics nerd Hiro Hamada discovers an inflatable health care robot Baymax created in the past by his brother, Tadashi. After a terrible life-changing accident, Hiro and Baymax team up with four other nerds and save their hometown San Fransokyo from an evil super villain trying to take over with Hiro's invention.",
+    stars: 3.9,
+  },
+  {
+    id: 6,
+    name: "Spider-Man: Into the Spider-Verse",
+    price: 20,
+    image:
+      "https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_FMjpg_UX1000_.jpg",
+    description:
+      "Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.",
+    stars: 4.9,
+    isVeg: true,
+  },
+  {
+    id: 7,
+    name: "Your Name.",
+    price: 24,
+    image:
+      "https://m.media-amazon.com/images/M/MV5BNGYyNmI3M2YtNzYzZS00OTViLTkxYjAtZDIyZmE1Y2U1ZmQ2XkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_.jpg",
+    description:
+      "Two teenagers share a profound, magical connection upon discovering they are swapping bodies. Things manage to become even more complicated when the boy and ...",
+    stars: 4.2,
+  },
+  {
+    id: 8,
+    name: "Inside Out",
+    price: 22,
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3wiSObNSBP2_mnodsYMeoZjE_gPom5EHu47_R-V8t_kE8AH1_1ClJKr_swDX2iKlCX0o&usqp=CAU",
+    description:
+      "The story revolves around a young girl child who is happy in her world and has to suddenly acclimatize to another environment when her family has to move.",
+    stars: 4.7,
+  },
+  {
+    id: 9,
+    name: "Toy Story 3",
+    price: 29,
+    image:
+      "https://m.media-amazon.com/images/M/MV5BMTgxOTY4Mjc0MF5BMl5BanBnXkFtZTcwNTA4MDQyMw@@._V1_FMjpg_UX1000_.jpg",
+    description:
+      "The same as the fried version, buThe toys are mistakenly delivered to a day-care center instead of the attic right before Andy leaves for college, and it's up to Woody to convince the other toys that they weren't abandoned ...t steamed instead of fried, and the ones you're more likely to see on dim sum carts. These often come flavored with bamboo shoot.",
+    stars: 4.2,
+  },
+  {
+    id: 10,
+    name: "Barbie",
+    price: 22,
+    image:
+      "https://image.tmdb.org/t/p/original/u5kboZR4OMi4QdbOhawCZuzMVWJ.jpg",
+    description:
+      "Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the ...",
+    stars: 3.7,
+    isVeg: true,
+  },
 ];
 
-export const dummyHotMoviesData = [
-  dummyData[3],
- dummyData[4],
- dummyData[5]
-];
+export const dummySliderData = [dummyData[0], dummyData[1], dummyData[2]];
+
+export const dummyHotMoviesData = [dummyData[3], dummyData[4], dummyData[5]];
 
 export const dummyHotAnimationData = [
- dummyData[6],
- dummyData[7],
- dummyData[8],
- dummyData[9]
+  dummyData[6],
+  dummyData[7],
+  dummyData[8],
+  dummyData[9],
 ];

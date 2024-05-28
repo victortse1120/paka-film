@@ -4,12 +4,22 @@ const defaultStyles = StyleSheet.create({
   baseView: {
     paddingHorizontal: 10,
   },
+  // baseShadow: {
+  //   shadowColor: Platform.OS == "android" ? "#fff" : "rgba(255, 255, 255, 1)",
+  //   shadowOpacity: Platform.OS == "android" ? 6 : 2,
+  //   shadowRadius: 8,
+  //   shadowOffset: { width: 0, height: 0 },
+  //   elevation: Platform.OS == "android" ? 6 : 2,
+  // },
   baseShadow: {
-    shadowColor: Platform.OS == "android" ? "#fff" : "rgba(255, 255, 255, 1)",
-    shadowOpacity: Platform.OS == "android" ? 6 : 2,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 0 },
-    elevation: Platform.OS == "android" ? 6 : 2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   container: {
     flex: 1,
