@@ -11,6 +11,7 @@ import Order from "./pages/Order";
 import Home from "./pages/Home";
 import Market from "./pages/Market";
 import Setting from "./pages/Setting";
+import WatchingMethod from "./pages/WatchingMethod";
 import ProductDetail from "./pages/ProductDetail";
 import LogIn from "./pages/LogIn";
 import ReviewDetail from "./pages/ReviewDetail";
@@ -114,6 +115,11 @@ export default function App() {
               <Stack.Screen
                 name="ProductDetail"
                 component={ProductDetail}
+                options={{ headerLeft: backButton }}
+              />
+              <Stack.Screen
+                name="WatchingMethod"
+                component={WatchingMethod}
                 options={{ headerLeft: backButton }}
               />
               <Stack.Screen

@@ -2,141 +2,225 @@
   {
     "brand": "mcl",
     "name": "K11 ART HOUSE",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.29437396139661,
+      "longitude": 114.1743996812017
+    }
   },
   {
     "brand": "mcl",
     "name": "FESTIVAL GRAND CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.337323544861825,
+      "longitude": 114.1741337253318
+    }
   },
   {
     "brand": "mcl",
     "name": "MCL AIRSIDE CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.33148413600716,
+      "longitude": 114.19818744850454
+    }
   },
   {
     "brand": "mcl",
     "name": "MCL THE ONE CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.299925111838274,
+      "longitude": 114.17269429497205
+    }
   },
   {
     "brand": "mcl",
     "name": "GRAND WINDSOR CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.28058217970087,
+      "longitude": 114.1865708238067
+    }
   },
   {
     "brand": "mcl",
     "name": "GRAND KORNHILL CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.283961888965493,
+      "longitude": 114.21638327121782
+    }
   },
   {
     "brand": "mcl",
     "name": "STAR CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.308482765358654,
+      "longitude": 114.26060914672944
+    }
   },
   {
     "brand": "mcl",
     "name": "MCL METRO CITY CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.32416912473813,
+      "longitude": 114.25735355974767
+    }
   },
   {
     "brand": "mcl",
     "name": "MCL TELFORD CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.32285907170113,
+      "longitude": 114.21226009295656
+    }
   },
   {
     "brand": "mcl",
     "name": "MCL SOUTH HORIZONS CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.24339780074226,
+      "longitude": 114.14834617641235
+    }
   },
   {
     "brand": "mcl",
     "name": "MCL GREEN CODE CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.500768836111106,
+      "longitude": 114.14564036117163
+    }
   },
   {
     "brand": "mcl",
     "name": "MCL CHEUNG SHA WAN CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.339054060945408,
+      "longitude": 114.15206316872474
+    }
   },
   {
     "brand": "mcl",
     "name": "MCL CYBERPORT CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.261122225640353,
+      "longitude": 114.12948409497079
+    }
   },
   {
     "brand": "mcl",
     "name": "MCL CITYGATE CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.289662313505403,
+      "longitude": 113.94053425710813
+    }
   },
   {
     "brand": "mcl",
     "name": "MCL AMOY CINEMA",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.32402962471528,
+      "longitude": 114.21682
+    }
   },
   {
     "brand": "mcl",
     "name": "MCL CINEMAS PLUS+ PLAZA HOLLYWOOD",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.340445044503607,
+      "longitude": 114.20311389497351
+    }
   },
   {
     "brand": "broadway",
     "name": "MOViE MOViE Pacific Place",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.27761826374443,
+      "longitude": 114.16644289497137
+    }
   },
   {
     "brand": "broadway",
     "name": "MOViE MOViE Cityplaza",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.28570317178558,
+      "longitude": 114.21758436613648
+    }
   },
   {
     "brand": "broadway",
     "name": "PALACE ifc",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.285578807145107,
+      "longitude": 114.15811176613647
+    }
   },
   {
     "brand": "broadway",
     "name": "B+ cinema MOKO",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.324353372860482,
+      "longitude": 114.1732897711648
+    }
   },
   {
     "brand": "broadway",
     "name": "B+ cinema apm",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.312332884073847,
+      "longitude": 114.22510756613727
+    }
   },
   {
     "brand": "broadway",
     "name": "PREMIERE ELEMENTS",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.304130293291028,
+      "longitude": 114.16284619497225
+    }
   },
   {
     "brand": "broadway",
     "name": "CINEMATHEQUE",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.310780710620765,
+      "longitude": 114.16892209497246
+    }
   },
   {
     "brand": "broadway",
     "name": "MONGKOK",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.31717898215059,
+      "longitude": 114.17063116613748
+    }
   },
   {
     "brand": "broadway",
     "name": "MY CINEMA YOHO MALL",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.445289656371553,
+      "longitude": 114.03790596614203
+    }
   },
   {
     "brand": "broadway",
     "name": "KWAI FONG",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.35749139132024,
+      "longitude": 114.12618626613883
+    }
   },
   {
     "brand": "broadway",
     "name": "TSUEN WAN",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.371181986433218,
+      "longitude": 114.1110699373042
+    }
   },
   {
     "brand": "broadway",
     "name": "KINGSWOOD",
-    "coordinates": ""
+    "coordinates": {
+      "latitude": 22.457067217005868,
+      "longitude": 114.00320122665586
+    }
   }
 ]

@@ -153,7 +153,7 @@ export default function ProductDetail(props) {
 
         <TouchableWithoutFeedback
           onPress={() => {
-            this.orderNow();
+            navigation.navigate("WatchingMethod");
           }}
         >
           <View
