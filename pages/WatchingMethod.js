@@ -1,25 +1,17 @@
-import {
-  View,
-  StyleSheet,
-  Text,
-  KeyboardAvoidingView,
-  ScrollView,
-  Platform,
-} from "react-native";
+import { View, StyleSheet, Text, ScrollView } from "react-native";
 import defaultStyles from "../components/styles/DefaultStyles";
-import MyTextInput from "../components/TextInput";
-import MyButton from "../components/Button";
 import { useState, useEffect } from "react";
-import RatingBar from "../components/RatingBar";
-import { useNavigation, useRoute } from "@react-navigation/native";
 import MapView, { Marker } from "react-native-maps";
 import cinemas from "../data/cinemas.json";
 import markerImage from "../assets/marker.png";
+import userMarkerImage from "../assets/user_marker.png";
 import * as Location from "expo-location";
 import LoadingLayer from "../components/LoadingLayer";
+import { calculateDistance } from "../utils/common";
 
 export default function WatchingMethod() {
   const [location, setLocation] = useState(null);
+  const [nearestCinemas, setNearestCinemas] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -33,6 +25,21 @@ export default function WatchingMethod() {
         latitude: currentLocation.coords.latitude,
         longitude: currentLocation.coords.longitude,
       });
+      const calculatedNearestCinemas = cinemas
+        .map((cinema) => ({
+          ...cinema,
+          distance: parseFloat(
+            calculateDistance(
+              cinema.coordinates.latitude,
+              cinema.coordinates.longitude,
+              currentLocation.coords.latitude,
+              currentLocation.coords.longitude
+            )
+          ).toFixed(1),
+        }))
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 5);
+      setNearestCinemas(calculatedNearestCinemas);
     })();
   }, []);
 
@@ -41,7 +48,7 @@ export default function WatchingMethod() {
       <Text style={[defaultStyles.Headline, styles.headline]}>
         Watching methods
       </Text>
-      {location ? (
+      {location && nearestCinemas ? (
         <MapView
           style={styles.map}
           initialRegion={{
@@ -51,11 +58,13 @@ export default function WatchingMethod() {
             longitudeDelta: 0.0421,
           }}
         >
-          {cinemas.map((cinema, index) => (
+          <Marker coordinate={location} image={userMarkerImage} />
+          {nearestCinemas.map((cinema, index) => (
             <Marker
               key={index}
               coordinate={cinema.coordinates}
               title={cinema.name}
+              description={`${cinema.distance} km`}
               image={markerImage}
             />
           ))}
@@ -63,6 +72,20 @@ export default function WatchingMethod() {
       ) : (
         <LoadingLayer />
       )}
+      <ScrollView>
+        {nearestCinemas ? (
+          nearestCinemas.map((nearestCinema, index) => (
+            <View key={index} style={styles.row}>
+              <Text style={defaultStyles.Body}>{nearestCinema.name}</Text>
+              <Text style={[defaultStyles.Body, { color: "#FFC800" }]}>
+                {nearestCinema.distance} km
+              </Text>
+            </View>
+          ))
+        ) : (
+          <></>
+        )}
+      </ScrollView>
     </View>
   );
 }
@@ -82,6 +105,7 @@ const styles = StyleSheet.create({
   map: {
     width: "100%",
     height: "50%",
+    marginVertical: 16,
   },
   row: {
     display: "flex",
@@ -89,5 +113,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
+    marginVertical: 8,
+    paddingHorizontal: 16,
   },
 });
