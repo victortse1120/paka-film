@@ -11,19 +11,20 @@ const defaultStyles = StyleSheet.create({
   //   shadowOffset: { width: 0, height: 0 },
   //   elevation: Platform.OS == "android" ? 6 : 2,
   // },
-  baseShadow: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
+  // baseShadow: {
+  //   shadowColor: "#000",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 2,
+  //   },
+  //   shadowOpacity: 0.25,
+  //   shadowRadius: 3.84,
+  //   elevation: 5,
+  // },
   container: {
     flex: 1,
     backgroundColor: "#000000",
+    marginBottom: -64,
   },
   containerFull: {
     flex: 1,

@@ -93,7 +93,8 @@ export default function Main() {
           indicatorWidth={[12, 56, 12]}
           indicatorHeight={[12, 12, 12]}
           inidicatorBorderRadius={8}
-          indicatorColor={["#ffffff", "#FFC800", "#ffffff"]}
+          indicatorColor={["rgba(255, 255, 255, 0.5)", "#FFC800", "#ffffff"]}
+          indicatorHorizontalPadding={2}
           data={dummySliderData}
           renderItem={({ item }) => {
             return (
@@ -171,12 +172,14 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.15)",
+    backgroundColor: "rgba(0, 0, 0, 0.35)",
   },
   sliderPaginationContainerStyle: {
     width: "100%",
     position: "absolute",
     bottom: 50,
+    flexDirection: "row",
+    justifyContent: "center",
   },
   sliderTitle: {
     width: "100%",

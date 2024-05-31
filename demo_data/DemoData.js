@@ -2,33 +2,47 @@ export const dummyData = [
   {
     id: 1,
     name: "The Super Mario Bros.",
-    price: 22,
     image:
       "https://snworksceo.imgix.net/etu/5a28e3f1-118a-4e4d-ade3-cea4143f8feb.sized-1000x1000.jpeg?w=1000",
     description:
       "A Brooklyn plumber named Mario travels through the Mushroom Kingdom with a princess named Peach and an .. ",
     stars: 3.5,
+    director: "Aaron Horvath, Michael Jelenic",
+    release: 2023,
+    duration: "1h 44m",
+    genre: "Action, Comedy, Fantasy",
+    userRating: "4.1/10 (456 users)",
   },
   {
     id: 2,
     name: "The Dark Knight",
-    price: 22,
+
     image:
       "https://www.legendary.com/wp-content/uploads/2015/04/film_thedarkknight_featureimage_desktop_1600x9001-414x621.jpg",
     description:
       "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
     stars: 3.8,
+    director: "Christopher Nolan",
+    release: 2008,
+    duration: "2h 32m",
+    genre: "Action Crime Drama Thriller",
+    userRating: "9.0 (368 users)",
   },
   {
     id: 3,
     name: "Big Hero 6",
-    price: 22,
+
     image:
       "https://lumiere-a.akamaihd.net/v1/images/p_bighero6_19753_20bd6206.jpeg?region=0%2C0%2C540%2C810",
     description:
       "Robotics nerd Hiro Hamada discovers an inflatable health care robot Baymax created in the past by his brother, Tadashi. After a terrible life-changing accident, Hiro and Baymax team up with four other nerds and save their hometown San Fransokyo from an evil super villain trying to take over with Hiro's invention.",
     stars: 4.3,
     isVeg: true,
+    director: "Don Hall, Chris Williams",
+    release: 2014,
+    duration: "1h 42m",
+    genre: "Action, Animation, Comedy",
+    userRating: "7.8 (468 users)",
   },
   {
     id: 4,
@@ -39,6 +53,11 @@ export const dummyData = [
     description:
       "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
     stars: 4.5,
+    director: "Christopher Nolan",
+    release: 2008,
+    duration: "2h 32m",
+    genre: "Action Crime Drama Thriller",
+    userRating: "9.0 (368 users)",
   },
   {
     id: 5,
@@ -49,6 +68,11 @@ export const dummyData = [
     description:
       "Robotics nerd Hiro Hamada discovers an inflatable health care robot Baymax created in the past by his brother, Tadashi. After a terrible life-changing accident, Hiro and Baymax team up with four other nerds and save their hometown San Fransokyo from an evil super villain trying to take over with Hiro's invention.",
     stars: 3.9,
+    director: "Don Hall, Chris Williams",
+    release: 2014,
+    duration: "1h 42m",
+    genre: "Action, Animation, Comedy",
+    userRating: "7.8 (468 users)",
   },
   {
     id: 6,
@@ -60,6 +84,11 @@ export const dummyData = [
       "Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.",
     stars: 4.9,
     isVeg: true,
+    director: "Bob Persichetti, Peter Ramsey",
+    release: 2018,
+    duration: "1h 57m",
+    genre: "Action, Animation, Sci-Fi",
+    userRating: "8.4 (564 users)",
   },
   {
     id: 7,
@@ -70,6 +99,11 @@ export const dummyData = [
     description:
       "Two teenagers share a profound, magical connection upon discovering they are swapping bodies. Things manage to become even more complicated when the boy and ...",
     stars: 4.2,
+    director: "Makoto Shinkai",
+    release: 2016,
+    duration: "1h 46m",
+    genre: "Drama, Fantasy, Romance",
+    userRating: "8.4 (454 users)",
   },
   {
     id: 8,
@@ -80,6 +114,11 @@ export const dummyData = [
     description:
       "The story revolves around a young girl child who is happy in her world and has to suddenly acclimatize to another environment when her family has to move.",
     stars: 4.7,
+    director: "Pete Docter, Ronnie Del Carmen",
+    release: 2015,
+    duration: "1h 35m",
+    genre: "Animation, Comedy, Drama",
+    userRating: "8.5 (354 users)",
   },
   {
     id: 9,
@@ -90,21 +129,37 @@ export const dummyData = [
     description:
       "The same as the fried version, buThe toys are mistakenly delivered to a day-care center instead of the attic right before Andy leaves for college, and it's up to Woody to convince the other toys that they weren't abandoned ...t steamed instead of fried, and the ones you're more likely to see on dim sum carts. These often come flavored with bamboo shoot.",
     stars: 4.2,
+    director: "Lee Unkrich",
+    release: 2010,
+    duration: "1h 43m",
+    genre: "Animation, Adventure, Comedy",
+    userRating: "8.3 (454 users)",
   },
   {
     id: 10,
-    name: "Barbie",
-    price: 22,
+    name: "Luca",
+
     image:
-      "https://image.tmdb.org/t/p/original/u5kboZR4OMi4QdbOhawCZuzMVWJ.jpg",
+      "https://resizing.flixster.com/Trl9kKeYzcukyshrbYNwM9vHF74=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzL2YwYWZjYmFmLTlkN2QtNDZmZC1hOWRlLWRiYjVhYmFmOGU3ZC5qcGc=",
     description:
-      "Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the ...",
+      "On the Italian Riviera, an unlikely but strong friendship grows between a human being and a sea monster disguised as a human.",
     stars: 3.7,
+    director: "Enrico Casarosa",
+    release: 2021,
+    duration: "1h 35",
+    genre: "Animation, Comedy, Drama",
+    userRating: "7.7 (354 users)",
     isVeg: true,
   },
 ];
 
-export const dummySliderData = [dummyData[0], dummyData[1], dummyData[2]];
+export const dummySliderData = [
+  dummyData[0],
+  dummyData[1],
+  dummyData[2],
+  dummyData[8],
+  dummyData[9],
+];
 
 export const dummyHotMoviesData = [dummyData[3], dummyData[4], dummyData[5]];
 
