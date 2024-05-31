@@ -145,11 +145,9 @@ export default function ProductDetail(props) {
             ]}
           >
             <Shadow
-              distance={30}
-              startColor={"#FFFFFF"}
-              finalColor={"#FFFFFF"}
-              offset={[0, 0]}
-              blurRadius={30}
+              startColor={"#ffffff80"}
+              finalColor={"#ffffff05"}
+              radius={8}
             >
               <Image
                 style={[s.image]}
