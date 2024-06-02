@@ -87,7 +87,7 @@ export default function Main() {
           </View>
         </TouchableWithoutFeedback>
       </View>
-      <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 16 }}>
         <CustomCarousel
           paginationContainerStyle={styles.sliderPaginationContainerStyle}
           indicatorWidth={[12, 56, 12]}
