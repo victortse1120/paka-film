@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "502083959972",
+    "project_id": "paka-film-b7e0d",
+    "storage_bucket": "paka-film-b7e0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502083959972:android:3e069902928698991bba31",
+        "android_client_info": {
+          "package_name": "com.victortse1120.snackd9081f5ee9424a66b807a313282032e1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCvnqxHH8XVRkFTsFEn0AZq0pfXMZccdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

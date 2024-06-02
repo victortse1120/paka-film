@@ -27,7 +27,13 @@
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.victortse1120.snackd9081f5ee9424a66b807a313282032e1"
+      "package": "com.victortse1120.snackd9081f5ee9424a66b807a313282032e1",
+      "googleServicesFile": "./google-services.json",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCNpd-_OC6QUAylety32mgi8ngdqEzukZI"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
