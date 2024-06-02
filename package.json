@@ -39,5 +39,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.0"
   },
-  "private": true
+  "private": true,
+  "name": "paka-film",
+  "version": "1.0.0"
 }
