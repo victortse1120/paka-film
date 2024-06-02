@@ -32,22 +32,20 @@ export default function Home() {
         1. Make sure the text on the Film ticket is clear{"\n\n"}
         2. Ticket match and zoom in with the camera
       </Text>
-
-      <View style={styles.bottomView}>
-        <MyButton
-          title={"SCAN FILM TICKET"}
-          onPress={() => {
-            if (!permission.granted) {
-              requestPermission();
-            }
-            navigation.navigate("TakePhoto");
-          }}
-        />
-        <MyTextButton
-          title={"Skip"}
-          onPress={() => navigation.navigate("WriteReview")}
-        />
-      </View>
+      <View style={{ height: 80 }} />
+      <MyButton
+        title={"SCAN FILM TICKET"}
+        onPress={() => {
+          if (!permission.granted) {
+            requestPermission();
+          }
+          navigation.navigate("TakePhoto");
+        }}
+      />
+      <MyTextButton
+        title={"Skip"}
+        onPress={() => navigation.navigate("WriteReview")}
+      />
     </View>
   );
 }
@@ -56,6 +54,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    paddingHorizontal: 16,
   },
   image: {
     width: 180,

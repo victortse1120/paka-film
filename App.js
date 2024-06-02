@@ -30,6 +30,7 @@ import { initializeApp } from "firebase/app";
 import { initializeAuth, getReactNativePersistence } from "firebase/auth";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_APIKEY,
@@ -113,6 +114,11 @@ export default function App() {
                 />
               )}
               <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{ headerLeft: backButton }}
+              />
+              <Stack.Screen
                 name="ProductDetail"
                 component={ProductDetail}
                 options={{ headerLeft: backButton }}
@@ -146,6 +152,8 @@ export default function App() {
 }
 
 const TabNavigator = () => {
+  const navigation = useNavigation();
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -183,6 +191,12 @@ const TabNavigator = () => {
       <Tab.Screen
         name="5 day Forecast"
         component={Home}
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.navigate("Home");
+          },
+        }}
         options={{
           headerShown: false,
           tabBarLabel: () => null,
