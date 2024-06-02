@@ -48,7 +48,10 @@ export default function LogIn() {
       behavior={Platform.OS == "ios" ? "padding" : "height"}
       style={styles.avoidingView}
     >
-      <ScrollView>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.contentContainer}
+      >
         <View style={styles.container}>
           <Text style={[defaultStyles.Headline, styles.headline]}>
             {isLogin ? "User Login" : "User Register"}
@@ -133,14 +136,18 @@ const styles = StyleSheet.create({
   avoidingView: {
     flex: 1,
   },
-  container: {
-    paddingTop: 32,
+  scrollView: {
+    flex: 1,
+  },
+  contentContainer: {
+    flexGrow: 1,
     alignItems: "center",
-    alignSelf: "center",
+    justifyContent: "center",
+  },
+  container: {
+    alignItems: "center",
     width: "100%",
     paddingHorizontal: 24,
-    flex: 1,
-    justifyContent: "space-around",
   },
   innerContainer: {
     backgroundColor: "#3C3C3C",
