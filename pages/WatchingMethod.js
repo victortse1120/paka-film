@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text, ScrollView } from "react-native";
 import defaultStyles from "../components/styles/DefaultStyles";
 import { useState, useEffect } from "react";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import cinemas from "../data/cinemas.json";
 import markerImage from "../assets/marker.png";
 import userMarkerImage from "../assets/user_marker.png";
@@ -57,6 +57,7 @@ export default function WatchingMethod() {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
+          provider={PROVIDER_GOOGLE}
         >
           <Marker coordinate={location} image={userMarkerImage} />
           {nearestCinemas.map((cinema, index) => (
