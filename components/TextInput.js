@@ -12,6 +12,7 @@ const MyTextInput = forwardRef(
       returnKeyTypeIsNext,
       onSubmitEditing,
       secureTextEntry = false,
+      keyboardType = "default",
     },
     ref
   ) => {
@@ -38,6 +39,8 @@ const MyTextInput = forwardRef(
         blurOnSubmit={false}
         multiline={height ? true : false}
         secureTextEntry={secureTextEntry}
+        keyboardType={keyboardType}
+        autoCapitalize={height ? "sentences" : "none"}
       />
     );
   }

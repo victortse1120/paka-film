@@ -68,6 +68,7 @@ export default function LogIn() {
               onChangeText={handleEmailChange}
               returnKeyTypeIsNext={true}
               onSubmitEditing={() => passwordRef?.current?.focus()}
+              keyboardType="email-address"
             />
 
             <MyTextInput
