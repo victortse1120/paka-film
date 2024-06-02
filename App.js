@@ -83,6 +83,7 @@ export default function App() {
 
   return (
     <GestureHandlerRootView>
+      <StatusBar translucent backgroundColor="transparent" />
       <SafeAreaProvider style={{ backgroundColor: "#000" }}>
         <SafeAreaView
           style={{
@@ -91,7 +92,6 @@ export default function App() {
           }}
           edges={["left", "right"]}
         >
-          <StatusBar barStyle={"light-content"} />
           <NavigationContainer theme={Mytheme} ref={navigationRef}>
             <Stack.Navigator
               screenOptions={{

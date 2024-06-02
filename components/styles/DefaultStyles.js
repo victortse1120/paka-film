@@ -1,4 +1,4 @@
-import { Platform, StatusBar, StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 const defaultStyles = StyleSheet.create({
   baseView: {
