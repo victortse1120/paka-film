@@ -1,0 +1,29 @@
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_APIKEY": "",
+        "EXPO_PUBLIC_AUTHDOMAIN": "",
+        "EXPO_PUBLIC_PROJECTID": "",
+        "EXPO_PUBLIC_STORAGEBUCKET": "",
+        "EXPO_PUBLIC_MESSAGINGSENDERID": "",
+        "EXPO_PUBLIC_APPID": ""
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "preview4": {
+      "distribution": "internal"
+    },
+    "production": {}
+  }
+}
