@@ -1,6 +1,9 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import authorIcon from "./../assets/icon_user.png";
+import catCatLeeIcon from "./../assets/Catcatlee.png";
+import marvelFansIcon from "./../assets/Marvel_Fans.png";
+import baymax6Icon from "./../assets/Baymax6.png";
 import { FontAwesome } from "@expo/vector-icons";
 
 const ReviewDetail = ({ route }) => {
@@ -35,7 +38,7 @@ const ReviewDetail = ({ route }) => {
         <View style={styles.detailBox}>
           <View style={styles.detailRow}>
             <Text style={styles.detailText}>Date:</Text>
-            <Text style={styles.detailText}>{review.date}</Text>
+            <Text style={styles.detailText}>{review.watchingdate}</Text>
           </View>
           <View style={styles.detailRow}>
             <Text style={styles.detailText}>Time:</Text>

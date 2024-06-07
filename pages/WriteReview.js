@@ -125,7 +125,7 @@ export default function WriteReviews() {
             ref={contentRef}
             onSubmitEditing={() => contentRef?.current?.blur()}
           />
-          <View style={[styles.row, { marginBottom: 16 }]}>
+          <View style={[styles.row, { marginBottom: 16 }, { marginTop: 8 }]}>
             <Text style={defaultStyles.Caption}>Rating:</Text>
             <RatingBar rating={rating} setRating={setRating} />
           </View>

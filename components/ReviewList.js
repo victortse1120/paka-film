@@ -10,67 +10,54 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 import authorIcon from "./../assets/icon_user.png";
+import catCatLeeIcon from "./../assets/Catcatlee.png";
+import marvelFansIcon from "./../assets/Marvel_Fans.png";
+import baymax6Icon from "./../assets/Baymax6.png";
 
 const reviews = [
   {
     id: "1",
-    title: "Toy Story 3",
-    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
+    title: "The Super Mario Bros.",
+    subTitle: `Mushroom Kingdom Madness`,
     content:
-      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
-    author: "By Peter Chan",
+      "The Super Mario Bros. movie brings Nintendo's iconic plumbers to the big screen in a vibrant, if uneven, adaptation. Boasting eye-catching visuals and an infectious sense of fun, the film ...",
+    author: "By Catcat.lee",
     date: "11-03-2024",
     favorite: false,
+    authorIcon: catCatLeeIcon,
+    time: "15:10pm",
+    house: "1",
+    seat: "E4",
   },
   {
     id: "2",
-    title: "Toy Story 3",
-    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
+    title: "The Dark Knight",
+    subTitle: `Gotham's Gritty Triumph`,
     content:
-      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
-    author: "By Peter Chan",
-    date: "11-03-2024",
+      "The Dark Knight elevates the superhero genre with its thrilling blend of visceral action and complex moral quandaries. Led by Heath Ledger's unforgettable Joker, the film immerses viewers ...",
+    author: "By Marvel_Fans",
+    date: "10-03-2024",
     favorite: false,
+    authorIcon: marvelFansIcon,
+    watchingdate: "09-03-2024",
+    time: "10:40pm",
+    house: "6",
+    seat: "K12",
   },
   {
     id: "3",
-    title: "Toy Story 3",
-    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
+    title: "Luca",
+    subTitle: `Seaside Serenade`,
     content:
-      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
-    author: "By Peter Chan",
-    date: "11-03-2024",
+      "Luca is a delightful, visually stunning coming-of-age tale from Pixar. Set against the breathtaking Italian Riviera, the film follows a young sea monster's journey of self-discovery, blending...",
+    author: "By Baymax6",
+    date: "10-03-2024",
     favorite: false,
-  },
-  {
-    id: "4",
-    title: "Toy Story 3",
-    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
-    content:
-      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
-    author: "By Peter Chan",
-    date: "11-03-2024",
-    favorite: true,
-  },
-  {
-    id: "5",
-    title: "Toy Story 3",
-    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
-    content:
-      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
-    author: "By Peter Chan",
-    date: "11-03-2024",
-    favorite: true,
-  },
-  {
-    id: "6",
-    title: "Toy Story 3",
-    subTitle: `It's not just a toy - the inspiration given to us by "Toy Story 3"`,
-    content:
-      "The audience off the screen grew up and had children, and the protagonist Andy and his sister Dolly on the screen also grew up. Andy was...",
-    author: "By Peter Chan",
-    date: "11-03-2024",
-    favorite: true,
+    authorIcon: baymax6Icon,
+    watchingdate: "06-03-2024",
+    time: "20:45pm",
+    house: "3",
+    seat: "K7",
   },
 ];
 
@@ -98,7 +85,7 @@ const ReviewItem = ({ item }) => {
         </View>
 
         <View style={styles.authorContainer}>
-          <Image source={authorIcon} style={styles.authorIcon} />
+          <Image source={item.authorIcon} style={styles.authorIcon} />
           <Text style={styles.reviewAuthor}>
             {item.author} {item.date}
           </Text>
@@ -166,7 +153,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     lineHeight: 24,
-    marginVertical: 10,
+    marginVertical: 8,
   },
   reviewContent: {
     fontSize: 14,

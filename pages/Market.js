@@ -19,7 +19,7 @@ export default function ReviewTabs() {
   }, []);
 
   useEffect(() => {
-    setReviewNumbers([6, myReviews.length]);
+    setReviewNumbers([3, myReviews.length]);
   }, [myReviews]);
 
   return (
@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     textAlign: "left",
-    marginVertical: 16,
+    marginTop: 45,
+    marginBottom: 12,
   },
   listContainer: {
     padding: 20,
