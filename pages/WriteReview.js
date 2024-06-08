@@ -5,6 +5,8 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Platform,
+  Image,
+  TouchableOpacity,
 } from "react-native";
 import defaultStyles from "./../components/styles/DefaultStyles";
 import MyTextInput from "../components/TextInput";
@@ -12,7 +14,7 @@ import MyButton from "../components/Button";
 import { useState, useRef } from "react";
 import RatingBar from "../components/RatingBar";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { getMovieReviews, storeMovieReview } from "../storages/MovieReviews";
+import { storeMovieReview } from "../storages/MovieReviews";
 import { getTodayDate } from "../utils/common";
 
 export default function WriteReviews() {
@@ -45,9 +47,27 @@ export default function WriteReviews() {
     >
       <ScrollView>
         <View style={styles.container}>
-          <Text style={[defaultStyles.Headline, styles.headline]}>
-            Film Info
-          </Text>
+          <View style={styles.header}>
+            <View style={{ flex: 1 }}></View>
+            <Text style={[defaultStyles.Headline, styles.headline]}>
+              Film Info
+            </Text>
+            <TouchableOpacity style={styles.upload} onPress={() => {}}>
+              <Image
+                source={require("../assets/upload.png")}
+                style={{ width: 24, height: 24 }}
+              />
+              <Text
+                style={[
+                  defaultStyles.Body,
+                  { color: "#FFC800", paddingHorizontal: 8 },
+                ]}
+              >
+                Upload
+              </Text>
+            </TouchableOpacity>
+          </View>
+
           <MyTextInput
             title="Film Name"
             defaultValue={form.film}
@@ -162,7 +182,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-around",
   },
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    width: "100%",
+  },
+  upload: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   headline: {
+    flex: 1,
+    textAlign: "center",
     marginVertical: 16,
   },
   row: {

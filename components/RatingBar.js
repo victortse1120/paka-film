@@ -1,4 +1,3 @@
-import { Ionicons } from "@expo/vector-icons";
 import StarSvg from "./../assets/svg/starSvg";
 import { View, TouchableOpacity } from "react-native";
 
@@ -12,11 +11,6 @@ export default function RatingBar({ rating, setRating }) {
 
     return (
       <TouchableOpacity key={index} onPress={() => handleRating(index + 1)}>
-        {/* <Ionicons
-          name={isSelected ? "star" : "star-outline"}
-          size={30}
-          color={isSelected ? "gold" : "gray"}
-        /> */}
         <StarSvg fill={isSelected ? "gold" : "gray"} width={30} height={30} />
       </TouchableOpacity>
     );
