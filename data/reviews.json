@@ -1,0 +1,43 @@
+[
+  {
+    "id": "1",
+    "title": "The Super Mario Bros.",
+    "subTitle": "Mushroom Kingdom Madness",
+    "content": "The Super Mario Bros. movie brings Nintendo's iconic plumbers to the big screen in a vibrant, if uneven, adaptation. Boasting eye-catching visuals and an infectious sense of fun, the film ...",
+    "author": "By Catcat.lee",
+    "date": "11-03-2024",
+    "favorite": false,
+    "authorIcon": "Catcatlee.png",
+    "time": "15:10pm",
+    "house": "1",
+    "seat": "E4"
+  },
+  {
+    "id": "2",
+    "title": "The Dark Knight",
+    "subTitle": "Gotham's Gritty Triumph",
+    "content": "The Dark Knight elevates the superhero genre with its thrilling blend of visceral action and complex moral quandaries. Led by Heath Ledger's unforgettable Joker, the film immerses viewers ...",
+    "author": "By Marvel_Fans",
+    "date": "10-03-2024",
+    "favorite": false,
+    "authorIcon": "Marvel_Fans.png",
+    "watchingdate": "09-03-2024",
+    "time": "10:40pm",
+    "house": "6",
+    "seat": "K12"
+  },
+  {
+    "id": "3",
+    "title": "Luca",
+    "subTitle": "Seaside Serenade",
+    "content": "Luca is a delightful, visually stunning coming-of-age tale from Pixar. Set against the breathtaking Italian Riviera, the film follows a young sea monster's journey of self-discovery, blending...",
+    "author": "By Baymax6",
+    "date": "10-03-2024",
+    "favorite": false,
+    "authorIcon": "Baymax6.png",
+    "watchingdate": "06-03-2024",
+    "time": "20:45pm",
+    "house": "3",
+    "seat": "K7"
+  }
+]

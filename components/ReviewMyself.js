@@ -29,7 +29,7 @@ const ReviewItem = ({ item }) => {
   );
 };
 
-const ReviewList = ({ reviews }) => (
+const ReviewMyself = ({ reviews }) => (
   <FlatList
     data={reviews}
     renderItem={({ item, index }) => (
@@ -111,4 +111,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ReviewList;
+export default ReviewMyself;

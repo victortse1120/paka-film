@@ -3,10 +3,12 @@ import { View, Text, StyleSheet } from "react-native";
 import FavoriteMovies from "../components/FavoriteMovies";
 import MyTabs from "../components/Tab";
 import ReviewList from "../components/ReviewList";
+import Reviews from "../data/reviews.json";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
   const [fovouriteNumbers, setFovouriteNumbers] = useState([3, 3]);
+  const reviews = Reviews.filter((review) => review.favorite);
 
   return (
     <View style={styles.container}>
@@ -19,7 +21,7 @@ export default function ReviewTabs() {
         }}
         number={fovouriteNumbers}
       />
-      {active == 0 ? <FavoriteMovies /> : <ReviewList favorite={true} />}
+      {active == 0 ? <FavoriteMovies /> : <ReviewList reviews={reviews} />}
     </View>
   );
 }

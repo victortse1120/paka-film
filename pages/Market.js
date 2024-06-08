@@ -4,6 +4,7 @@ import ReviewList from "../components/ReviewList";
 import ReviewMyself from "../components/ReviewMyself";
 import MyTabs from "../components/Tab";
 import { getMovieReviews } from "../storages/MovieReviews";
+import Reviews from "../data/reviews.json";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
@@ -34,7 +35,7 @@ export default function ReviewTabs() {
         number={reviewNumbers}
       />
       {active == 0 ? (
-        <ReviewList favorite={false} />
+        <ReviewList reviews={Reviews} />
       ) : (
         <ReviewMyself reviews={myReviews} />
       )}
