@@ -21,7 +21,7 @@ export default function TakePhoto() {
   const ocr = async (base64) => {
     try {
       const response = await fetch(
-        "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCBeBFhTSIMdYA0jLwwvzRak5e1gzqN4EQ",
+        `https://vision.googleapis.com/v1/images:annotate?key=${process.env.EXPO_PUBLIC_GOOGLE_VISION_KEY}`,
         {
           method: "POST",
           headers: {

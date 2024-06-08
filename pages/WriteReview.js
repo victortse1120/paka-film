@@ -16,6 +16,7 @@ import RatingBar from "../components/RatingBar";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { storeMovieReview } from "../storages/MovieReviews";
 import { getTodayDate } from "../utils/common";
+import * as ImagePicker from "expo-image-picker";
 
 export default function WriteReviews() {
   const navigation = useNavigation();
@@ -39,6 +40,19 @@ export default function WriteReviews() {
   const seatRef = useRef();
   const titleRef = useRef();
   const contentRef = useRef();
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      quality: 1,
+      base64: true,
+    });
+
+    if (!result.canceled) {
+      console.log(result);
+    } else {
+      alert("You did not select any image.");
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -52,7 +66,7 @@ export default function WriteReviews() {
             <Text style={[defaultStyles.Headline, styles.headline]}>
               Film Info
             </Text>
-            <TouchableOpacity style={styles.upload} onPress={() => {}}>
+            <TouchableOpacity style={styles.upload} onPress={pickImageAsync}>
               <Image
                 source={require("../assets/upload.png")}
                 style={{ width: 24, height: 24 }}
