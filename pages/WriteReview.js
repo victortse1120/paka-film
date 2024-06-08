@@ -17,6 +17,9 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { storeMovieReview } from "../storages/MovieReviews";
 import { getTodayDate } from "../utils/common";
 import * as ImagePicker from "expo-image-picker";
+import ocr from "../utils/ocr";
+import ticketToData from "../utils/ticketToData";
+import LoadingLayer from "../components/LoadingLayer";
 
 export default function WriteReviews() {
   const navigation = useNavigation();
@@ -33,6 +36,7 @@ export default function WriteReviews() {
   };
   const [form, setForm] = useState(ticketData);
   const [rating, setRating] = useState(0);
+  const [isLoading, setLoading] = useState(false);
   const dateRef = useRef();
   const timeRef = useRef();
   const cinemaRef = useRef();
@@ -48,7 +52,16 @@ export default function WriteReviews() {
     });
 
     if (!result.canceled) {
-      console.log(result);
+      setLoading(true);
+      try {
+        const recognizedText = await ocr(result.assets[0].base64);
+        const ticketData = ticketToData(recognizedText);
+        setForm(ticketData);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     } else {
       alert("You did not select any image.");
     }
@@ -180,6 +193,7 @@ export default function WriteReviews() {
           />
         </View>
       </ScrollView>
+      {isLoading && <LoadingLayer />}
     </KeyboardAvoidingView>
   );
 }
