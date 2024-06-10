@@ -5,16 +5,23 @@ import authorIcon from "./../assets/icon_user.png";
 import StarSvg from "./../assets/svg/starSvg";
 const ReviewDetail = ({ route }) => {
   const { review } = route.params;
+  const imageMap = {
+    "Catcatlee.png": require("../assets/Catcatlee.png"),
+    "Marvel_Fans.png": require("../assets/Marvel_Fans.png"),
+    "Baymax6.png": require("../assets/Baymax6.png"),
+  };
 
   return (
     <View style={[defaultStyles.container, styles.container]}>
       <Text style={[defaultStyles.Headline, styles.title]}>{review.title}</Text>
-      <Text style={styles.subTitle}>{review.subTitle}</Text>
+      <Text style={[defaultStyles.Subtitle, { marginTop: 40 }]}>
+        {review.subTitle}
+      </Text>
 
       <View style={styles.authorContainer}>
-        <Image source={authorIcon} style={styles.authorIcon} />
+        <Image source={imageMap[review.authorIcon]} style={styles.authorIcon} />
         <Text style={styles.author}>
-          {"By Peter Chan"} {review.createdAt}
+          {review.author} {review.createdAt}
         </Text>
         <View style={styles.ratingContainer}>
           <StarSvg
