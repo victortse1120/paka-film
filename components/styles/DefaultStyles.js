@@ -7,6 +7,7 @@ const defaultStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#000000",
+    marginTop: 48,
   },
   containerFull: {
     flex: 1,

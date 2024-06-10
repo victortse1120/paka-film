@@ -18,6 +18,8 @@ import ReviewDetail from "./pages/ReviewDetail";
 import TakePhoto from "./pages/TakePhoto";
 import WriteReview from "./pages/WriteReview";
 
+import { Image } from "react-native";
+
 import HomeSvg from "./assets/svg/homeSvg";
 import FilmSvg from "./assets/svg/filmSvg";
 import CertSvg from "./assets/svg/certSvg";
@@ -182,9 +184,18 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: "Review",
           headerShown: false,
-          tabBarIcon: ({ color }) => (
-            <FilmSvg name="food-variant" size={30} fill={color} />
-          ),
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Image
+                source={
+                  focused
+                    ? require("./assets/Review_active.png")
+                    : require("./assets/Review_inactive.png")
+                }
+                style={{ width: 24, height: 24 }}
+              />
+            );
+          },
         }}
       />
 
@@ -224,7 +235,18 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: "Favourite",
           headerShown: false,
-          tabBarIcon: ({ color }) => <CertSvg name="cart-heart" fill={color} />,
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Image
+                source={
+                  focused
+                    ? require("./assets/favorite_active.png")
+                    : require("./assets/favorite_inactive.png")
+                }
+                style={{ width: 24, height: 24 }}
+              />
+            );
+          },
         }}
       />
       <Tab.Screen

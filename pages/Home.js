@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <View style={[defaultStyles.container, styles.container]}>
-      <Text style={[defaultStyles.Headline, { margin: 16 }]}>
+      <Text style={[defaultStyles.Headline, { marginBottom: 16 }]}>
         Create Film Review
       </Text>
       <Image source={require("../assets/takePhoto.png")} style={styles.image} />
@@ -52,7 +52,6 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 16,
   },

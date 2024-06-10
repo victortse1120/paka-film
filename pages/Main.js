@@ -74,7 +74,9 @@ export default function Main() {
   };
 
   return (
-    <View style={[defaultStyles.container, { paddingTop: insets.top }]}>
+    <View
+      style={{ paddingTop: insets.top, flex: 1, backgroundColor: "#000000" }}
+    >
       <View style={defaultStyles.header}>
         <Image
           source={require("../assets/pakafilmlogo.png")}

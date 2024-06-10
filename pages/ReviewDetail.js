@@ -1,18 +1,15 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
+import defaultStyles from "./../components/styles/DefaultStyles";
 import authorIcon from "./../assets/icon_user.png";
-import catCatLeeIcon from "./../assets/Catcatlee.png";
-import marvelFansIcon from "./../assets/Marvel_Fans.png";
-import baymax6Icon from "./../assets/Baymax6.png";
-import { FontAwesome } from "@expo/vector-icons";
-
+import StarSvg from "./../assets/svg/starSvg";
 const ReviewDetail = ({ route }) => {
   const { review } = route.params;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{review.film}</Text>
-      <Text style={styles.subTitle}>{review.title}</Text>
+    <View style={[defaultStyles.container, styles.container]}>
+      <Text style={[defaultStyles.Headline, styles.title]}>{review.title}</Text>
+      <Text style={styles.subTitle}>{review.subTitle}</Text>
 
       <View style={styles.authorContainer}>
         <Image source={authorIcon} style={styles.authorIcon} />
@@ -20,12 +17,13 @@ const ReviewDetail = ({ route }) => {
           {"By Peter Chan"} {review.createdAt}
         </Text>
         <View style={styles.ratingContainer}>
-          <FontAwesome
-            name="star"
-            size={18}
-            color="#FFC800"
-            style={styles.icon}
+          <StarSvg
+            fill="gold"
+            width={18}
+            height={18}
+            style={{ marginRight: 8 }}
           />
+
           <Text style={styles.rating}>{review.rating}</Text>
         </View>
       </View>
@@ -60,15 +58,10 @@ const ReviewDetail = ({ route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "black",
-    padding: 20,
+    paddingHorizontal: 20,
   },
   title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#fff",
-    marginBottom: 10,
+    margin: 3,
     textAlign: "center",
   },
   subTitle: {
