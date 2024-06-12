@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { Dimensions } from "react-native";
+import { removeMovieReview } from "../storages/MovieReviews";
 
 const { width } = Dimensions.get("window");
 
@@ -42,10 +43,9 @@ const ReviewItem = ({ item, onOptionsPress }) => {
   );
 };
 
-const ReviewMyself = ({ reviews }) => {
+const ReviewMyself = ({ reviews, setMyReviews }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedReview, setSelectedReview] = useState(null);
-  const [reviewData, setReviewData] = useState(reviews);
 
   const handleOptionsPress = (item) => {
     setSelectedReview(item);
@@ -56,15 +56,16 @@ const ReviewMyself = ({ reviews }) => {
     setModalVisible(false);
   };
 
-  const handleDeletePress = () => {
-    setReviewData(reviewData.filter((review) => review !== selectedReview));
+  const handleDeletePress = async () => {
+    setMyReviews(reviews.filter((review) => review !== selectedReview));
     setModalVisible(false);
+    await removeMovieReview(selectedReview);
   };
 
   return (
     <View style={{ flex: 1 }}>
       <FlatList
-        data={reviewData}
+        data={reviews}
         renderItem={({ item, index }) => (
           <View>
             {index > 0 && (

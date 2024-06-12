@@ -32,3 +32,15 @@ export const getMovieReviews = async () => {
     return [];
   }
 };
+
+export const removeMovieReview = async (review) => {
+  try {
+    const existingReviews = await getMovieReviews();
+    const updatedReviews = existingReviews.filter(
+      (existingReview) => existingReview != review
+    );
+    await storeMovieReviews(updatedReviews);
+  } catch (e) {
+    console.error("Error storing movie review:", e);
+  }
+};

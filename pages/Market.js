@@ -9,12 +9,12 @@ import Reviews from "../data/reviews.json";
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
   const [reviewNumbers, setReviewNumbers] = useState([6, 3]);
-  const [myReviews, setmyReviews] = useState([]);
+  const [myReviews, setMyReviews] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const reviews = await getMovieReviews();
-      setmyReviews(reviews);
+      setMyReviews(reviews);
     }
     fetchData();
   }, []);
@@ -37,7 +37,7 @@ export default function ReviewTabs() {
       {active == 0 ? (
         <ReviewList reviews={Reviews} />
       ) : (
-        <ReviewMyself reviews={myReviews} />
+        <ReviewMyself reviews={myReviews} setMyReviews={setMyReviews} />
       )}
     </View>
   );
