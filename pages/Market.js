@@ -35,7 +35,7 @@ export default function ReviewTabs() {
         number={reviewNumbers}
       />
       {active == 0 ? (
-        <ReviewList reviews={Reviews} />
+        <ReviewList reviews={Reviews} setReviews={setMyReviews} />
       ) : (
         <ReviewMyself reviews={myReviews} setMyReviews={setMyReviews} />
       )}

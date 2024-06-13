@@ -9,13 +9,21 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
+import { storeMovieReview, getMovieReviews } from "../storages/MovieReviews";
 
-const ReviewItem = ({ item }) => {
+const ReviewItem = ({ item, setReviews }) => {
   const navigation = useNavigation();
   const imageMap = {
     "Catcatlee.png": require("../assets/Catcatlee.png"),
     "Marvel_Fans.png": require("../assets/Marvel_Fans.png"),
     "Baymax6.png": require("../assets/Baymax6.png"),
+  };
+
+  const toggleFavorite = async (review) => {
+    const updatedReview = { ...review, favorite: !review.favorite };
+    await storeMovieReview(updatedReview);
+    const reviews = await getMovieReviews();
+    setReviews(reviews.filter((r) => r.favorite));
   };
 
   return (
@@ -30,6 +38,7 @@ const ReviewItem = ({ item }) => {
             size={20}
             color={item.favorite ? "#FFC800" : "#5A5A5A"}
             style={styles.icon}
+            onPress={() => toggleFavorite(item)}
           />
         </View>
 
@@ -49,7 +58,7 @@ const ReviewItem = ({ item }) => {
   );
 };
 
-const ReviewList = ({ reviews }) => (
+const ReviewList = ({ reviews, setReviews }) => (
   <FlatList
     data={reviews}
     renderItem={({ item, index }) => (
@@ -63,7 +72,7 @@ const ReviewList = ({ reviews }) => (
             }}
           />
         )}
-        <ReviewItem item={item} />
+        <ReviewItem item={item} setReviews={setReviews} />
       </View>
     )}
     keyExtractor={(item) => item.id}

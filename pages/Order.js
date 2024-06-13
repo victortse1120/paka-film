@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import FavoriteMovies from "../components/FavoriteMovies";
 import MyTabs from "../components/Tab";
 import ReviewList from "../components/ReviewList";
 import Reviews from "../data/reviews.json";
+import { getMovieReviews } from "../storages/MovieReviews";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
-  const [fovouriteNumbers, setFovouriteNumbers] = useState([3, 3]);
-  const reviews = Reviews.filter((review) => review.favorite);
+  const [fovouriteNumbers, setFavouriteNumbers] = useState([3, 3]);
+
+  const [favoriteReviews, setFavoriteReviews] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const reviews = await getMovieReviews();
+      const favorites = Reviews.filter((review) => review.favorite);
+      setFavoriteReviews(favorites);
+      setFavoriteNumbers([favorites.length, favorites.length]);
+    }
+    fetchData();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -21,7 +33,11 @@ export default function ReviewTabs() {
         }}
         number={fovouriteNumbers}
       />
-      {active == 0 ? <FavoriteMovies /> : <ReviewList reviews={reviews} />}
+      {active == 0 ? (
+        <FavoriteMovies />
+      ) : (
+        <ReviewList reviews={favoriteReviews} setReviews={setFavoriteReviews} />
+      )}
     </View>
   );
 }
