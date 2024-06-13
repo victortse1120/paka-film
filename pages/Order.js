@@ -1,26 +1,43 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import FavoriteMovies from "../components/FavoriteMovies";
 import MyTabs from "../components/Tab";
 import ReviewList from "../components/ReviewList";
-import Reviews from "../data/reviews.json";
-import { getMyReviews } from "../storages/MovieReviews";
+import dummyPublicReviews from "../data/reviews.json";
+import {
+  getPublicReviews,
+  storePublicReviews,
+  togglePublicReviewFavorite,
+} from "../storages/MovieReviews";
+import { PublicReviewContext } from "../context/PublicReviewContext";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
   const [fovouriteNumbers, setFavouriteNumbers] = useState([3, 3]);
-
-  const [favoriteReviews, setFavoriteReviews] = useState([]);
+  const { publicReviews, setPublicReviews } = useContext(PublicReviewContext);
 
   useEffect(() => {
-    async function fetchData() {
-      const reviews = await getMyReviews();
-      const favorites = Reviews.filter((review) => review.favorite);
-      setFavoriteReviews(favorites);
-      setFavouriteNumbers([favorites.length, favorites.length]);
+    async function fetchPublicReviews() {
+      const reviews = await getPublicReviews();
+      if (reviews.length == 0) {
+        await storePublicReviews(dummyPublicReviews);
+        setPublicReviews(dummyPublicReviews);
+      } else {
+        setPublicReviews(reviews);
+      }
     }
-    fetchData();
+    fetchPublicReviews();
   }, []);
+
+  const toggleFavorite = async (review) => {
+    togglePublicReviewFavorite(review);
+    const updatedReviews = publicReviews.map((publicReview) =>
+      publicReview === review
+        ? { ...review, favorite: !review.favorite }
+        : publicReview
+    );
+    setPublicReviews(updatedReviews);
+  };
 
   return (
     <View style={styles.container}>
@@ -36,7 +53,10 @@ export default function ReviewTabs() {
       {active == 0 ? (
         <FavoriteMovies />
       ) : (
-        <ReviewList reviews={favoriteReviews} setReviews={setFavoriteReviews} />
+        <ReviewList
+          reviews={publicReviews.filter((review) => review.favorite)}
+          toggleFavorite={toggleFavorite}
+        />
       )}
     </View>
   );

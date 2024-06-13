@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ReviewList from "../components/ReviewList";
 import ReviewMyself from "../components/ReviewMyself";
@@ -10,12 +10,13 @@ import {
   togglePublicReviewFavorite,
 } from "../storages/MovieReviews";
 import dummyPublicReviews from "../data/reviews.json";
+import { PublicReviewContext } from "../context/PublicReviewContext";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
   const [reviewNumbers, setReviewNumbers] = useState([6, 3]);
   const [myReviews, setMyReviews] = useState([]);
-  const [publicReviews, setPublicReviews] = useState([]);
+  const { publicReviews, setPublicReviews } = useContext(PublicReviewContext);
 
   useEffect(() => {
     async function fetchMyReviews() {
@@ -31,7 +32,6 @@ export default function ReviewTabs() {
       } else {
         setPublicReviews(reviews);
       }
-      console.log(publicReviews);
     }
     fetchPublicReviews();
   }, []);

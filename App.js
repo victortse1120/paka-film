@@ -21,8 +21,6 @@ import WriteReview from "./pages/WriteReview";
 import { Image } from "react-native";
 
 import HomeSvg from "./assets/svg/homeSvg";
-import FilmSvg from "./assets/svg/filmSvg";
-import CertSvg from "./assets/svg/certSvg";
 import SettingSvg from "./assets/svg/settingSvg";
 import PakafilmSvg from "./assets/svg/pakafilmSvg";
 import { Ionicons } from "@expo/vector-icons";
@@ -31,8 +29,9 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { initializeApp } from "firebase/app";
 import { initializeAuth, getReactNativePersistence } from "firebase/auth";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { PublicReviewContext } from "./context/PublicReviewContext";
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_APIKEY,
@@ -62,7 +61,7 @@ const Mytheme = {
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(null);
-
+  const [publicReviews, setPublicReviews] = useState([]);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -95,57 +94,61 @@ export default function App() {
           edges={["left", "right"]}
         >
           <NavigationContainer theme={Mytheme} ref={navigationRef}>
-            <Stack.Navigator
-              screenOptions={{
-                headerTitle: "",
-                headerTransparent: true,
-                gestureEnabled: false,
-              }}
+            <PublicReviewContext.Provider
+              value={{ publicReviews, setPublicReviews }}
             >
-              {currentUser ? (
+              <Stack.Navigator
+                screenOptions={{
+                  headerTitle: "",
+                  headerTransparent: true,
+                  gestureEnabled: false,
+                }}
+              >
+                {currentUser ? (
+                  <Stack.Screen
+                    name="Tabs"
+                    component={TabNavigator}
+                    options={{ headerShown: false }}
+                  />
+                ) : (
+                  <Stack.Screen
+                    name="LogIn"
+                    component={LogIn}
+                    options={{ headerShown: false }}
+                  />
+                )}
                 <Stack.Screen
-                  name="Tabs"
-                  component={TabNavigator}
-                  options={{ headerShown: false }}
+                  name="Home"
+                  component={Home}
+                  options={{ headerLeft: backButton }}
                 />
-              ) : (
                 <Stack.Screen
-                  name="LogIn"
-                  component={LogIn}
-                  options={{ headerShown: false }}
+                  name="ProductDetail"
+                  component={ProductDetail}
+                  options={{ headerLeft: backButton }}
                 />
-              )}
-              <Stack.Screen
-                name="Home"
-                component={Home}
-                options={{ headerLeft: backButton }}
-              />
-              <Stack.Screen
-                name="ProductDetail"
-                component={ProductDetail}
-                options={{ headerLeft: backButton }}
-              />
-              <Stack.Screen
-                name="WatchingMethod"
-                component={WatchingMethod}
-                options={{ headerLeft: backButton }}
-              />
-              <Stack.Screen
-                name="ReviewDetail"
-                component={ReviewDetail}
-                options={{ headerLeft: backButton }}
-              />
-              <Stack.Screen
-                name="TakePhoto"
-                component={TakePhoto}
-                options={{ headerLeft: backButton }}
-              />
-              <Stack.Screen
-                name="WriteReview"
-                component={WriteReview}
-                options={{ headerLeft: backButton }}
-              />
-            </Stack.Navigator>
+                <Stack.Screen
+                  name="WatchingMethod"
+                  component={WatchingMethod}
+                  options={{ headerLeft: backButton }}
+                />
+                <Stack.Screen
+                  name="ReviewDetail"
+                  component={ReviewDetail}
+                  options={{ headerLeft: backButton }}
+                />
+                <Stack.Screen
+                  name="TakePhoto"
+                  component={TakePhoto}
+                  options={{ headerLeft: backButton }}
+                />
+                <Stack.Screen
+                  name="WriteReview"
+                  component={WriteReview}
+                  options={{ headerLeft: backButton }}
+                />
+              </Stack.Navigator>
+            </PublicReviewContext.Provider>
           </NavigationContainer>
         </SafeAreaView>
       </SafeAreaProvider>
