@@ -29,7 +29,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { initializeApp } from "firebase/app";
 import { initializeAuth, getReactNativePersistence } from "firebase/auth";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { PublicReviewContext } from "./context/PublicReviewContext";
 
