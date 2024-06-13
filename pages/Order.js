@@ -4,11 +4,7 @@ import FavoriteMovies from "../components/FavoriteMovies";
 import MyTabs from "../components/Tab";
 import ReviewList from "../components/ReviewList";
 import dummyPublicReviews from "../data/reviews.json";
-import {
-  getPublicReviews,
-  storePublicReviews,
-  togglePublicReviewFavorite,
-} from "../storages/MovieReviews";
+import { getPublicReviews, storePublicReviews } from "../storages/MovieReviews";
 import { PublicReviewContext } from "../context/PublicReviewContext";
 
 export default function ReviewTabs() {
@@ -30,13 +26,13 @@ export default function ReviewTabs() {
   }, []);
 
   const toggleFavorite = async (review) => {
-    togglePublicReviewFavorite(review);
     const updatedReviews = publicReviews.map((publicReview) =>
       publicReview === review
         ? { ...review, favorite: !review.favorite }
         : publicReview
     );
     setPublicReviews(updatedReviews);
+    storePublicReviews(updatedReviews);
   };
 
   return (

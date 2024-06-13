@@ -69,17 +69,3 @@ export const getPublicReviews = async () => {
     return [];
   }
 };
-
-export const togglePublicReviewFavorite = async (review) => {
-  try {
-    const existingReviews = await getPublicReviews();
-    const updatedReviews = existingReviews.map((existingReview) =>
-      existingReview == review
-        ? { ...review, favorite: !review.favorite }
-        : existingReview
-    );
-    await storePublicReviews(updatedReviews);
-  } catch (e) {
-    console.error("Error toggle public review favorite:", e);
-  }
-};
