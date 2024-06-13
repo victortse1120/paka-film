@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+// My Review
 export const storeMyReview = async (review) => {
   try {
     const existingReviews = await getMyReviews();
@@ -42,5 +43,43 @@ export const removeMyReview = async (review) => {
     await storeMyReviews(updatedReviews);
   } catch (e) {
     console.error("Error removing my review:", e);
+  }
+};
+
+// Public Review
+export const storePublicReviews = async (reviews) => {
+  try {
+    const jsonReviews = JSON.stringify(reviews);
+    await AsyncStorage.setItem("publicReviews", jsonReviews);
+  } catch (e) {
+    console.error("Error storing public reviews:", e);
+  }
+};
+
+export const getPublicReviews = async () => {
+  try {
+    const jsonReviews = await AsyncStorage.getItem("publicReviews");
+    if (jsonReviews !== null) {
+      const reviews = JSON.parse(jsonReviews);
+      return reviews;
+    }
+    return [];
+  } catch (e) {
+    console.error("Error retrieving public reviews:", e);
+    return [];
+  }
+};
+
+export const togglePublicReviewFavorite = async (review) => {
+  try {
+    const existingReviews = await getPublicReviews();
+    const updatedReviews = existingReviews.map((existingReview) =>
+      existingReview == review
+        ? { ...review, favorite: !review.favorite }
+        : existingReview
+    );
+    await storePublicReviews(updatedReviews);
+  } catch (e) {
+    console.error("Error toggle public review favorite:", e);
   }
 };

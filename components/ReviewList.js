@@ -9,21 +9,13 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
-import { storeMyReview, getMyReviews } from "../storages/MovieReviews";
 
-const ReviewItem = ({ item, setReviews }) => {
+const ReviewItem = ({ item, toggleFavorite }) => {
   const navigation = useNavigation();
   const imageMap = {
     "Catcatlee.png": require("../assets/Catcatlee.png"),
     "Marvel_Fans.png": require("../assets/Marvel_Fans.png"),
     "Baymax6.png": require("../assets/Baymax6.png"),
-  };
-
-  const toggleFavorite = async (review) => {
-    const updatedReview = { ...review, favorite: !review.favorite };
-    await storeMyReview(updatedReview);
-    const reviews = await getMyReviews();
-    setReviews(reviews.filter((r) => r.favorite));
   };
 
   return (
@@ -58,7 +50,7 @@ const ReviewItem = ({ item, setReviews }) => {
   );
 };
 
-const ReviewList = ({ reviews, setReviews }) => (
+const ReviewList = ({ reviews, toggleFavorite }) => (
   <FlatList
     data={reviews}
     renderItem={({ item, index }) => (
@@ -72,7 +64,7 @@ const ReviewList = ({ reviews, setReviews }) => (
             }}
           />
         )}
-        <ReviewItem item={item} setReviews={setReviews} />
+        <ReviewItem item={item} toggleFavorite={toggleFavorite} />
       </View>
     )}
     keyExtractor={(item) => item.id}

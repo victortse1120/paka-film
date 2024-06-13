@@ -3,26 +3,52 @@ import { View, Text, StyleSheet } from "react-native";
 import ReviewList from "../components/ReviewList";
 import ReviewMyself from "../components/ReviewMyself";
 import MyTabs from "../components/Tab";
-import { getMyReviews } from "../storages/MovieReviews";
-import Reviews from "../data/reviews.json";
+import {
+  getMyReviews,
+  getPublicReviews,
+  storePublicReviews,
+  togglePublicReviewFavorite,
+} from "../storages/MovieReviews";
+import dummyPublicReviews from "../data/reviews.json";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
   const [reviewNumbers, setReviewNumbers] = useState([6, 3]);
   const [myReviews, setMyReviews] = useState([]);
-  const [newReviews, setNewReviews] = useState([]);
+  const [publicReviews, setPublicReviews] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchMyReviews() {
       const reviews = await getMyReviews();
       setMyReviews(reviews);
     }
-    fetchData();
+    fetchMyReviews();
+    async function fetchPublicReviews() {
+      const reviews = await getPublicReviews();
+      if (reviews.length == 0) {
+        await storePublicReviews(dummyPublicReviews);
+        setPublicReviews(dummyPublicReviews);
+      } else {
+        setPublicReviews(reviews);
+      }
+      console.log(publicReviews);
+    }
+    fetchPublicReviews();
   }, []);
 
   useEffect(() => {
     setReviewNumbers([3, myReviews.length]);
   }, [myReviews]);
+
+  const toggleFavorite = async (review) => {
+    togglePublicReviewFavorite(review);
+    const updatedReviews = publicReviews.map((publicReview) =>
+      publicReview === review
+        ? { ...review, favorite: !review.favorite }
+        : publicReview
+    );
+    setPublicReviews(updatedReviews);
+  };
 
   return (
     <View style={styles.container}>
@@ -36,7 +62,7 @@ export default function ReviewTabs() {
         number={reviewNumbers}
       />
       {active == 0 ? (
-        <ReviewList reviews={Reviews} setReviews={setMyReviews} />
+        <ReviewList reviews={publicReviews} toggleFavorite={toggleFavorite} />
       ) : (
         <ReviewMyself reviews={myReviews} setMyReviews={setMyReviews} />
       )}
