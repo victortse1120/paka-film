@@ -1,46 +1,46 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const storeMovieReview = async (review) => {
+export const storeMyReview = async (review) => {
   try {
-    const existingReviews = await getMovieReviews();
+    const existingReviews = await getMyReviews();
     const updatedReviews = [...existingReviews, review];
-    await storeMovieReviews(updatedReviews);
+    await storeMyReviews(updatedReviews);
   } catch (e) {
-    console.error("Error storing movie review:", e);
+    console.error("Error storing my review:", e);
   }
 };
 
-const storeMovieReviews = async (reviews) => {
+const storeMyReviews = async (reviews) => {
   try {
     const jsonReviews = JSON.stringify(reviews);
-    await AsyncStorage.setItem("movieReviews", jsonReviews);
+    await AsyncStorage.setItem("myReviews", jsonReviews);
   } catch (e) {
-    console.error("Error storing movie reviews:", e);
+    console.error("Error storing my reviews:", e);
   }
 };
 
-export const getMovieReviews = async () => {
+export const getMyReviews = async () => {
   try {
-    const jsonReviews = await AsyncStorage.getItem("movieReviews");
+    const jsonReviews = await AsyncStorage.getItem("myReviews");
     if (jsonReviews !== null) {
       const reviews = JSON.parse(jsonReviews);
       return reviews;
     }
     return [];
   } catch (e) {
-    console.error("Error retrieving movie reviews:", e);
+    console.error("Error retrieving my reviews:", e);
     return [];
   }
 };
 
-export const removeMovieReview = async (review) => {
+export const removeMyReview = async (review) => {
   try {
-    const existingReviews = await getMovieReviews();
+    const existingReviews = await getMyReviews();
     const updatedReviews = existingReviews.filter(
       (existingReview) => existingReview != review
     );
-    await storeMovieReviews(updatedReviews);
+    await storeMyReviews(updatedReviews);
   } catch (e) {
-    console.error("Error storing movie review:", e);
+    console.error("Error removing my review:", e);
   }
 };

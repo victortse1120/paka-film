@@ -4,7 +4,7 @@ import FavoriteMovies from "../components/FavoriteMovies";
 import MyTabs from "../components/Tab";
 import ReviewList from "../components/ReviewList";
 import Reviews from "../data/reviews.json";
-import { getMovieReviews } from "../storages/MovieReviews";
+import { getMyReviews } from "../storages/MovieReviews";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
@@ -14,10 +14,10 @@ export default function ReviewTabs() {
 
   useEffect(() => {
     async function fetchData() {
-      const reviews = await getMovieReviews();
+      const reviews = await getMyReviews();
       const favorites = Reviews.filter((review) => review.favorite);
       setFavoriteReviews(favorites);
-      setFavoriteNumbers([favorites.length, favorites.length]);
+      setFavouriteNumbers([favorites.length, favorites.length]);
     }
     fetchData();
   }, []);

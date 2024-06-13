@@ -3,17 +3,18 @@ import { View, Text, StyleSheet } from "react-native";
 import ReviewList from "../components/ReviewList";
 import ReviewMyself from "../components/ReviewMyself";
 import MyTabs from "../components/Tab";
-import { getMovieReviews } from "../storages/MovieReviews";
+import { getMyReviews } from "../storages/MovieReviews";
 import Reviews from "../data/reviews.json";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
   const [reviewNumbers, setReviewNumbers] = useState([6, 3]);
   const [myReviews, setMyReviews] = useState([]);
+  const [newReviews, setNewReviews] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const reviews = await getMovieReviews();
+      const reviews = await getMyReviews();
       setMyReviews(reviews);
     }
     fetchData();

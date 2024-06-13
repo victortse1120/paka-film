@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { Dimensions } from "react-native";
-import { removeMovieReview } from "../storages/MovieReviews";
+import { removeMyReview } from "../storages/MovieReviews";
 
 const { width } = Dimensions.get("window");
 
@@ -59,7 +59,7 @@ const ReviewMyself = ({ reviews, setMyReviews }) => {
   const handleDeletePress = async () => {
     setMyReviews(reviews.filter((review) => review !== selectedReview));
     setModalVisible(false);
-    await removeMovieReview(selectedReview);
+    await removeMyReview(selectedReview);
   };
 
   return (

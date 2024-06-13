@@ -14,7 +14,7 @@ import MyButton from "../components/Button";
 import { useState, useRef } from "react";
 import RatingBar from "../components/RatingBar";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { storeMovieReview } from "../storages/MovieReviews";
+import { storeMyReview } from "../storages/MovieReviews";
 import { getTodayDate } from "../utils/common";
 import * as ImagePicker from "expo-image-picker";
 import ocr from "../utils/ocr";
@@ -180,7 +180,7 @@ export default function WriteReviews() {
           <MyButton
             title={"FINISH AND POST"}
             onPress={async () => {
-              await storeMovieReview({
+              await storeMyReview({
                 ...form,
                 rating: rating,
                 createdAt: getTodayDate(),

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
-import { storeMovieReview, getMovieReviews } from "../storages/MovieReviews";
+import { storeMyReview, getMyReviews } from "../storages/MovieReviews";
 
 const ReviewItem = ({ item, setReviews }) => {
   const navigation = useNavigation();
@@ -21,8 +21,8 @@ const ReviewItem = ({ item, setReviews }) => {
 
   const toggleFavorite = async (review) => {
     const updatedReview = { ...review, favorite: !review.favorite };
-    await storeMovieReview(updatedReview);
-    const reviews = await getMovieReviews();
+    await storeMyReview(updatedReview);
+    const reviews = await getMyReviews();
     setReviews(reviews.filter((r) => r.favorite));
   };
 
