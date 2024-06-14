@@ -31,7 +31,8 @@ import { initializeAuth, getReactNativePersistence } from "firebase/auth";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { PublicReviewContext } from "./context/PublicReviewContext";
+import { PublicReviewContext } from "./context/myContext";
+import { MovieContext } from "./context/myContext";
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_APIKEY,
@@ -62,6 +63,7 @@ const Mytheme = {
 export default function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [publicReviews, setPublicReviews] = useState([]);
+  const [Movies, setMovies] = useState([]);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -95,7 +97,7 @@ export default function App() {
         >
           <NavigationContainer theme={Mytheme} ref={navigationRef}>
             <PublicReviewContext.Provider
-              value={{ publicReviews, setPublicReviews }}
+              value={{ publicReviews, setPublicReviews, Movies, setMovies }}
             >
               <Stack.Navigator
                 screenOptions={{

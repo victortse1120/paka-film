@@ -69,3 +69,27 @@ export const getPublicReviews = async () => {
     return [];
   }
 };
+
+//Movies
+export const storeMovies = async (movies) => {
+  try {
+    const jsonMovies = JSON.stringify(movies);
+    await AsyncStorage.setItem("Movies", jsonMovies);
+  } catch (e) {
+    console.error("Error storing public movies:", e);
+  }
+};
+
+export const getMovies = async () => {
+  try {
+    const jsonMovies = await AsyncStorage.getItem("Movies");
+    if (jsonMovies !== null) {
+      const movies = JSON.parse(jsonMovies);
+      return movies;
+    }
+    return [];
+  } catch (e) {
+    console.error("Error retrieving public movies:", e);
+    return [];
+  }
+};

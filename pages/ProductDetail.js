@@ -132,7 +132,12 @@ export default function ProductDetail(props) {
         </View>
 
         <View style={s.heart}>
-          <FontAwesome name="heart-o" size={30} color="#FFFFFF" />
+          <FontAwesome
+            name="heart-o"
+            size={30}
+            color="#FFFFFF"
+            onPress={() => toggleFavorite(item)}
+          />
         </View>
 
         <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>

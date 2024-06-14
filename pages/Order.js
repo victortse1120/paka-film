@@ -5,11 +5,13 @@ import MyTabs from "../components/Tab";
 import ReviewList from "../components/ReviewList";
 import dummyPublicReviews from "../data/reviews.json";
 import { getPublicReviews, storePublicReviews } from "../storages/MovieReviews";
-import { PublicReviewContext } from "../context/PublicReviewContext";
+import { PublicReviewContext } from "../context/myContext";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
-  const [fovouriteNumbers, setFavouriteNumbers] = useState([3, 3]);
+  // const [favouriteNumbers, setFavouriteNumbers] = useState([0, 0]);
+  const [favouriteReviews, setFavReviews] = useState([]);
+  const [myReviews, setMyReviews] = useState([]);
   const { publicReviews, setPublicReviews } = useContext(PublicReviewContext);
 
   useEffect(() => {
@@ -25,6 +27,20 @@ export default function ReviewTabs() {
     fetchPublicReviews();
   }, []);
 
+  // useEffect(() => {
+  //   updateFavouriteNumbers();
+  // }, [publicReviews]);
+
+  // const updateFavouriteNumbers = () => {
+  //   const favoriteMoviesCount = publicReviews.filter(
+  //     (review) => review.favorite && review.category === "Movies"
+  //   ).length;
+  //   const favoriteReviewsCount = publicReviews.filter(
+  //     (review) => review.favorite
+  //   ).length;
+  //   setFavouriteNumbers([favoriteMoviesCount, favoriteReviewsCount]);
+  // };
+
   const toggleFavorite = async (review) => {
     const updatedReviews = publicReviews.map((publicReview) =>
       publicReview === review
@@ -32,7 +48,8 @@ export default function ReviewTabs() {
         : publicReview
     );
     setPublicReviews(updatedReviews);
-    storePublicReviews(updatedReviews);
+    await storePublicReviews(updatedReviews);
+    updateFavouriteNumbers();
   };
 
   return (
@@ -44,7 +61,7 @@ export default function ReviewTabs() {
         onPress={(index) => {
           setActive(index);
         }}
-        number={fovouriteNumbers}
+        number={[3, publicReviews.filter((review) => review.favorite).length]}
       />
       {active == 0 ? (
         <FavoriteMovies />

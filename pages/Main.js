@@ -1,3 +1,4 @@
+import { useState, useEffect, useContext } from "react";
 import {
   ImageBackground,
   View,
@@ -23,7 +24,13 @@ import {
   dummyHotMoviesData,
   dummyHotAnimationData,
 } from "./../demo_data/DemoData";
+
+import { storeMovies, getMovies } from "../storages/MovieReviews";
+
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import { PublicReviewContext } from "../context/myContext";
+import { MovieContext } from "../context/myContext";
 
 const { width } = Dimensions.get("window");
 
@@ -31,6 +38,25 @@ export default function Main() {
   const navigation = useNavigation();
 
   const insets = useSafeAreaInsets();
+
+  // const [Movies, setMovies] = useState([]);
+  const { Movies, setMovies } = useContext(MovieContext);
+
+  useEffect(() => {
+    async function fetchMovies() {
+      const movies = await getMovies();
+      setMovies(movies);
+    }
+    fetchMovies();
+  }, []);
+
+  const toggleFavorite = async (movie) => {
+    const updatedMovies = Movies.map((movie) =>
+      Movies === movie ? { ...movie, favorite: !movie.favorite } : Movies
+    );
+    setMovies(updatedMovies);
+    storeMovies(updatedMovies);
+  };
 
   const renderSubItem = (title, mainStyle, data) => {
     return (
