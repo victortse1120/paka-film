@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image, FlatList, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
-const MovieItem = ({ item }) => (
+const MovieItem = ({ item, toggleMovieFavorite }) => (
   <View style={styles.movieContainer}>
     <Image source={{ uri: item.image }} style={styles.movieImage} />
     <View style={styles.movieDetails}>
@@ -10,9 +10,10 @@ const MovieItem = ({ item }) => (
         <Text style={styles.movieTitle}>{item.name}</Text>
         <FontAwesome
           name="heart"
-          size={20}
+          size={24}
           color="#FFC800"
           style={styles.icon}
+          onPress={() => toggleMovieFavorite(item)}
         />
       </View>
       <Text style={styles.movieRating}>
@@ -39,7 +40,7 @@ const FavoriteMovies = ({ movies, toggleMovieFavorite }) => (
     renderItem={({ item, index }) => (
       <>
         {index > 0 && <Separator />}
-        <MovieItem item={item} />
+        <MovieItem item={item} toggleMovieFavorite={toggleMovieFavorite} />
       </>
     )}
     keyExtractor={(item) => item.id}

@@ -34,7 +34,7 @@ export default function ProductDetail() {
 
   const toggleFavorite = async () => {
     const updatedMovies = movies.map((movie) =>
-      item === movie ? { ...movie, favorite: !movie.favorite } : movie
+      item.id === movie.id ? { ...movie, favorite: !movie.favorite } : movie
     );
     storeMovies(updatedMovies);
     setMovies(updatedMovies);

@@ -71,7 +71,10 @@ export default function ReviewTabs() {
         onPress={(index) => {
           setActive(index);
         }}
-        number={[3, publicReviews.filter((review) => review.favorite).length]}
+        number={[
+          movies.filter((movie) => movie.favorite).length,
+          publicReviews.filter((review) => review.favorite).length,
+        ]}
       />
       {active == 0 ? (
         <FavoriteMovies
