@@ -4,10 +4,10 @@ import { FontAwesome } from "@expo/vector-icons";
 
 const MovieItem = ({ item }) => (
   <View style={styles.movieContainer}>
-    <Image source={item.image} style={styles.movieImage} />
+    <Image source={{ uri: item.image }} style={styles.movieImage} />
     <View style={styles.movieDetails}>
       <View style={styles.titleContainer}>
-        <Text style={styles.movieTitle}>{item.title}</Text>
+        <Text style={styles.movieTitle}>{item.name}</Text>
         <FontAwesome
           name="heart"
           size={20}
@@ -16,7 +16,7 @@ const MovieItem = ({ item }) => (
         />
       </View>
       <Text style={styles.movieRating}>
-        <FontAwesome name="star" size={12} color="#FFC800" /> {item.rating}
+        <FontAwesome name="star" size={12} color="#FFC800" /> {item.stars}
       </Text>
     </View>
   </View>

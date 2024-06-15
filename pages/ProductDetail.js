@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -10,7 +9,6 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import defaultStyles from "./../components/styles/DefaultStyles";
 
@@ -24,12 +22,23 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Shadow } from "react-native-shadow-2";
 
 import { LinearGradient } from "expo-linear-gradient";
+import { storeMovies } from "../storages/MovieReviews";
+import { useContext } from "react";
+import { MyContext } from "../context/myContext";
 
 export default function ProductDetail() {
   const route = useRoute();
-  const item = route.params.item;
-
+  const { item } = route.params;
+  const { movies, setMovies } = useContext(MyContext);
   const navigation = useNavigation();
+
+  const toggleFavorite = async () => {
+    const updatedMovies = movies.map((movie) =>
+      item === movie ? { ...movie, favorite: !movie.favorite } : movie
+    );
+    storeMovies(updatedMovies);
+    setMovies(updatedMovies);
+  };
 
   const renderInfo = (iconConponent, title, info) => {
     return (
@@ -39,7 +48,6 @@ export default function ProductDetail() {
           {title}
         </Text>
         <Text style={s.infoContentText} numberOfLines={1}>
-          {/* {info ?? "-"} */}
           {info !== undefined ? info : "-"}
         </Text>
       </View>
@@ -72,24 +80,33 @@ export default function ProductDetail() {
           <View style={s.lowerHalf} />
         </View>
 
-        <View style={s.heart}>
-          <FontAwesome
-            name="heart-o"
-            size={30}
-            color="#FFFFFF"
-            onPress={() => toggleFavorite(item)}
-          />
-        </View>
-
         <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
           <View
             style={[
               {
-                marginTop: 80,
+                marginTop: 56,
                 alignItems: "center",
               },
             ]}
           >
+            <FontAwesome
+              name={
+                movies.filter((movie) => movie.id == item.id)[0].favorite
+                  ? "heart"
+                  : "heart-o"
+              }
+              size={30}
+              color={
+                movies.filter((movie) => movie.id == item.id)[0].favorite
+                  ? "#FFC800"
+                  : "#FFF"
+              }
+              onPress={toggleFavorite}
+              style={{
+                alignSelf: "flex-end",
+                paddingHorizontal: 16,
+              }}
+            />
             <Shadow
               startColor={"#ffffff80"}
               finalColor={"#ffffff05"}

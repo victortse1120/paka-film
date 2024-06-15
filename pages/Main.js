@@ -46,24 +46,6 @@ export default function Main() {
     fetchMovies();
   }, []);
 
-  const toggleFavorite = async (toggledMovie) => {
-    const updatedMovies = movies.map((movie) =>
-      toggledMovie === movie ? { ...movie, favorite: !movie.favorite } : movies
-    );
-    setMovies(updatedMovies);
-    storeMovies(updatedMovies);
-  };
-
-  const dummySliderData = movies.filter((movie) =>
-    movie.displayLocations.includes("slider")
-  );
-  const dummyHotMoviesData = movies.filter((movie) =>
-    movie.displayLocations.includes("hotMovies")
-  );
-  const dummyHotAnimationData = movies.filter((movie) =>
-    movie.displayLocations.includes("hotAnimation")
-  );
-
   const renderSubItem = (title, mainStyle, data) => {
     return (
       <>
@@ -79,9 +61,7 @@ export default function Main() {
           renderItem={({ item }) => {
             return (
               <TouchableWithoutFeedback
-                onPress={() =>
-                  navigation.navigate("ProductDetail", { item, toggleFavorite })
-                }
+                onPress={() => navigation.navigate("ProductDetail", { item })}
               >
                 <View style={styles.subItemView}>
                   <Image
@@ -131,7 +111,9 @@ export default function Main() {
           inidicatorBorderRadius={8}
           indicatorColor={["rgba(255, 255, 255, 0.5)", "#FFC800", "#ffffff"]}
           indicatorHorizontalPadding={2}
-          data={dummySliderData}
+          data={movies.filter((movie) =>
+            movie.displayLocations.includes("slider")
+          )}
           renderItem={({ item }) => {
             return (
               <View style={styles.sliderView}>
@@ -153,7 +135,9 @@ export default function Main() {
                   </Text>
                   <TouchableWithoutFeedback
                     onPress={() =>
-                      navigation.navigate("ProductDetail", { item })
+                      navigation.navigate("ProductDetail", {
+                        item,
+                      })
                     }
                   >
                     <View style={styles.sliderButton}>
@@ -167,11 +151,17 @@ export default function Main() {
             );
           }}
         />
-        {renderSubItem("Hot Movies", { marginTop: 50 }, dummyHotMoviesData)}
+        {renderSubItem(
+          "Hot Movies",
+          { marginTop: 50 },
+          movies.filter((movie) => movie.displayLocations.includes("hotMovies"))
+        )}
         {renderSubItem(
           "Hot Animation",
           { marginTop: 40 },
-          dummyHotAnimationData
+          movies.filter((movie) =>
+            movie.displayLocations.includes("hotAnimation")
+          )
         )}
       </ScrollView>
     </View>
