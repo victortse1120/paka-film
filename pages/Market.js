@@ -9,13 +9,12 @@ import {
   storePublicReviews,
 } from "../storages/MovieReviews";
 import dummyPublicReviews from "../data/reviews.json";
-import { PublicReviewContext } from "../context/PublicReviewContext";
+import { MyContext } from "../context/myContext";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
-  const [reviewNumbers, setReviewNumbers] = useState([6, 3]);
   const [myReviews, setMyReviews] = useState([]);
-  const { publicReviews, setPublicReviews } = useContext(PublicReviewContext);
+  const { publicReviews, setPublicReviews } = useContext(MyContext);
 
   useEffect(() => {
     async function fetchMyReviews() {
@@ -34,10 +33,6 @@ export default function ReviewTabs() {
     }
     fetchPublicReviews();
   }, []);
-
-  useEffect(() => {
-    setReviewNumbers([3, myReviews.length]);
-  }, [myReviews]);
 
   const toggleFavorite = async (review) => {
     const updatedReviews = publicReviews.map((publicReview) =>
@@ -58,7 +53,7 @@ export default function ReviewTabs() {
         onPress={(index) => {
           setActive(index);
         }}
-        number={reviewNumbers}
+        number={[publicReviews.length, myReviews.length]}
       />
       {active == 0 ? (
         <ReviewList reviews={publicReviews} toggleFavorite={toggleFavorite} />

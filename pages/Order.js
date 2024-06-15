@@ -4,13 +4,19 @@ import FavoriteMovies from "../components/FavoriteMovies";
 import MyTabs from "../components/Tab";
 import ReviewList from "../components/ReviewList";
 import dummyPublicReviews from "../data/reviews.json";
-import { getPublicReviews, storePublicReviews } from "../storages/MovieReviews";
-import { PublicReviewContext } from "../context/PublicReviewContext";
+import { dummyData } from "../demo_data/DemoData";
+import {
+  getMovies,
+  getPublicReviews,
+  storeMovies,
+  storePublicReviews,
+} from "../storages/MovieReviews";
+import { MyContext } from "../context/myContext";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
-  const [fovouriteNumbers, setFavouriteNumbers] = useState([3, 3]);
-  const { publicReviews, setPublicReviews } = useContext(PublicReviewContext);
+  const { movies, setMovies } = useContext(MyContext);
+  const { publicReviews, setPublicReviews } = useContext(MyContext);
 
   useEffect(() => {
     async function fetchPublicReviews() {
@@ -25,7 +31,20 @@ export default function ReviewTabs() {
     fetchPublicReviews();
   }, []);
 
-  const toggleFavorite = async (review) => {
+  useEffect(() => {
+    async function fetchMovies() {
+      const movies = await getMovies();
+      if (movies.length == 0) {
+        await storeMovies(dummyData);
+        setPublicReviews(dummyData);
+      } else {
+        setPublicReviews(movies);
+      }
+    }
+    fetchMovies();
+  }, []);
+
+  const toggleFavorite = (review) => {
     const updatedReviews = publicReviews.map((publicReview) =>
       publicReview === review
         ? { ...review, favorite: !review.favorite }
@@ -33,6 +52,14 @@ export default function ReviewTabs() {
     );
     setPublicReviews(updatedReviews);
     storePublicReviews(updatedReviews);
+  };
+
+  const toggleMovieFavorite = (toggledMovie) => {
+    const updatedMovies = movies.map((movie) =>
+      movie === toggledMovie ? { ...movie, favorite: !movie.favorite } : movie
+    );
+    setMovies(updatedMovies);
+    storeMovies(updatedMovies);
   };
 
   return (
@@ -44,10 +71,16 @@ export default function ReviewTabs() {
         onPress={(index) => {
           setActive(index);
         }}
-        number={fovouriteNumbers}
+        number={[
+          movies.filter((movie) => movie.favorite).length,
+          publicReviews.filter((review) => review.favorite).length,
+        ]}
       />
       {active == 0 ? (
-        <FavoriteMovies />
+        <FavoriteMovies
+          movies={movies.filter((movie) => movie.favorite)}
+          toggleMovieFavorite={toggleMovieFavorite}
+        />
       ) : (
         <ReviewList
           reviews={publicReviews.filter((review) => review.favorite)}

@@ -1,24 +1,17 @@
-import { useState, useEffect } from "react";
 import {
   Text,
   View,
   StyleSheet,
   Image,
-  TouchableOpacity,
   ScrollView,
   ImageBackground,
   TouchableWithoutFeedback,
   Platform,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import defaultStyles from "./../components/styles/DefaultStyles";
-import productStyles from "./../components/styles/ProductStyles";
 
-import { dummyData } from "./../demo_data/DemoData";
-
-import ArrowLeftSyvg from "./../assets/svg/arrowLeftSvg";
 import StarSvg from "./../assets/svg/starSvg";
 import MovieSvg from "./../assets/svg/movieSvg";
 import PaperAirplaneSvg from "./../assets/svg/paperAirplaneSvg";
@@ -29,65 +22,22 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Shadow } from "react-native-shadow-2";
 
 import { LinearGradient } from "expo-linear-gradient";
+import { storeMovies } from "../storages/MovieReviews";
+import { useContext } from "react";
+import { MyContext } from "../context/myContext";
 
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-export default function ProductDetail(props) {
-  const insets = useSafeAreaInsets();
-
-  const item = props.route.params?.item ?? dummyData[0];
-
+export default function ProductDetail() {
+  const route = useRoute();
+  const { item } = route.params;
+  const { movies, setMovies } = useContext(MyContext);
   const navigation = useNavigation();
-  const [qty, setQty] = useState(1);
 
-  useEffect(() => {
-    setQty(1);
-  }, [item]);
-
-  orderNow = async () => {
-    try {
-      // Retrieve the existing order items from AsyncStorage
-      const existingOrderItems = await AsyncStorage.getItem("orderItems");
-      let newOrderItems = [];
-      if (existingOrderItems) {
-        // If there are existing order items, parse the data and add the new item object to the array
-        newOrderItems = JSON.parse(existingOrderItems);
-        let savedItemIndex = newOrderItems.findIndex(
-          (mItem) => mItem.id == item.id
-        );
-        if (newOrderItems[savedItemIndex]) {
-          newOrderItems[savedItemIndex].qty =
-            newOrderItems[savedItemIndex].qty + qty;
-        } else {
-          newOrderItems.push({
-            id: item.id,
-            name: item.name,
-            image: item.image,
-            price: item.price,
-            qty,
-          });
-        }
-      } else {
-        // If there are no existing order items, create a new array with the new item object
-        newOrderItems = [
-          {
-            id: item.id,
-            name: item.name,
-            image: item.image,
-            price: item.price,
-            qty,
-          },
-        ];
-      }
-      // Save the updated order items array to AsyncStorage
-      await AsyncStorage.setItem("orderItems", JSON.stringify(newOrderItems));
-      console.log("Item added to order");
-      console.log(newOrderItems);
-
-      navigation.navigate("Order");
-    } catch (error) {
-      console.log("Error saving order item:", error);
-    }
+  const toggleFavorite = async () => {
+    const updatedMovies = movies.map((movie) =>
+      item.id === movie.id ? { ...movie, favorite: !movie.favorite } : movie
+    );
+    storeMovies(updatedMovies);
+    setMovies(updatedMovies);
   };
 
   const renderInfo = (iconConponent, title, info) => {
@@ -98,7 +48,6 @@ export default function ProductDetail(props) {
           {title}
         </Text>
         <Text style={s.infoContentText} numberOfLines={1}>
-          {/* {info ?? "-"} */}
           {info !== undefined ? info : "-"}
         </Text>
       </View>
@@ -131,19 +80,33 @@ export default function ProductDetail(props) {
           <View style={s.lowerHalf} />
         </View>
 
-        <View style={s.heart}>
-          <FontAwesome name="heart-o" size={30} color="#FFFFFF" />
-        </View>
-
         <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
           <View
             style={[
               {
-                marginTop: 80,
+                marginTop: 56,
                 alignItems: "center",
               },
             ]}
           >
+            <FontAwesome
+              name={
+                movies.filter((movie) => movie.id == item.id)[0].favorite
+                  ? "heart"
+                  : "heart-o"
+              }
+              size={30}
+              color={
+                movies.filter((movie) => movie.id == item.id)[0].favorite
+                  ? "#FFC800"
+                  : "#FFF"
+              }
+              onPress={toggleFavorite}
+              style={{
+                alignSelf: "flex-end",
+                paddingHorizontal: 16,
+              }}
+            />
             <Shadow
               startColor={"#ffffff80"}
               finalColor={"#ffffff05"}

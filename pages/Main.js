@@ -1,3 +1,4 @@
+import { useState, useEffect, useContext } from "react";
 import {
   ImageBackground,
   View,
@@ -18,19 +19,32 @@ import SettingSvg from "./../assets/svg/starSvg";
 
 import defaultStyles from "./../components/styles/DefaultStyles";
 
-import {
-  dummySliderData,
-  dummyHotMoviesData,
-  dummyHotAnimationData,
-} from "./../demo_data/DemoData";
+import { dummyData } from "./../demo_data/DemoData";
+
+import { storeMovies, getMovies } from "../storages/MovieReviews";
+
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { MyContext } from "../context/myContext";
 
 const { width } = Dimensions.get("window");
 
 export default function Main() {
   const navigation = useNavigation();
-
   const insets = useSafeAreaInsets();
+  const { movies, setMovies } = useContext(MyContext);
+
+  useEffect(() => {
+    async function fetchMovies() {
+      const storedMovies = await getMovies();
+      if (storedMovies.length == 0) {
+        await storeMovies(dummyData);
+        setMovies(dummyData);
+      } else {
+        setMovies(storedMovies);
+      }
+    }
+    fetchMovies();
+  }, []);
 
   const renderSubItem = (title, mainStyle, data) => {
     return (
@@ -97,7 +111,9 @@ export default function Main() {
           inidicatorBorderRadius={8}
           indicatorColor={["rgba(255, 255, 255, 0.5)", "#FFC800", "#ffffff"]}
           indicatorHorizontalPadding={2}
-          data={dummySliderData}
+          data={movies.filter((movie) =>
+            movie.displayLocations.includes("slider")
+          )}
           renderItem={({ item }) => {
             return (
               <View style={styles.sliderView}>
@@ -119,7 +135,9 @@ export default function Main() {
                   </Text>
                   <TouchableWithoutFeedback
                     onPress={() =>
-                      navigation.navigate("ProductDetail", { item })
+                      navigation.navigate("ProductDetail", {
+                        item,
+                      })
                     }
                   >
                     <View style={styles.sliderButton}>
@@ -133,11 +151,17 @@ export default function Main() {
             );
           }}
         />
-        {renderSubItem("Hot Movies", { marginTop: 50 }, dummyHotMoviesData)}
+        {renderSubItem(
+          "Hot Movies",
+          { marginTop: 50 },
+          movies.filter((movie) => movie.displayLocations.includes("hotMovies"))
+        )}
         {renderSubItem(
           "Hot Animation",
           { marginTop: 40 },
-          dummyHotAnimationData
+          movies.filter((movie) =>
+            movie.displayLocations.includes("hotAnimation")
+          )
         )}
       </ScrollView>
     </View>

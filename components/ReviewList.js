@@ -27,7 +27,7 @@ const ReviewItem = ({ item, toggleFavorite }) => {
           <Text style={styles.reviewTitle}>{item.title}</Text>
           <FontAwesome
             name="heart"
-            size={20}
+            size={24}
             color={item.favorite ? "#FFC800" : "#5A5A5A"}
             style={styles.icon}
             onPress={() => toggleFavorite(item)}

@@ -2,42 +2,22 @@ import React from "react";
 import { View, Text, Image, FlatList, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
-const movies = [
-  {
-    id: "1",
-    title: "The Dark Knight",
-    rating: "7.4",
-    image: require("./../assets/filmImage/thedark.jpg"),
-  },
-  {
-    id: "2",
-    title: "Big Hero 6",
-    rating: "7.4",
-    image: require("./../assets/filmImage/bighero6.jpeg"),
-  },
-  {
-    id: "3",
-    title: "Toy Story 3",
-    rating: "7.4",
-    image: require("./../assets/filmImage/toystory3.png"),
-  },
-];
-
-const MovieItem = ({ item }) => (
+const MovieItem = ({ item, toggleMovieFavorite }) => (
   <View style={styles.movieContainer}>
-    <Image source={item.image} style={styles.movieImage} />
+    <Image source={{ uri: item.image }} style={styles.movieImage} />
     <View style={styles.movieDetails}>
       <View style={styles.titleContainer}>
-        <Text style={styles.movieTitle}>{item.title}</Text>
+        <Text style={styles.movieTitle}>{item.name}</Text>
         <FontAwesome
           name="heart"
-          size={20}
+          size={24}
           color="#FFC800"
           style={styles.icon}
+          onPress={() => toggleMovieFavorite(item)}
         />
       </View>
       <Text style={styles.movieRating}>
-        <FontAwesome name="star" size={12} color="#FFC800" /> {item.rating}
+        <FontAwesome name="star" size={12} color="#FFC800" /> {item.stars}
       </Text>
     </View>
   </View>
@@ -54,13 +34,13 @@ const Separator = () => (
   />
 );
 
-const FavoriteMovies = () => (
+const FavoriteMovies = ({ movies, toggleMovieFavorite }) => (
   <FlatList
     data={movies}
     renderItem={({ item, index }) => (
       <>
         {index > 0 && <Separator />}
-        <MovieItem item={item} />
+        <MovieItem item={item} toggleMovieFavorite={toggleMovieFavorite} />
       </>
     )}
     keyExtractor={(item) => item.id}
