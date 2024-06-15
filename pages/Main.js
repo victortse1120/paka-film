@@ -19,11 +19,7 @@ import SettingSvg from "./../assets/svg/starSvg";
 
 import defaultStyles from "./../components/styles/DefaultStyles";
 
-import {
-  dummySliderData,
-  dummyHotMoviesData,
-  dummyHotAnimationData,
-} from "./../demo_data/DemoData";
+import { dummyData } from "./../demo_data/DemoData";
 
 import { storeMovies, getMovies } from "../storages/MovieReviews";
 
@@ -34,27 +30,39 @@ const { width } = Dimensions.get("window");
 
 export default function Main() {
   const navigation = useNavigation();
-
   const insets = useSafeAreaInsets();
-
-  // const [Movies, setMovies] = useState([]);
-  const { Movies, setMovies } = useContext(MyContext);
+  const { movies, setMovies } = useContext(MyContext);
 
   useEffect(() => {
     async function fetchMovies() {
-      const movies = await getMovies();
-      setMovies(movies);
+      const storedMovies = await getMovies();
+      if (storedMovies.length == 0) {
+        await storeMovies(dummyData);
+        setMovies(dummyData);
+      } else {
+        setMovies(storedMovies);
+      }
     }
     fetchMovies();
   }, []);
 
-  const toggleFavorite = async (movie) => {
-    const updatedMovies = Movies.map((movie) =>
-      Movies === movie ? { ...movie, favorite: !movie.favorite } : Movies
+  const toggleFavorite = async (toggledMovie) => {
+    const updatedMovies = movies.map((movie) =>
+      toggledMovie === movie ? { ...movie, favorite: !movie.favorite } : movies
     );
     setMovies(updatedMovies);
     storeMovies(updatedMovies);
   };
+
+  const dummySliderData = movies.filter((movie) =>
+    movie.displayLocations.includes("slider")
+  );
+  const dummyHotMoviesData = movies.filter((movie) =>
+    movie.displayLocations.includes("hotMovies")
+  );
+  const dummyHotAnimationData = movies.filter((movie) =>
+    movie.displayLocations.includes("hotAnimation")
+  );
 
   const renderSubItem = (title, mainStyle, data) => {
     return (
@@ -71,7 +79,9 @@ export default function Main() {
           renderItem={({ item }) => {
             return (
               <TouchableWithoutFeedback
-                onPress={() => navigation.navigate("ProductDetail", { item })}
+                onPress={() =>
+                  navigation.navigate("ProductDetail", { item, toggleFavorite })
+                }
               >
                 <View style={styles.subItemView}>
                   <Image

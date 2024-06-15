@@ -4,7 +4,9 @@ import FavoriteMovies from "../components/FavoriteMovies";
 import MyTabs from "../components/Tab";
 import ReviewList from "../components/ReviewList";
 import dummyPublicReviews from "../data/reviews.json";
+import { dummyData } from "../demo_data/DemoData";
 import {
+  getMovies,
   getPublicReviews,
   storeMovies,
   storePublicReviews,
@@ -27,6 +29,19 @@ export default function ReviewTabs() {
       }
     }
     fetchPublicReviews();
+  }, []);
+
+  useEffect(() => {
+    async function fetchMovies() {
+      const movies = await getMovies();
+      if (movies.length == 0) {
+        await storeMovies(dummyData);
+        setPublicReviews(dummyData);
+      } else {
+        setPublicReviews(movies);
+      }
+    }
+    fetchMovies();
   }, []);
 
   const toggleFavorite = (review) => {

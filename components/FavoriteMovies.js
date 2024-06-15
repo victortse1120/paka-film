@@ -2,27 +2,6 @@ import React from "react";
 import { View, Text, Image, FlatList, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
-const movies = [
-  {
-    id: "1",
-    title: "The Dark Knight",
-    rating: "7.4",
-    image: require("./../assets/filmImage/thedark.jpg"),
-  },
-  {
-    id: "2",
-    title: "Big Hero 6",
-    rating: "7.4",
-    image: require("./../assets/filmImage/bighero6.jpeg"),
-  },
-  {
-    id: "3",
-    title: "Toy Story 3",
-    rating: "7.4",
-    image: require("./../assets/filmImage/toystory3.png"),
-  },
-];
-
 const MovieItem = ({ item }) => (
   <View style={styles.movieContainer}>
     <Image source={item.image} style={styles.movieImage} />
@@ -54,7 +33,7 @@ const Separator = () => (
   />
 );
 
-const FavoriteMovies = ({ toggleMovieFavorite }) => (
+const FavoriteMovies = ({ movies, toggleMovieFavorite }) => (
   <FlatList
     data={movies}
     renderItem={({ item, index }) => (

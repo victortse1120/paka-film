@@ -4,21 +4,16 @@ import {
   View,
   StyleSheet,
   Image,
-  TouchableOpacity,
   ScrollView,
   ImageBackground,
   TouchableWithoutFeedback,
   Platform,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import defaultStyles from "./../components/styles/DefaultStyles";
-import productStyles from "./../components/styles/ProductStyles";
 
-import { dummyData } from "./../demo_data/DemoData";
-
-import ArrowLeftSyvg from "./../assets/svg/arrowLeftSvg";
 import StarSvg from "./../assets/svg/starSvg";
 import MovieSvg from "./../assets/svg/movieSvg";
 import PaperAirplaneSvg from "./../assets/svg/paperAirplaneSvg";
@@ -30,12 +25,9 @@ import { Shadow } from "react-native-shadow-2";
 
 import { LinearGradient } from "expo-linear-gradient";
 
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-export default function ProductDetail(props) {
-  const insets = useSafeAreaInsets();
-
-  const item = props.route.params?.item ?? dummyData[0];
+export default function ProductDetail() {
+  const route = useRoute();
+  const item = route.params.item;
 
   const navigation = useNavigation();
   const [qty, setQty] = useState(1);

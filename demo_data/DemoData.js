@@ -13,6 +13,7 @@ export const dummyData = [
     genre: "Action, Comedy, Fantasy",
     userRating: "4.1/10 (456 users)",
     displayLocations: ["slider"],
+    favorite: false,
   },
   {
     id: 2,
@@ -29,6 +30,7 @@ export const dummyData = [
     genre: "Action Crime Drama Thriller",
     userRating: "9.0 (368 users)",
     displayLocations: ["slider"],
+    favorite: false,
   },
   {
     id: 3,
@@ -46,6 +48,7 @@ export const dummyData = [
     genre: "Action, Animation, Comedy",
     userRating: "7.8 (468 users)",
     displayLocations: ["slider"],
+    favorite: false,
   },
   {
     id: 4,
@@ -62,6 +65,7 @@ export const dummyData = [
     genre: "Action Crime Drama Thriller",
     userRating: "9.0 (368 users)",
     displayLocations: ["hotMovies"],
+    favorite: false,
   },
   {
     id: 5,
@@ -78,6 +82,7 @@ export const dummyData = [
     genre: "Action, Animation, Comedy",
     userRating: "7.8 (468 users)",
     displayLocations: ["hotMovies"],
+    favorite: false,
   },
   {
     id: 6,
@@ -95,6 +100,7 @@ export const dummyData = [
     genre: "Action, Animation, Sci-Fi",
     userRating: "8.4 (564 users)",
     displayLocations: ["hotMovies"],
+    favorite: false,
   },
   {
     id: 7,
@@ -111,6 +117,7 @@ export const dummyData = [
     genre: "Drama, Fantasy, Romance",
     userRating: "8.4 (454 users)",
     displayLocations: ["hotAnimation"],
+    favorite: false,
   },
   {
     id: 8,
@@ -127,6 +134,7 @@ export const dummyData = [
     genre: "Animation, Comedy, Drama",
     userRating: "8.5 (354 users)",
     displayLocations: ["hotAnimation"],
+    favorite: false,
   },
   {
     id: 9,
@@ -143,6 +151,7 @@ export const dummyData = [
     genre: "Animation, Adventure, Comedy",
     userRating: "8.3 (454 users)",
     displayLocations: ["slider", "hotAnimation"],
+    favorite: false,
   },
   {
     id: 10,
@@ -160,22 +169,6 @@ export const dummyData = [
     userRating: "7.7 (354 users)",
     isVeg: true,
     displayLocations: ["slider", "hotAnimation"],
+    favorite: false,
   },
-];
-
-export const dummySliderData = [
-  dummyData[0],
-  dummyData[1],
-  dummyData[2],
-  dummyData[8],
-  dummyData[9],
-];
-
-export const dummyHotMoviesData = [dummyData[3], dummyData[4], dummyData[5]];
-
-export const dummyHotAnimationData = [
-  dummyData[6],
-  dummyData[7],
-  dummyData[8],
-  dummyData[9],
 ];
