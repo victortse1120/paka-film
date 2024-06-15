@@ -5,14 +5,11 @@ import MyTabs from "../components/Tab";
 import ReviewList from "../components/ReviewList";
 import dummyPublicReviews from "../data/reviews.json";
 import { getPublicReviews, storePublicReviews } from "../storages/MovieReviews";
-import { PublicReviewContext } from "../context/myContext";
+import { MyContext } from "../context/myContext";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
-  // const [favouriteNumbers, setFavouriteNumbers] = useState([0, 0]);
-  const [favouriteReviews, setFavReviews] = useState([]);
-  const [myReviews, setMyReviews] = useState([]);
-  const { publicReviews, setPublicReviews } = useContext(PublicReviewContext);
+  const { publicReviews, setPublicReviews } = useContext(MyContext);
 
   useEffect(() => {
     async function fetchPublicReviews() {
@@ -26,20 +23,6 @@ export default function ReviewTabs() {
     }
     fetchPublicReviews();
   }, []);
-
-  // useEffect(() => {
-  //   updateFavouriteNumbers();
-  // }, [publicReviews]);
-
-  // const updateFavouriteNumbers = () => {
-  //   const favoriteMoviesCount = publicReviews.filter(
-  //     (review) => review.favorite && review.category === "Movies"
-  //   ).length;
-  //   const favoriteReviewsCount = publicReviews.filter(
-  //     (review) => review.favorite
-  //   ).length;
-  //   setFavouriteNumbers([favoriteMoviesCount, favoriteReviewsCount]);
-  // };
 
   const toggleFavorite = async (review) => {
     const updatedReviews = publicReviews.map((publicReview) =>

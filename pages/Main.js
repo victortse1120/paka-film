@@ -28,9 +28,7 @@ import {
 import { storeMovies, getMovies } from "../storages/MovieReviews";
 
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-import { PublicReviewContext } from "../context/myContext";
-import { MovieContext } from "../context/myContext";
+import { MyContext } from "../context/myContext";
 
 const { width } = Dimensions.get("window");
 
@@ -40,7 +38,7 @@ export default function Main() {
   const insets = useSafeAreaInsets();
 
   // const [Movies, setMovies] = useState([]);
-  const { Movies, setMovies } = useContext(MovieContext);
+  const { Movies, setMovies } = useContext(MyContext);
 
   useEffect(() => {
     async function fetchMovies() {
