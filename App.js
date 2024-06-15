@@ -31,8 +31,7 @@ import { initializeAuth, getReactNativePersistence } from "firebase/auth";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { PublicReviewContext } from "./context/myContext";
-import { MovieContext } from "./context/myContext";
+import { MyContext } from "./context/myContext";
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_APIKEY,
@@ -96,7 +95,7 @@ export default function App() {
           edges={["left", "right"]}
         >
           <NavigationContainer theme={Mytheme} ref={navigationRef}>
-            <PublicReviewContext.Provider
+            <MyContext.Provider
               value={{ publicReviews, setPublicReviews, Movies, setMovies }}
             >
               <Stack.Navigator
@@ -150,7 +149,7 @@ export default function App() {
                   options={{ headerLeft: backButton }}
                 />
               </Stack.Navigator>
-            </PublicReviewContext.Provider>
+            </MyContext.Provider>
           </NavigationContainer>
         </SafeAreaView>
       </SafeAreaProvider>

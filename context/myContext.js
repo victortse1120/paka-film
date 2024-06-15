@@ -1,5 +1,3 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 
-export const PublicReviewContext = createContext();
-
-export const MovieContext = createContext();
+export const MyContext = createContext();
