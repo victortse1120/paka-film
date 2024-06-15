@@ -54,7 +54,7 @@ const Separator = () => (
   />
 );
 
-const FavoriteMovies = () => (
+const FavoriteMovies = ({ toggleMovieFavorite }) => (
   <FlatList
     data={movies}
     renderItem={({ item, index }) => (

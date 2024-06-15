@@ -62,7 +62,7 @@ const Mytheme = {
 export default function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [publicReviews, setPublicReviews] = useState([]);
-  const [Movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -96,7 +96,7 @@ export default function App() {
         >
           <NavigationContainer theme={Mytheme} ref={navigationRef}>
             <MyContext.Provider
-              value={{ publicReviews, setPublicReviews, Movies, setMovies }}
+              value={{ publicReviews, setPublicReviews, movies, setMovies }}
             >
               <Stack.Navigator
                 screenOptions={{

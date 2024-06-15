@@ -12,6 +12,7 @@ export const dummyData = [
     duration: "1h 44m",
     genre: "Action, Comedy, Fantasy",
     userRating: "4.1/10 (456 users)",
+    displayLocations: ["slider"],
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ export const dummyData = [
     duration: "2h 32m",
     genre: "Action Crime Drama Thriller",
     userRating: "9.0 (368 users)",
+    displayLocations: ["slider"],
   },
   {
     id: 3,
@@ -43,6 +45,7 @@ export const dummyData = [
     duration: "1h 42m",
     genre: "Action, Animation, Comedy",
     userRating: "7.8 (468 users)",
+    displayLocations: ["slider"],
   },
   {
     id: 4,
@@ -58,6 +61,7 @@ export const dummyData = [
     duration: "2h 32m",
     genre: "Action Crime Drama Thriller",
     userRating: "9.0 (368 users)",
+    displayLocations: ["hotMovies"],
   },
   {
     id: 5,
@@ -73,6 +77,7 @@ export const dummyData = [
     duration: "1h 42m",
     genre: "Action, Animation, Comedy",
     userRating: "7.8 (468 users)",
+    displayLocations: ["hotMovies"],
   },
   {
     id: 6,
@@ -89,6 +94,7 @@ export const dummyData = [
     duration: "1h 57m",
     genre: "Action, Animation, Sci-Fi",
     userRating: "8.4 (564 users)",
+    displayLocations: ["hotMovies"],
   },
   {
     id: 7,
@@ -104,6 +110,7 @@ export const dummyData = [
     duration: "1h 46m",
     genre: "Drama, Fantasy, Romance",
     userRating: "8.4 (454 users)",
+    displayLocations: ["hotAnimation"],
   },
   {
     id: 8,
@@ -119,6 +126,7 @@ export const dummyData = [
     duration: "1h 35m",
     genre: "Animation, Comedy, Drama",
     userRating: "8.5 (354 users)",
+    displayLocations: ["hotAnimation"],
   },
   {
     id: 9,
@@ -134,6 +142,7 @@ export const dummyData = [
     duration: "1h 43m",
     genre: "Animation, Adventure, Comedy",
     userRating: "8.3 (454 users)",
+    displayLocations: ["slider", "hotAnimation"],
   },
   {
     id: 10,
@@ -150,6 +159,7 @@ export const dummyData = [
     genre: "Animation, Comedy, Drama",
     userRating: "7.7 (354 users)",
     isVeg: true,
+    displayLocations: ["slider", "hotAnimation"],
   },
 ];
 
