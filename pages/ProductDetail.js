@@ -30,57 +30,6 @@ export default function ProductDetail() {
   const item = route.params.item;
 
   const navigation = useNavigation();
-  const [qty, setQty] = useState(1);
-
-  useEffect(() => {
-    setQty(1);
-  }, [item]);
-
-  orderNow = async () => {
-    try {
-      // Retrieve the existing order items from AsyncStorage
-      const existingOrderItems = await AsyncStorage.getItem("orderItems");
-      let newOrderItems = [];
-      if (existingOrderItems) {
-        // If there are existing order items, parse the data and add the new item object to the array
-        newOrderItems = JSON.parse(existingOrderItems);
-        let savedItemIndex = newOrderItems.findIndex(
-          (mItem) => mItem.id == item.id
-        );
-        if (newOrderItems[savedItemIndex]) {
-          newOrderItems[savedItemIndex].qty =
-            newOrderItems[savedItemIndex].qty + qty;
-        } else {
-          newOrderItems.push({
-            id: item.id,
-            name: item.name,
-            image: item.image,
-            price: item.price,
-            qty,
-          });
-        }
-      } else {
-        // If there are no existing order items, create a new array with the new item object
-        newOrderItems = [
-          {
-            id: item.id,
-            name: item.name,
-            image: item.image,
-            price: item.price,
-            qty,
-          },
-        ];
-      }
-      // Save the updated order items array to AsyncStorage
-      await AsyncStorage.setItem("orderItems", JSON.stringify(newOrderItems));
-      console.log("Item added to order");
-      console.log(newOrderItems);
-
-      navigation.navigate("Order");
-    } catch (error) {
-      console.log("Error saving order item:", error);
-    }
-  };
 
   const renderInfo = (iconConponent, title, info) => {
     return (
