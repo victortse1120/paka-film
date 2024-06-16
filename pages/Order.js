@@ -29,16 +29,13 @@ export default function ReviewTabs() {
       }
     }
     fetchPublicReviews();
-  }, []);
-
-  useEffect(() => {
     async function fetchMovies() {
       const movies = await getMovies();
       if (movies.length == 0) {
         await storeMovies(dummyData);
-        setPublicReviews(dummyData);
+        setMovies(dummyData);
       } else {
-        setPublicReviews(movies);
+        setMovies(movies);
       }
     }
     fetchMovies();
