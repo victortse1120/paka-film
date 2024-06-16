@@ -15,8 +15,8 @@ import { MyContext } from "../context/myContext";
 
 export default function ReviewTabs() {
   const [active, setActive] = useState(0);
-  const { movies, setMovies } = useContext(MyContext);
-  const { publicReviews, setPublicReviews } = useContext(MyContext);
+  const { movies, setMovies, publicReviews, setPublicReviews } =
+    useContext(MyContext);
 
   useEffect(() => {
     async function fetchPublicReviews() {
@@ -46,7 +46,7 @@ export default function ReviewTabs() {
 
   const toggleFavorite = (review) => {
     const updatedReviews = publicReviews.map((publicReview) =>
-      publicReview === review
+      publicReview.id == review.id
         ? { ...review, favorite: !review.favorite }
         : publicReview
     );

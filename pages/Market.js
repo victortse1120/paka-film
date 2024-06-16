@@ -36,7 +36,7 @@ export default function ReviewTabs() {
 
   const toggleFavorite = async (review) => {
     const updatedReviews = publicReviews.map((publicReview) =>
-      publicReview === review
+      publicReview.id == review.id
         ? { ...review, favorite: !review.favorite }
         : publicReview
     );
