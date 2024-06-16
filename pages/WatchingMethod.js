@@ -45,9 +45,6 @@ export default function WatchingMethod() {
 
   return (
     <View style={styles.container}>
-      <Text style={[defaultStyles.Headline, styles.headline]}>
-        Watching methods
-      </Text>
       {location && nearestCinemas ? (
         <MapView
           style={styles.map}
@@ -73,40 +70,34 @@ export default function WatchingMethod() {
       ) : (
         <LoadingLayer />
       )}
-      <ScrollView>
-        {nearestCinemas ? (
-          nearestCinemas.map((nearestCinema, index) => (
-            <View key={index} style={styles.row}>
-              <Text style={defaultStyles.Body}>{nearestCinema.name}</Text>
-              <Text style={[defaultStyles.Body, { color: "#FFC800" }]}>
-                {nearestCinema.distance} km
-              </Text>
-            </View>
-          ))
-        ) : (
-          <></>
-        )}
-      </ScrollView>
+      <View style={{ height: "24%" }}>
+        <ScrollView>
+          {nearestCinemas ? (
+            nearestCinemas.map((nearestCinema, index) => (
+              <View key={index} style={styles.row}>
+                <Text style={defaultStyles.Body}>{nearestCinema.name}</Text>
+                <Text style={[defaultStyles.Body, { color: "#FFC800" }]}>
+                  {nearestCinema.distance} km
+                </Text>
+              </View>
+            ))
+          ) : (
+            <></>
+          )}
+        </ScrollView>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 32,
-    alignItems: "center",
-    alignSelf: "center",
-    width: "100%",
-    flex: 1,
-    justifyContent: "space-around",
-  },
-  headline: {
-    marginVertical: 16,
+    height: "100%",
+    justifyContent: "center",
   },
   map: {
     width: "100%",
     height: "50%",
-    marginVertical: 16,
   },
   row: {
     display: "flex",

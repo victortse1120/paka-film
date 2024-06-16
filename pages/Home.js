@@ -21,9 +21,6 @@ export default function Home() {
 
   return (
     <View style={[defaultStyles.container, styles.container]}>
-      <Text style={[defaultStyles.Headline, { marginBottom: 16 }]}>
-        Create Film Review
-      </Text>
       <Image source={require("../assets/takePhoto.png")} style={styles.image} />
       <Text style={[defaultStyles.Subtitle, { margin: 16 }]}>
         Scan your Film Ticket with camera
@@ -53,6 +50,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
+    justifyContent: "center",
     paddingHorizontal: 16,
   },
   image: {

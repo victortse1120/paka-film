@@ -32,6 +32,7 @@ import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { MyContext } from "./context/myContext";
+import defaultStyles from "./components/styles/DefaultStyles";
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_APIKEY,
@@ -75,7 +76,7 @@ export default function App() {
 
   const backButton = () => {
     return (
-      <View style={{ marginTop: 22 }}>
+      <View>
         <TouchableOpacity onPress={() => navigationRef.current?.goBack()}>
           <Ionicons name="chevron-back" size={40} color="white" />
         </TouchableOpacity>
@@ -100,16 +101,24 @@ export default function App() {
             >
               <Stack.Navigator
                 screenOptions={{
-                  headerTitle: "",
                   headerTransparent: true,
                   gestureEnabled: false,
+                  headerTintColor: "#fff",
+                  headerTitleStyle: {
+                    fontSize: 24,
+                    fontWeight: "bold",
+                  },
+                  headerTitleAlign: "center",
                 }}
               >
                 {currentUser ? (
                   <Stack.Screen
                     name="Tabs"
                     component={TabNavigator}
-                    options={{ headerShown: false }}
+                    options={{
+                      headerShown: false,
+                      title: "",
+                    }}
                   />
                 ) : (
                   <Stack.Screen
@@ -121,32 +130,39 @@ export default function App() {
                 <Stack.Screen
                   name="Home"
                   component={Home}
-                  options={{ headerLeft: backButton }}
+                  options={{
+                    headerLeft: backButton,
+                    headerShown: true,
+                    title: "Create Film Review",
+                  }}
                 />
                 <Stack.Screen
                   name="ProductDetail"
                   component={ProductDetail}
-                  options={{ headerLeft: backButton }}
+                  options={{ headerLeft: backButton, headerTitle: "" }}
                 />
                 <Stack.Screen
                   name="WatchingMethod"
                   component={WatchingMethod}
-                  options={{ headerLeft: backButton }}
+                  options={{
+                    headerLeft: backButton,
+                    headerTitle: "Watching methods",
+                  }}
                 />
                 <Stack.Screen
                   name="ReviewDetail"
                   component={ReviewDetail}
-                  options={{ headerLeft: backButton }}
+                  options={{ headerLeft: backButton, headerTitle: "" }}
                 />
                 <Stack.Screen
                   name="TakePhoto"
                   component={TakePhoto}
-                  options={{ headerLeft: backButton }}
+                  options={{ headerLeft: backButton, headerTitle: "" }}
                 />
                 <Stack.Screen
                   name="WriteReview"
                   component={WriteReview}
-                  options={{ headerLeft: backButton }}
+                  options={{ headerLeft: backButton, headerTitle: "" }}
                 />
               </Stack.Navigator>
             </MyContext.Provider>
@@ -168,7 +184,6 @@ const TabNavigator = () => {
           paddingBottom: 16,
           height: 80,
         },
-        headerShown: false,
         tabBarActiveTintColor: "#FFC800",
         tabBarInactiveTintColor: "#A0A0A0",
       }}
@@ -180,6 +195,8 @@ const TabNavigator = () => {
           tabBarLabel: "Film",
           headerShown: false,
           tabBarIcon: ({ color }) => <HomeSvg name="home" fill={color} />,
+          headerTitle: "",
+          title: "",
         }}
       />
       <Tab.Screen
@@ -200,6 +217,7 @@ const TabNavigator = () => {
               />
             );
           },
+          title: "",
         }}
       />
 
@@ -213,7 +231,6 @@ const TabNavigator = () => {
           },
         }}
         options={{
-          headerShown: false,
           tabBarLabel: () => null,
           tabBarIcon: ({ color }) => (
             <View
@@ -230,6 +247,7 @@ const TabNavigator = () => {
               />
             </View>
           ),
+          title: "Create Film Review",
         }}
       />
 
@@ -251,6 +269,7 @@ const TabNavigator = () => {
               />
             );
           },
+          title: "",
         }}
       />
       <Tab.Screen
@@ -260,6 +279,7 @@ const TabNavigator = () => {
           tabBarLabel: "Setting",
           headerShown: false,
           tabBarIcon: ({ color }) => <SettingSvg name="Setting" fill={color} />,
+          title: "",
         }}
       />
     </Tab.Navigator>
