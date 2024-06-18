@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { deepEqual } from "../utils/common";
 
 // My Review
 export const storeMyReview = async (review) => {
@@ -38,7 +39,7 @@ export const removeMyReview = async (review) => {
   try {
     const existingReviews = await getMyReviews();
     const updatedReviews = existingReviews.filter(
-      (existingReview) => existingReview != review
+      (existingReview) => !deepEqual(existingReview, review)
     );
     await storeMyReviews(updatedReviews);
   } catch (e) {
