@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ToastAndroid } from "react-native";
 import ReviewList from "../components/ReviewList";
 import ReviewMyself from "../components/ReviewMyself";
 import MyTabs from "../components/Tab";
@@ -42,6 +42,10 @@ export default function ReviewTabs() {
     );
     setPublicReviews(updatedReviews);
     storePublicReviews(updatedReviews);
+    ToastAndroid.show(
+      review.favorite ? "Favorites removed" : "Added to favorites",
+      ToastAndroid.SHORT
+    );
   };
 
   return (

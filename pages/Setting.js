@@ -4,8 +4,8 @@ import {
   Image,
   Text,
   TouchableWithoutFeedback,
+  ToastAndroid,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 import defaultStyles from "./../components/styles/DefaultStyles";
 
@@ -14,7 +14,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getAuth, signOut } from "firebase/auth";
 
 export default function Setting() {
-  const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const auth = getAuth();
 
@@ -46,10 +45,14 @@ export default function Setting() {
 
       <TouchableWithoutFeedback
         onPress={() => {
-          signOut(auth).catch((error) => {
-            const errorMessage = error.message;
-            console.log(errorMessage);
-          });
+          signOut(auth)
+            .then(() =>
+              ToastAndroid.show("Account logged out", ToastAndroid.SHORT)
+            )
+            .catch((error) => {
+              const errorMessage = error.message;
+              console.log(errorMessage);
+            });
         }}
       >
         <View style={styles.logoutButtonRootView}>

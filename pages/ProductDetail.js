@@ -7,6 +7,7 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   Platform,
+  ToastAndroid,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
@@ -38,6 +39,12 @@ export default function ProductDetail() {
     );
     storeMovies(updatedMovies);
     setMovies(updatedMovies);
+    ToastAndroid.show(
+      updatedMovies.find((m) => m.id === item.id).favorite
+        ? "Added to favorites"
+        : "Favorites removed",
+      ToastAndroid.SHORT
+    );
   };
 
   const renderInfo = (iconConponent, title, info) => {

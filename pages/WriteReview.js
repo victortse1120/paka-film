@@ -7,6 +7,7 @@ import {
   Platform,
   Image,
   TouchableOpacity,
+  ToastAndroid,
 } from "react-native";
 import defaultStyles from "./../components/styles/DefaultStyles";
 import MyTextInput from "../components/TextInput";
@@ -189,6 +190,7 @@ export default function WriteReviews() {
                 index: 0,
                 routes: [{ name: "Tabs" }],
               });
+              ToastAndroid.show("Review published", ToastAndroid.SHORT);
             }}
           />
         </View>

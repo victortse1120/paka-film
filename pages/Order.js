@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ToastAndroid } from "react-native";
 import FavoriteMovies from "../components/FavoriteMovies";
 import MyTabs from "../components/Tab";
 import ReviewList from "../components/ReviewList";
@@ -49,6 +49,10 @@ export default function ReviewTabs() {
     );
     setPublicReviews(updatedReviews);
     storePublicReviews(updatedReviews);
+    ToastAndroid.show(
+      review.favorite ? "Favorites removed" : "Added to favorites",
+      ToastAndroid.SHORT
+    );
   };
 
   const toggleMovieFavorite = (toggledMovie) => {
@@ -57,6 +61,10 @@ export default function ReviewTabs() {
     );
     setMovies(updatedMovies);
     storeMovies(updatedMovies);
+    ToastAndroid.show(
+      toggledMovie.favorite ? "Favorites removed" : "Added to favorites",
+      ToastAndroid.SHORT
+    );
   };
 
   return (
