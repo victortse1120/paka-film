@@ -90,6 +90,7 @@ export default function LogIn() {
                   ? signInWithEmailAndPassword(auth, form.email, form.password)
                       .then((userCredential) => {
                         console.log(userCredential);
+                        setModalVisible(true);
                       })
                       .catch((error) => {
                         const errorMessage = error.message;
@@ -104,6 +105,7 @@ export default function LogIn() {
                     )
                       .then((userCredential) => {
                         console.log(userCredential);
+                        setModalVisible(true);
                       })
                       .catch((error) => {
                         const errorMessage = error.message;

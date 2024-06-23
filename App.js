@@ -33,6 +33,7 @@ import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { MyContext } from "./context/myContext";
 import defaultStyles from "./components/styles/DefaultStyles";
+import LoadingLayer from "./components/LoadingLayer";
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_APIKEY,
@@ -61,12 +62,20 @@ const Mytheme = {
 };
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
   const [publicReviews, setPublicReviews] = useState([]);
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+      setIsLoading(false);
+      if (user) {
+        setTimeout(() => {
+          setCurrentUser(user);
+        }, 2000);
+      } else {
+        setCurrentUser(user);
+      }
     });
 
     return unsubscribe;
@@ -83,6 +92,10 @@ export default function App() {
       </View>
     );
   };
+
+  if (isLoading) {
+    return <LoadingLayer />;
+  }
 
   return (
     <GestureHandlerRootView>
