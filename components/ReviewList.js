@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
+import defaultStyles from "./styles/DefaultStyles";
 
 const ReviewItem = ({ item, toggleFavorite }) => {
   const navigation = useNavigation();
@@ -50,27 +51,33 @@ const ReviewItem = ({ item, toggleFavorite }) => {
   );
 };
 
-const ReviewList = ({ reviews, toggleFavorite }) => (
-  <FlatList
-    data={reviews}
-    renderItem={({ item, index }) => (
-      <View>
-        {index > 0 && (
-          <View
-            style={{
-              borderTopWidth: 1,
-              borderTopColor: "#969696",
-              marginVertical: 20,
-            }}
-          />
-        )}
-        <ReviewItem item={item} toggleFavorite={toggleFavorite} />
-      </View>
-    )}
-    keyExtractor={(item) => item.id}
-    contentContainerStyle={styles.listContainer}
-  />
-);
+const ReviewList = ({ reviews, toggleFavorite }) => {
+  return reviews.length == 0 ? (
+    <View style={defaultStyles.noDataContainer}>
+      <Text style={defaultStyles.Headline}>No favorite data yet</Text>
+    </View>
+  ) : (
+    <FlatList
+      data={reviews}
+      renderItem={({ item, index }) => (
+        <View>
+          {index > 0 && (
+            <View
+              style={{
+                borderTopWidth: 1,
+                borderTopColor: "#969696",
+                marginVertical: 20,
+              }}
+            />
+          )}
+          <ReviewItem item={item} toggleFavorite={toggleFavorite} />
+        </View>
+      )}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={styles.listContainer}
+    />
+  );
+};
 
 const styles = StyleSheet.create({
   listContainer: {

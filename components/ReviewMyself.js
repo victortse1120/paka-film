@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Modal,
   Pressable,
-  Alert,
+  ToastAndroid,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -60,9 +60,14 @@ const ReviewMyself = ({ reviews, setMyReviews }) => {
     setMyReviews(reviews.filter((review) => review !== selectedReview));
     await removeMyReview(selectedReview);
     setModalVisible(false);
+    ToastAndroid.show("Review deleted", ToastAndroid.SHORT);
   };
 
-  return (
+  return reviews.length == 0 ? (
+    <View style={defaultStyles.noDataContainer}>
+      <Text style={defaultStyles.Headline}>No review data yet</Text>
+    </View>
+  ) : (
     <View style={{ flex: 1 }}>
       <FlatList
         data={reviews}

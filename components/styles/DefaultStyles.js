@@ -68,6 +68,12 @@ const defaultStyles = StyleSheet.create({
     color: "#969696",
     fontSize: 14,
   },
+  noDataContainer: {
+    flex: 1,
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
 export default defaultStyles;

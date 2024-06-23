@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, FlatList, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import defaultStyles from "./styles/DefaultStyles";
 
 const MovieItem = ({ item, toggleMovieFavorite }) => (
   <View style={styles.movieContainer}>
@@ -34,19 +35,25 @@ const Separator = () => (
   />
 );
 
-const FavoriteMovies = ({ movies, toggleMovieFavorite }) => (
-  <FlatList
-    data={movies}
-    renderItem={({ item, index }) => (
-      <>
-        {index > 0 && <Separator />}
-        <MovieItem item={item} toggleMovieFavorite={toggleMovieFavorite} />
-      </>
-    )}
-    keyExtractor={(item) => item.id}
-    contentContainerStyle={styles.listContainer}
-  />
-);
+const FavoriteMovies = ({ movies, toggleMovieFavorite }) => {
+  return movies.length == 0 ? (
+    <View style={defaultStyles.noDataContainer}>
+      <Text style={defaultStyles.Headline}>No favorite data yet</Text>
+    </View>
+  ) : (
+    <FlatList
+      data={movies}
+      renderItem={({ item, index }) => (
+        <>
+          {index > 0 && <Separator />}
+          <MovieItem item={item} toggleMovieFavorite={toggleMovieFavorite} />
+        </>
+      )}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={styles.listContainer}
+    />
+  );
+};
 
 const styles = StyleSheet.create({
   listContainer: {
