@@ -17,6 +17,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import LogInModal from "../components/LogInModal";
 
 export default function LogIn() {
   const [isLogin, setIsLogin] = useState(true);
@@ -25,6 +26,7 @@ export default function LogIn() {
     password: "",
   });
   const [error, setError] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
   const passwordRef = useRef();
   const auth = getAuth();
@@ -80,11 +82,6 @@ export default function LogIn() {
               onSubmitEditing={() => passwordRef?.current?.blur()}
               secureTextEntry={true}
             />
-            {error == "" ? (
-              <></>
-            ) : (
-              <Text style={[defaultStyles.Body]}>{error}</Text>
-            )}
             <MyButton
               title={isLogin ? "LOGIN" : "REGISTER"}
               onPress={() => {
@@ -98,6 +95,7 @@ export default function LogIn() {
                         const errorMessage = error.message;
                         console.log(errorMessage);
                         setError(errorMessage);
+                        setModalVisible(true);
                       })
                   : createUserWithEmailAndPassword(
                       auth,
@@ -111,6 +109,7 @@ export default function LogIn() {
                         const errorMessage = error.message;
                         console.log(errorMessage);
                         setError(errorMessage);
+                        setModalVisible(true);
                       });
               }}
             />
@@ -129,6 +128,11 @@ export default function LogIn() {
           </View>
         </View>
       </ScrollView>
+      <LogInModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        error={error}
+      />
     </KeyboardAvoidingView>
   );
 }
