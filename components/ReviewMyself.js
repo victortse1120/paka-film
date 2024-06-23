@@ -119,10 +119,7 @@ const ReviewMyself = ({ reviews, setMyReviews }) => {
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setBottomModalVisible(!bottomModalVisible);
-        }}
+        onRequestClose={() => {}}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -134,13 +131,16 @@ const ReviewMyself = ({ reviews, setMyReviews }) => {
 
             <View style={[styles.dividerLine, { width: "100%", height: 1 }]} />
             <View style={styles.buttonContainer}>
-              <Pressable onPress={handleDeletePress}>
+              <Pressable style={{ padding: 16 }} onPress={handleDeletePress}>
                 <Text style={defaultStyles.Body}>Yes</Text>
               </Pressable>
               <View
                 style={[styles.dividerLine, { width: 1, height: "100%" }]}
               />
-              <Pressable onPress={() => setModalVisible(false)}>
+              <Pressable
+                style={{ padding: 16 }}
+                onPress={() => setModalVisible(false)}
+              >
                 <Text style={[defaultStyles.Body, { color: "#FFC800" }]}>
                   No
                 </Text>
