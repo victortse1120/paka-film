@@ -6,12 +6,15 @@ import {
   TouchableOpacity,
   StyleSheet,
   Modal,
+  Pressable,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { Dimensions } from "react-native";
 import { removeMyReview } from "../storages/MovieReviews";
+import defaultStyles from "../components/styles/DefaultStyles";
 
 const { width } = Dimensions.get("window");
 
@@ -45,21 +48,18 @@ const ReviewItem = ({ item, onOptionsPress }) => {
 
 const ReviewMyself = ({ reviews, setMyReviews }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [bottomModalVisible, setBottomModalVisible] = useState(false);
   const [selectedReview, setSelectedReview] = useState(null);
 
   const handleOptionsPress = (item) => {
     setSelectedReview(item);
-    setModalVisible(true);
-  };
-
-  const handleCancelPress = () => {
-    setModalVisible(false);
+    setBottomModalVisible(true);
   };
 
   const handleDeletePress = async () => {
     setMyReviews(reviews.filter((review) => review !== selectedReview));
-    setModalVisible(false);
     await removeMyReview(selectedReview);
+    setModalVisible(false);
   };
 
   return (
@@ -85,9 +85,9 @@ const ReviewMyself = ({ reviews, setMyReviews }) => {
       />
       <Modal
         transparent={true}
-        visible={modalVisible}
+        visible={bottomModalVisible}
         onRequestClose={() => {
-          setModalVisible(!modalVisible);
+          setBottomModalVisible(!bottomModalVisible);
         }}
       >
         <View style={styles.modalOverlay}>
@@ -95,7 +95,10 @@ const ReviewMyself = ({ reviews, setMyReviews }) => {
             <View style={styles.modalDivider1} />
             <TouchableOpacity
               style={styles.modalButton}
-              onPress={handleDeletePress}
+              onPress={() => {
+                setModalVisible(true);
+                setBottomModalVisible(false);
+              }}
               activeOpacity={1}
             >
               <Text style={styles.modalButtonText1}>Delete</Text>
@@ -103,7 +106,7 @@ const ReviewMyself = ({ reviews, setMyReviews }) => {
             <View style={styles.modalDivider} />
             <TouchableOpacity
               style={styles.modalButton}
-              onPress={handleCancelPress}
+              onPress={() => setBottomModalVisible(false)}
               activeOpacity={1}
             >
               <Text style={styles.modalButtonText2}>Cancel</Text>
@@ -112,31 +115,43 @@ const ReviewMyself = ({ reviews, setMyReviews }) => {
           </View>
         </View>
       </Modal>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setBottomModalVisible(!bottomModalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={{ height: "60%", justifyContent: "center" }}>
+              <Text style={defaultStyles.Body}>
+                Confirm to delete the review?
+              </Text>
+            </View>
+
+            <View style={[styles.dividerLine, { width: "100%", height: 1 }]} />
+            <View style={styles.buttonContainer}>
+              <Pressable onPress={handleDeletePress}>
+                <Text style={defaultStyles.Body}>Yes</Text>
+              </Pressable>
+              <View
+                style={[styles.dividerLine, { width: 1, height: "100%" }]}
+              />
+              <Pressable onPress={() => setModalVisible(false)}>
+                <Text style={[defaultStyles.Body, { color: "#FFC800" }]}>
+                  No
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
-
-// const ReviewMyself = ({ reviews }) => (
-//   <FlatList
-//     data={reviews}
-//     renderItem={({ item, index }) => (
-//       <View>
-//         {index > 0 && (
-//           <View
-//             style={{
-//               borderTopWidth: 1,
-//               borderTopColor: "#969696",
-//               marginVertical: 20,
-//             }}
-//           />
-//         )}
-//         <ReviewItem item={item} />
-//       </View>
-//     )}
-//     keyExtractor={(item, index) => index}
-//     contentContainerStyle={styles.listContainer}
-//   />
-// );
 
 const styles = StyleSheet.create({
   listContainer: {
@@ -232,6 +247,43 @@ const styles = StyleSheet.create({
     backgroundColor: "#3C3C3C",
     width: width,
     marginVertical: 1,
+  },
+  centeredView: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.75)",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    height: 160,
+    width: "80%",
+    margin: 20,
+    backgroundColor: "#3C3C3C",
+    borderRadius: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  dividerLine: {
+    backgroundColor: "#5A5A5A",
+  },
+  modalText: {
+    color: "white",
+    textAlign: "center",
+  },
+  buttonContainer: {
+    height: "40%",
+    width: "80%",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 });
 
