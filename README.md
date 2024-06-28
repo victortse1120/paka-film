@@ -1,19 +1,59 @@
-# Sample Snack app
+# Paka Film
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+Welcome to Paka Film! This is a cross-platform social mobile application for sharing movie reviews, built with the [EXPO](https://expo.dev/) framework.
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo-cli](https://docs.expo.dev/get-started/installation/#expo-cli)).
+## Features
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
+- **Cross-Platform**: Works on both iOS and Android devices.
+- **User Profiles**: Create and manage user profiles.
+- **Movie Reviews**: Write and share movie reviews.
+- **Social Interaction**: like, and comment on reviews.
+- **Search Functionality**: Search for movies
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.dev/c/expo-dev-tools/61) or [Discord](https://chat.expo.dev/).
+## Environment Variables
 
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
+To run this project, you will need to add the following environment variables to your .env and eas.json file
 
-# development run
+`EXPO_PUBLIC_APIKEY`
 
-npx expo start
+`EXPO_PUBLIC_AUTHDOMAIN`
 
-# build apk
+`EXPO_PUBLIC_PROJECTID`
 
-eas build -p android --profile preview
+`EXPO_PUBLIC_STORAGEBUCKET`
+
+`EXPO_PUBLIC_MESSAGINGSENDERID`
+
+`EXPO_PUBLIC_APPID`
+
+`EXPO_PUBLIC_GOOGLE_VISION_KEY`
+
+## Installation
+
+Install my-project with npm
+
+```bash
+  npm install
+```
+
+## Run Locally
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npx expo start
+```
+
+## Building the APK
+
+To build the APK for Android, you can use EXPO Application Services (EAS). Follow these steps:
+
+```bash
+  eas build -p android --profile preview
+```
